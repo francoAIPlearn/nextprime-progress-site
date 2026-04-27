@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>变量拆解 | NEXTPRIME</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">Step 2 / 变量拆解</div>
+    </div>
+  </header>
+  <main class="container">
+    <h1>变量拆解</h1>
+    <p class="small">本页仅展示控制组与变化组变量结构，保证 AB 可判读。</p>
+    <section class="panel">
+      <div class="nav">
+        <a href="../index.html">总览首页</a>
+        <a href="step-direction.html">方向梳理</a>
+        <a class="active" href="step-variables.html">变量拆解</a>
+        <a href="step-ab-plan.html">AB测试方案</a>
+        <a href="step-asset-check.html">资产检查</a>
+        <a href="step-requirements.html">测试图需求单</a>
+        <a href="step-production.html">出图</a>
+        <a href="step-review.html">复盘迭代</a>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>目标</h2>
+      <ul>
+        <li>每张图只保留 1 个主变量，避免多变量干扰结论。</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>变量结构</h2>
+      <table class="table">
+        <thead>
+          <tr><th>编号</th><th>角色</th><th>唯一变量</th><th>保持不变</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A1</td><td>控制组</td><td>水膜包裹产品</td><td>数字钩子文案、成分副信息、单产品构图</td></tr>
+          <tr><td>A2</td><td>变化组</td><td>冷凝玻璃前景替代水膜</td><td>数字钩子文案、成分副信息、单产品构图</td></tr>
+          <tr><td>B1</td><td>变化组</td><td>标题改成功效钩子</td><td>水膜结构、背景风格、主体构图</td></tr>
+          <tr><td>B2</td><td>变化组</td><td>标题改成质地钩子</td><td>水膜结构、背景风格、主体构图</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>排除项</h2>
+      <ul>
+        <li>不同时改画面结构与文案钩子。</li>
+        <li>不引入人物、手持、生活方式道具。</li>
+        <li>不改品牌页未授权功效表达。</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>来源标注</h2>
+      <ul>
+        <li>[来源] <a href="../docs/测试总表.md" target="_blank" rel="noopener noreferrer">docs/测试总表.md</a> / `首轮4图总表`</li>
+        <li>[来源] <a href="../docs/requirements/01_A1_需求单.md" target="_blank" rel="noopener noreferrer">A1</a> ~ <a href="../docs/requirements/04_B2_需求单.md" target="_blank" rel="noopener noreferrer">B2</a> 需求单</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

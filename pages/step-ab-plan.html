@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AB 测试方案 | NEXTPRIME</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">Step 3 / AB 测试方案</div>
+    </div>
+  </header>
+  <main class="container">
+    <h1>AB 测试方案</h1>
+    <p class="small">本页是首轮测试的执行总表与判读规则。</p>
+    <section class="panel">
+      <div class="nav">
+        <a href="../index.html">总览首页</a>
+        <a href="step-direction.html">方向梳理</a>
+        <a href="step-variables.html">变量拆解</a>
+        <a class="active" href="step-ab-plan.html">AB测试方案</a>
+        <a href="step-asset-check.html">资产检查</a>
+        <a href="step-requirements.html">测试图需求单</a>
+        <a href="step-production.html">出图</a>
+        <a href="step-review.html">复盘迭代</a>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>测试目标</h2>
+      <ul>
+        <li>验证哪种“实拍水感表达”更适合 Brightening Face Wash 首轮投放。</li>
+        <li>指标统一：`CTR / CTR(link click) / ROAS / CVR`。</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>首轮方案</h2>
+      <table class="table">
+        <thead>
+          <tr><th>编号</th><th>角色</th><th>变量</th><th>主标题</th><th>预设动作</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A1</td><td>控制组</td><td>水膜包裹</td><td>10s Brighter and Clearer Skin</td><td>赢则只测标题钩子</td></tr>
+          <tr><td>A2</td><td>变化组</td><td>冷凝玻璃</td><td>10s Brighter and Clearer Skin</td><td>赢则测局部冷凝 vs 整面湿润玻璃</td></tr>
+          <tr><td>B1</td><td>变化组</td><td>功效钩子标题</td><td>All-Rounder Brightening Cleanser</td><td>赢则细测功效短句</td></tr>
+          <tr><td>B2</td><td>变化组</td><td>质地钩子标题</td><td>Dense Pearl Foam with Power Cleanse</td><td>赢则测 Dense Pearl Foam vs Power Cleanse Foam</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="panel">
+      <h2>判读规则</h2>
+      <ul>
+        <li>结果标签：赢 / 输 / 持平 / 高点击低转化 / 低点击高转化。</li>
+        <li>高点击低转化：优先改承接文案与产品证据，不先改方向。</li>
+        <li>低点击高转化：保留卖点结构，优先改首屏冲击与标题可读性。</li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>来源标注</h2>
+      <ul>
+        <li>[来源] <a href="../docs/测试总表.md" target="_blank" rel="noopener noreferrer">docs/测试总表.md</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
