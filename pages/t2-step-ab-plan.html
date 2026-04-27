@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>视觉对比方案 | NEXTPRIME Test 2</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">Test 2 Step 3</div>
+    </div>
+  </header>
+  <main class="container">
+    <h1>测试2 - 视觉对比方案</h1>
+    <p class="small">测试2不做功效AB，只做水感视觉对比。</p>
+    <section class="panel">
+
+      <div class="nav">
+        <a href="../index.html">总览首页</a>
+        <a href="t2-workflow-index.html">测试2索引</a>
+        <a href="t2-step-direction.html">方向梳理</a>
+        <a href="t2-step-variables.html">变量拆解</a>
+        <a href="t2-step-ab-plan.html">视觉对比方案</a>
+        <a href="t2-step-asset-check.html">资产检查</a>
+        <a href="t2-step-requirements.html">测试图需求单</a>
+        <a href="t2-step-production.html">出图</a>
+        <a href="t2-step-review.html">复盘迭代</a>
+      </div>
+
+    </section>
+    <section class="panel"><h2>执行规则</h2><ul>
+<li>每张图只改变一个水变量。</li>
+<li>标题固定两行，不改拼写和大小写。</li>
+<li>产品主体必须与正面原图一致，不允许重绘外观。</li>
+</ul></section>
+<section class="panel"><h2>指标</h2><ul>
+<li>CTR / CTR(link click) / ROAS / CVR</li>
+</ul></section>
+  </main>
+  <script>
+    document.querySelectorAll('.nav a').forEach(a=>{
+      if(a.getAttribute('href')==='t2-step-ab-plan.html') a.classList.add('active');
+    });
+  </script>
+</body>
+</html>

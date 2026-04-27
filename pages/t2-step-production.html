@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>测试2 出图 | NEXTPRIME</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .layout {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+    .tree-panel, .detail-panel {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .tree-wrap { max-height: calc(100vh - 190px); overflow: auto; padding-right: 4px; }
+    .test-group {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      margin: 8px 0;
+      background: #fffdfa;
+    }
+    .test-group > summary { cursor: pointer; font-weight: 600; list-style: none; }
+    .ver-btn {
+      margin-top: 8px;
+      width: 100%;
+      text-align: left;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+      color: #2b2b2b;
+    }
+    .ver-btn.active {
+      border-color: #d8b29f;
+      background: #fff6f0;
+    }
+    .badge {
+      display: inline-block;
+      margin-left: 6px;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      border: 1px solid var(--border);
+      color: #6b7280;
+      background: #f8f8f8;
+    }
+    .badge.primary {
+      border-color: #bde8cd;
+      color: #1f7a4f;
+      background: #eaf8f0;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+    .preview { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
+    .preview img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
+    .preview .cap { padding: 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+    .block {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+    .block h3 { margin: 0 0 8px; font-size: 14px; }
+    .list { margin: 0; padding-left: 18px; }
+    .list li { margin: 4px 0; }
+    .code-path {
+      display: inline-block;
+      margin-top: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      background: #f7f3ee;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+      word-break: break-all;
+    }
+    @media (max-width: 1100px) {
+      .layout { grid-template-columns: 1fr; }
+      .tree-wrap { max-height: none; }
+      .detail-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">Test 2 / Step 6 出图</div>
+    </div>
+  </header>
+  <main class="container">
+    <h1>测试2出图追溯栏</h1>
+    <p class="small">W01~W10 仅水感变量。产品主体固定来自 Brightening Face Wash 正面原图。</p>
+
+    <section class="panel">
+      <div class="nav">
+        <a href="../index.html">总览首页</a>
+        <a href="t2-workflow-index.html">测试2索引</a>
+        <a href="t2-step-direction.html">方向梳理</a>
+        <a href="t2-step-variables.html">变量拆解</a>
+        <a href="t2-step-ab-plan.html">视觉对比方案</a>
+        <a href="t2-step-asset-check.html">资产检查</a>
+        <a href="t2-step-requirements.html">测试图需求单</a>
+        <a class="active" href="t2-step-production.html">出图</a>
+        <a href="t2-step-review.html">复盘迭代</a>
+      </div>
+    </section>
+
+    <section class="layout">
+      <aside class="tree-panel">
+        <h2>树状追溯</h2>
+        <p class="small">分组：W01~W10 -> v1</p>
+        <div id="traceTree" class="tree-wrap"></div>
+      </aside>
+      <section class="detail-panel">
+        <h2>详情面板</h2>
+        <div id="traceDetail" class="small">请选择左侧节点。</div>
+      </section>
+    </section>
+  </main>
+
+  <script src="../data/production-trace-test2.js"></script>
+  <script>
+    (function () {
+      const data = window.PRODUCTION_TRACE_TEST2_DATA;
+      const treeEl = document.getElementById("traceTree");
+      const detailEl = document.getElementById("traceDetail");
+      if (!data || !Array.isArray(data.items)) {
+        detailEl.textContent = "追溯数据加载失败，请检查 data/production-trace-test2.js。";
+        return;
+      }
+
+      const sharedRefs = data.shared_references || [];
+      const items = data.items.filter((i) => i.status !== "invalid_shape");
+      const byTest = {};
+      items.forEach((item) => {
+        if (!byTest[item.test_id]) byTest[item.test_id] = {};
+        byTest[item.test_id][item.version] = item;
+      });
+      const testOrder = ["W01", "W02", "W03", "W04", "W05", "W06", "W07", "W08", "W09", "W10"];
+      let selectedKey = "";
+
+      function esc(text) {
+        return String(text || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
+      function refItemHtml(ref) {
+        return `<li><a href="${esc(ref.path)}" target="_blank" rel="noopener noreferrer">${esc(ref.title)}</a><div class="small">来源: ${esc(ref.source || "")}</div></li>`;
+      }
+
+      function linkedDocHtml(doc) {
+        return `<li><a href="${esc(doc.href)}" target="_blank" rel="noopener noreferrer">${esc(doc.label)}</a></li>`;
+      }
+
+      function renderDetail(item) {
+        const statusLabel = item.status === "primary" ? "主候选" : "历史";
+        const statusClass = item.status === "primary" ? "badge primary" : "badge";
+        const promptExcerpt = (item.prompt_excerpt || []).map((line) => `<li>${esc(line)}</li>`).join("");
+        const sharedRefHtml = sharedRefs.map(refItemHtml).join("");
+        const variantRefHtml = (item.variant_references || []).map((ref) => `<li>${esc(ref.title)}<div class="small">来源: ${esc(ref.source || "")}</div></li>`).join("");
+        const docHtml = (item.linked_docs || []).map(linkedDocHtml).join("");
+
+        detailEl.innerHTML = `
+          <div class="detail-grid">
+            <div class="preview">
+              <img src="${esc(item.output_file)}" alt="${esc(item.test_id)} ${esc(item.version)}" />
+              <div class="cap">${esc(item.test_id)} ${esc(item.version)} · <span class="${statusClass}">${statusLabel}</span></div>
+            </div>
+            <div>
+              <div class="block">
+                <h3>图信息</h3>
+                <ul class="list">
+                  <li>测试编号: ${esc(item.test_id)}</li>
+                  <li>版本: ${esc(item.version)}</li>
+                  <li>状态: <span class="${statusClass}">${statusLabel}</span></li>
+                  <li>水感变量: ${esc(item.water_effect_type)}</li>
+                </ul>
+                <div class="small">输出文件</div>
+                <a class="code-path" href="${esc(item.output_file)}" target="_blank" rel="noopener noreferrer">${esc(item.output_file)}</a>
+              </div>
+              <div class="block">
+                <h3>基底来源</h3>
+                <a class="code-path" href="${esc(item.source_product_image)}" target="_blank" rel="noopener noreferrer">${esc(item.source_product_image)}</a>
+              </div>
+              <div class="block">
+                <h3>使用 Prompt</h3>
+                <div class="small">关键约束摘录</div>
+                <ul class="list">${promptExcerpt}</ul>
+                <div class="small" style="margin-top: 8px;">全文入口</div>
+                <a class="code-path" href="${esc(item.prompt_file)}" target="_blank" rel="noopener noreferrer">${esc(item.prompt_file)}</a>
+              </div>
+              <div class="block">
+                <h3>参考资料（共享基线）</h3>
+                <ul class="list">${sharedRefHtml}</ul>
+              </div>
+              <div class="block">
+                <h3>参考资料（差异项）</h3>
+                <ul class="list">${variantRefHtml}</ul>
+              </div>
+              <div class="block">
+                <h3>关联文档</h3>
+                <ul class="list">${docHtml}</ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function setActive(btn) {
+        document.querySelectorAll(".ver-btn").forEach((el) => el.classList.remove("active"));
+        btn.classList.add("active");
+      }
+
+      testOrder.forEach((testId) => {
+        const group = byTest[testId];
+        if (!group || !group.v1) return;
+        const item = group.v1;
+        const groupDetail = document.createElement("details");
+        groupDetail.className = "test-group";
+        groupDetail.open = true;
+        const groupSummary = document.createElement("summary");
+        groupSummary.textContent = testId;
+        groupDetail.appendChild(groupSummary);
+        const button = document.createElement("button");
+        button.className = "ver-btn";
+        button.type = "button";
+        button.textContent = `${testId} v1 · ${item.water_effect_type}`;
+        button.addEventListener("click", () => {
+          selectedKey = `${testId}-v1`;
+          setActive(button);
+          renderDetail(item);
+        });
+        groupDetail.appendChild(button);
+        treeEl.appendChild(groupDetail);
+        if (!selectedKey && testId === "W01") {
+          selectedKey = "W01-v1";
+          setTimeout(() => {
+            setActive(button);
+            renderDetail(item);
+          }, 0);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -13,7 +13,7 @@
       --accent: #d97757;
       --border: #e7e1db;
       --ok: #1f7a4f;
-      --warn: #a16207;
+      --doing: #a16207;
     }
     * { box-sizing: border-box; }
     body {
@@ -29,7 +29,6 @@
       z-index: 10;
       background: rgba(17, 17, 17, 0.92);
       border-bottom: 1px solid #2a2a2a;
-      backdrop-filter: blur(8px);
       color: #f7f7f7;
     }
     .topbar-inner, .container { width: min(1120px, 92vw); margin: 0 auto; }
@@ -37,26 +36,15 @@
     .brand { font-weight: 700; letter-spacing: 0.08em; }
     .brand span { color: var(--accent); }
     .stamp { color: #bfbfbf; font-size: 13px; }
-    .topnav { display: flex; gap: 8px; margin-left: 16px; }
-    .topnav a {
-      color: #f2f2f2;
-      border: 1px solid #3a3a3a;
-      border-radius: 6px;
-      padding: 3px 8px;
-      font-size: 12px;
-      text-decoration: none;
-    }
-    .topnav a:hover { background: #2a2a2a; }
-    .top-left { display: flex; align-items: center; }
-    .hero { padding: 34px 0 20px; }
-    h1 { margin: 0 0 10px; font-size: clamp(28px, 3.8vw, 42px); letter-spacing: 0.01em; }
-    .lead { margin: 0; color: var(--muted); max-width: 860px; }
-    .grid-2 { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px; margin: 18px 0 28px; }
+    .hero { padding: 28px 0 16px; }
+    h1 { margin: 0 0 8px; font-size: clamp(26px, 3.2vw, 40px); }
+    .lead { margin: 0; color: var(--muted); }
     .panel {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 16px;
+      margin: 14px 0;
     }
     .panel h2 {
       margin: 0 0 10px;
@@ -64,173 +52,224 @@
       border-left: 3px solid var(--accent);
       padding-left: 9px;
     }
-    .small { color: var(--muted); font-size: 14px; }
+    .test-switch { display: inline-flex; gap: 8px; }
+    .test-btn {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .test-btn.active {
+      border-color: #d8b29f;
+      background: #fff6f0;
+      font-weight: 600;
+    }
     .workflow { display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 10px; overflow-x: auto; padding-bottom: 6px; }
     .step {
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 10px;
-      min-height: 88px;
+      min-height: 86px;
       background: #fffcf8;
       text-decoration: none;
       color: var(--ink);
       display: block;
     }
     .step:hover { border-color: #d2b3a0; background: #fff9f4; }
-    .step .name { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
-    .step .meta {
-      display: block;
-      margin-top: 8px;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.35;
-    }
+    .name { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+    .meta { display: block; font-size: 12px; color: var(--muted); line-height: 1.35; }
     .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
     .done { color: var(--ok); background: #eaf8f0; border: 1px solid #bde8cd; }
-    .doing { color: var(--warn); background: #fff4df; border: 1px solid #f2d69a; }
+    .doing { color: var(--doing); background: #fff4df; border: 1px solid #f2d69a; }
     .todo { color: #6b7280; background: #f3f4f6; border: 1px solid #e5e7eb; }
-    ul { margin: 8px 0 0 18px; padding: 0; }
-    li { margin: 4px 0; }
+    .small { color: var(--muted); font-size: 14px; }
     .table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .table th, .table td { border-bottom: 1px solid var(--border); text-align: left; padding: 8px 6px; vertical-align: top; }
-    .table th { font-weight: 600; background: #faf8f5; }
-    .code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; background: #f7f3ee; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
-    .gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .table th { background: #faf8f5; font-weight: 600; }
+    .gallery { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
     .card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
     .card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
-    .cap { padding: 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
-    .footer { padding: 22px 0 36px; color: var(--muted); font-size: 13px; }
+    .cap { padding: 6px 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
     a { color: #b65f44; text-decoration: none; }
     a:hover { text-decoration: underline; }
     @media (max-width: 960px) {
-      .grid-2 { grid-template-columns: 1fr; }
       .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .topnav { display: none; }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <div class="top-left">
-        <div class="brand">NEXTPRIME <span>pic_editor</span></div>
-        <nav class="topnav" aria-label="主导航">
-          <a href="pages/workflow-index.html">流程索引</a>
-          <a href="pages/step-direction.html">方向梳理</a>
-          <a href="pages/step-variables.html">变量拆解</a>
-          <a href="pages/step-ab-plan.html">AB方案</a>
-          <a href="pages/step-asset-check.html">资产检查</a>
-          <a href="pages/step-requirements.html">需求单</a>
-          <a href="pages/step-production.html">出图</a>
-          <a href="pages/step-review.html">复盘迭代</a>
-        </nav>
-      </div>
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
       <div class="stamp">更新日期：2026-04-27</div>
     </div>
   </header>
 
   <main class="container">
     <section class="hero">
-      <h1>图文制作进度与流程搭建说明</h1>
-      <p class="lead">当前已完成首轮流程搭建与 Brightening Face Wash 实拍水感首测资产沉淀。流程已可直接跑首轮 A/B，且 v2 图稿已补齐归档用于你下一步投放选择。</p>
+      <h1>图文制作流程总览</h1>
+      <p class="lead">同一套流程框架，支持 Test 1 与 Test 2 独立切换查看。Test 2 已改为固定产品原图主体，仅测试水感视觉变量。</p>
     </section>
 
-    <section class="grid-2">
-      <article class="panel">
-        <h2>流程搭建状态</h2>
-        <div class="workflow">
-          <a class="step" href="pages/step-direction.html"><div class="name">方向梳理</div><span class="tag done">已完成</span><span class="meta">查看：方向目标与边界</span></a>
-          <a class="step" href="pages/step-variables.html"><div class="name">变量拆解</div><span class="tag done">已完成</span><span class="meta">查看：控制组/变化组结构</span></a>
-          <a class="step" href="pages/step-ab-plan.html"><div class="name">AB 测试方案</div><span class="tag done">已完成</span><span class="meta">查看：首轮方案与判读规则</span></a>
-          <a class="step" href="pages/step-asset-check.html"><div class="name">资产检查</div><span class="tag done">已完成</span><span class="meta">查看：就绪资产与缺口</span></a>
-          <a class="step" href="pages/step-requirements.html"><div class="name">测试图需求单</div><span class="tag done">已完成</span><span class="meta">查看：A1~B2 执行要求</span></a>
-          <a class="step" href="pages/step-production.html"><div class="name">出图</div><span class="tag doing">进行中</span><span class="meta">查看：出图追溯树（参考+Prompt）</span></a>
-          <a class="step" href="pages/step-review.html"><div class="name">复盘迭代</div><span class="tag todo">待执行</span><span class="meta">查看：指标回填与下一步</span></a>
-        </div>
-      </article>
-      <article class="panel">
-        <h2>当前进度同步</h2>
-        <ul class="small">
-          <li>承接主文档、测试总表、4 张需求单、复盘表已落地。</li>
-          <li>首轮 4 图 v1 与 v2 均已归档到同一输出目录。</li>
-          <li>复盘指标已收敛为：CTR、CTR(link click)、ROAS、CVR。</li>
-          <li>品牌边界已锁定为 Next Prime，不混入 Leona/BOdibreze 内容。</li>
-        </ul>
-      </article>
-    </section>
-
-    <section class="panel" style="margin-top: 16px;">
-      <h2>关键文档索引</h2>
-      <table class="table">
-        <thead>
-          <tr><th>类型</th><th>路径</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>承接文档</td>
-            <td><span class="code">NEXTPRIME_图文策划承接文档.md</span></td>
-            <td>流程与资产总入口</td>
-          </tr>
-          <tr>
-            <td>测试总表</td>
-            <td><span class="code">test-plan/Brightening_Face_Wash_实拍水感_首轮_测试总表.md</span></td>
-            <td>A1/A2/B1/B2 首轮策略</td>
-          </tr>
-          <tr>
-            <td>需求单</td>
-            <td><span class="code">workflow-docs/Brightening_Face_Wash_实拍水感_首轮/01~04_需求单.md</span></td>
-            <td>每张图的单变量执行要求</td>
-          </tr>
-          <tr>
-            <td>复盘表</td>
-            <td><span class="code">workflow-docs/Brightening_Face_Wash_实拍水感_首轮/05_复盘记录表.csv</span></td>
-            <td>指标与结果标签记录</td>
-          </tr>
-          <tr>
-            <td>出图日志</td>
-            <td><span class="code">docs/run-log.md</span></td>
-            <td>v2 防变形优化记录</td>
-          </tr>
-          <tr>
-            <td>追溯清单</td>
-            <td><span class="code">data/production-trace.json</span></td>
-            <td>出图树状栏的数据源</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="panel" style="margin-top: 16px;">
-      <h2>v2 出图预览（实拍水感）</h2>
-      <div class="gallery">
-        <figure class="card">
-          <img src="assets/images/BFW-WATER-A1_v2_2026-04-26.png" alt="BFW-WATER-A1 v2" />
-          <figcaption class="cap">A1 控制组：水膜包裹产品</figcaption>
-        </figure>
-        <figure class="card">
-          <img src="assets/images/BFW-WATER-A2_v2_2026-04-26.png" alt="BFW-WATER-A2 v2" />
-          <figcaption class="cap">A2 变量：冷凝玻璃水珠前景</figcaption>
-        </figure>
-        <figure class="card">
-          <img src="assets/images/BFW-WATER-B1_v2_2026-04-26.png" alt="BFW-WATER-B1 v2" />
-          <figcaption class="cap">B1 变量：功效钩子标题</figcaption>
-        </figure>
-        <figure class="card">
-          <img src="assets/images/BFW-WATER-B2_v2_2026-04-26.png" alt="BFW-WATER-B2 v2" />
-          <figcaption class="cap">B2 变量：质地钩子标题</figcaption>
-        </figure>
+    <section class="panel">
+      <h2>测试切换</h2>
+      <div class="test-switch" role="tablist" aria-label="测试切换">
+        <button id="switch-t1" class="test-btn active" type="button">测试1（A1~B2）</button>
+        <button id="switch-t2" class="test-btn" type="button">测试2（W01~W10）</button>
       </div>
     </section>
 
-    <section class="panel" style="margin-top: 16px;">
-      <h2>GitHub 发布状态</h2>
-      <p class="small">仓库已发布：<a href="https://github.com/francoAIPlearn/nextprime-progress-site" target="_blank" rel="noopener noreferrer">github.com/francoAIPlearn/nextprime-progress-site</a></p>
-      <p class="small">Pages 已启用：<a href="https://francoaiplearn.github.io/nextprime-progress-site/" target="_blank" rel="noopener noreferrer">francoaiplearn.github.io/nextprime-progress-site</a></p>
+    <section class="panel">
+      <h2 id="flow-title">流程状态 - 测试1</h2>
+      <div id="workflow" class="workflow"></div>
     </section>
 
-    <div class="footer">
-      页面布局参考 `design-md/claude` 的信息型展示结构，已按 NEXTPRIME 图文流程场景做简化适配。
-    </div>
+    <section class="panel">
+      <h2 id="summary-title">当前进度 - 测试1</h2>
+      <ul id="summary-list" class="small"></ul>
+    </section>
+
+    <section class="panel">
+      <h2 id="doc-title">关键文档 - 测试1</h2>
+      <table class="table">
+        <thead>
+          <tr><th>类型</th><th>入口</th><th>说明</th></tr>
+        </thead>
+        <tbody id="doc-body"></tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <h2 id="gallery-title">预览</h2>
+      <div id="gallery" class="gallery"></div>
+    </section>
   </main>
+
+  <script>
+    const testConfig = {
+      t1: {
+        name: "测试1",
+        flowTitle: "流程状态 - 测试1",
+        summaryTitle: "当前进度 - 测试1",
+        docTitle: "关键文档 - 测试1",
+        galleryTitle: "测试1图稿预览（A1~B2 v2）",
+        steps: [
+          ["方向梳理", "pages/step-direction.html", "已完成", "查看：方向目标与边界"],
+          ["变量拆解", "pages/step-variables.html", "已完成", "查看：控制组/变化组结构"],
+          ["AB 测试方案", "pages/step-ab-plan.html", "已完成", "查看：首轮方案与判读规则"],
+          ["资产检查", "pages/step-asset-check.html", "已完成", "查看：就绪资产与缺口"],
+          ["测试图需求单", "pages/step-requirements.html", "已完成", "查看：A1~B2 执行要求"],
+          ["出图", "pages/step-production.html", "进行中", "查看：出图追溯树"],
+          ["复盘迭代", "pages/step-review.html", "待执行", "查看：指标回填与下一步"]
+        ],
+        summary: [
+          "承接文档、测试总表、4张需求单、复盘表已落地。",
+          "首轮4图 v1/v2 均已归档，树状追溯已可查看。",
+          "复盘指标固定：CTR、CTR(link click)、ROAS、CVR。"
+        ],
+        docs: [
+          ["流程索引", "pages/workflow-index.html", "7个环节入口与说明"],
+          ["测试总表", "docs/测试总表.md", "A1/A2/B1/B2 总表"],
+          ["需求单", "docs/requirements/01_A1_需求单.md", "首轮需求单目录"],
+          ["复盘表", "docs/复盘表.csv", "测试1复盘记录"],
+          ["出图追溯", "pages/step-production.html", "树状追溯详情"]
+        ],
+        gallery: [
+          ["assets/images/BFW-WATER-A1_v2_2026-04-26.png", "A1 v2"],
+          ["assets/images/BFW-WATER-A2_v2_2026-04-26.png", "A2 v2"],
+          ["assets/images/BFW-WATER-B1_v2_2026-04-26.png", "B1 v2"],
+          ["assets/images/BFW-WATER-B2_v2_2026-04-26.png", "B2 v2"]
+        ]
+      },
+      t2: {
+        name: "测试2",
+        flowTitle: "流程状态 - 测试2",
+        summaryTitle: "当前进度 - 测试2",
+        docTitle: "关键文档 - 测试2",
+        galleryTitle: "测试2图稿预览（W01~W10）",
+        steps: [
+          ["方向梳理", "pages/t2-step-direction.html", "已完成", "仅做水感视觉变量测试"],
+          ["变量拆解", "pages/t2-step-variables.html", "已完成", "W01~W10 单变量定义"],
+          ["视觉对比方案", "pages/t2-step-ab-plan.html", "已完成", "不做功效AB，仅水感对比"],
+          ["资产检查", "pages/t2-step-asset-check.html", "已完成", "锁定正面原图为唯一主体"],
+          ["测试图需求单", "pages/t2-step-requirements.html", "已完成", "10张需求单与主体锁定条款"],
+          ["出图", "pages/t2-step-production.html", "进行中", "W01~W10 树状追溯"],
+          ["复盘迭代", "pages/t2-step-review.html", "待执行", "仅填CTR/CTR(link click)/ROAS/CVR"]
+        ],
+        summary: [
+          "测试2与测试1完全并行，路由和内容互不影响。",
+          "出图方法改为固定正面原图编辑，不再重绘产品主体。",
+          "10张图统一标题：all-roundeer brightening cleanser / 10S Brighter and clearer skin。"
+        ],
+        docs: [
+          ["流程索引", "pages/t2-workflow-index.html", "测试2的7个环节索引"],
+          ["测试2总表", "docs/test2/测试总表_test2.md", "W01~W10 总表"],
+          ["测试2需求单", "docs/test2/requirements/W01_需求单.md", "10张需求单入口"],
+          ["测试2复盘表", "docs/test2/复盘表_test2.csv", "测试2复盘记录"],
+          ["测试2出图追溯", "pages/t2-step-production.html", "W01~W10树状追溯"]
+        ],
+        gallery: [
+          ["assets/images/test2/BFW-WATER2-W01_v1_2026-04-27.png", "W01"],
+          ["assets/images/test2/BFW-WATER2-W02_v1_2026-04-27.png", "W02"],
+          ["assets/images/test2/BFW-WATER2-W03_v1_2026-04-27.png", "W03"],
+          ["assets/images/test2/BFW-WATER2-W04_v1_2026-04-27.png", "W04"],
+          ["assets/images/test2/BFW-WATER2-W05_v1_2026-04-27.png", "W05"]
+        ]
+      }
+    };
+
+    function tagClass(status) {
+      if (status === "已完成") return "done";
+      if (status === "进行中") return "doing";
+      return "todo";
+    }
+
+    function render(key) {
+      const cfg = testConfig[key];
+      document.getElementById("flow-title").textContent = cfg.flowTitle;
+      document.getElementById("summary-title").textContent = cfg.summaryTitle;
+      document.getElementById("doc-title").textContent = cfg.docTitle;
+      document.getElementById("gallery-title").textContent = cfg.galleryTitle;
+
+      const flow = document.getElementById("workflow");
+      flow.innerHTML = cfg.steps.map((s) => `
+        <a class="step" href="${s[1]}">
+          <div class="name">${s[0]}</div>
+          <span class="tag ${tagClass(s[2])}">${s[2]}</span>
+          <span class="meta">${s[3]}</span>
+        </a>
+      `).join("");
+
+      const summary = document.getElementById("summary-list");
+      summary.innerHTML = cfg.summary.map((s) => `<li>${s}</li>`).join("");
+
+      const docs = document.getElementById("doc-body");
+      docs.innerHTML = cfg.docs.map((d) => `
+        <tr>
+          <td>${d[0]}</td>
+          <td><a href="${d[1]}" target="_blank" rel="noopener noreferrer">${d[1]}</a></td>
+          <td>${d[2]}</td>
+        </tr>
+      `).join("");
+
+      const gallery = document.getElementById("gallery");
+      gallery.innerHTML = cfg.gallery.map((g) => `
+        <figure class="card">
+          <img src="${g[0]}" alt="${g[1]}" />
+          <figcaption class="cap">${g[1]}</figcaption>
+        </figure>
+      `).join("");
+
+      document.getElementById("switch-t1").classList.toggle("active", key === "t1");
+      document.getElementById("switch-t2").classList.toggle("active", key === "t2");
+    }
+
+    document.getElementById("switch-t1").addEventListener("click", () => render("t1"));
+    document.getElementById("switch-t2").addEventListener("click", () => render("t2"));
+    render("t1");
+  </script>
 </body>
 </html>
