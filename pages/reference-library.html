@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>参考资料索引 | NEXTPRIME</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .asset-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .asset-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+    .asset-card .meta {
+      padding: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      word-break: break-all;
+    }
+    @media (max-width: 980px) {
+      .asset-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">参考资料索引</div>
+    </div>
+  </header>
+  <main class="container">
+    <h1>参考资料索引（线上可读）</h1>
+    <p class="small">本页用于替代“本地可用”路径，已上传到 repo，可直接在线打开。</p>
+
+    <section class="panel">
+      <div class="nav">
+        <a href="../index.html">总览首页</a>
+        <a href="step-production.html">返回出图</a>
+        <a href="step-asset-check.html">返回资产检查</a>
+        <a class="active" href="reference-library.html">参考索引</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>品牌与产品基准</h2>
+      <ul>
+        <li><a href="../docs/references/brand/Next_Prime_Brand_Introduction_EN.pdf" target="_blank" rel="noopener noreferrer">Brand Introduction (EN)</a></li>
+        <li><a href="../assets/reference/product/NP_Brightening_Face_Wash_Front.png" target="_blank" rel="noopener noreferrer">Brightening Face Wash 正面原图</a></li>
+      </ul>
+    </section>
+
+    <section class="panel" id="waterfeel">
+      <h2>实拍水感参考库</h2>
+      <div id="waterfeelGrid" class="asset-grid"></div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const files = [
+        "祛痘洁面_FR_P_Helen-AC-P11-040203-IGF-品牌高级感_SC2604020735.png",
+        "竹炭洁面_FR_P_Helen-DCFW-P11-031007-IGF-实拍_SC2603100731.jpg",
+        "竹炭洁面_FR_P_Helen-DCFW-P11-031203-IGF_SC2603120072.jpg",
+        "竹炭洁面_FR_P_Helen-DCFW-P11-031208-IGF_SC2603120067.jpg",
+        "竹炭洁面_FR_P_Helen-DCFW-P11-031216-IGF_SC2603120059.jpg",
+        "竹炭洁面_FR_P_awa_高级产品图-k-V2 实拍 10_SC2602130374.jpg",
+        "美白洁面_FR_P_Helen-BC-P11-031703-IGF-真实质地_SC2603180040.png",
+        "美白洁面_FR_P_Helen-BFW-P11-031203-IGF_SC2603120090.jpg",
+        "美白洁面_FR_P_awa_高级产品图-k-V2 实拍 11-2_SC2602130376.jpg",
+        "美白洁面_FR_P_awa_高级产品图-k-V2 实拍8-2_SC2602130381.jpg"
+      ];
+
+      const root = "../assets/reference/waterfeel/";
+      const grid = document.getElementById("waterfeelGrid");
+      files.forEach((name) => {
+        const href = root + encodeURIComponent(name).replace(/%2F/g, "/");
+        const card = document.createElement("a");
+        card.className = "asset-card";
+        card.href = href;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+
+        const img = document.createElement("img");
+        img.src = href;
+        img.alt = name;
+        card.appendChild(img);
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = name;
+        card.appendChild(meta);
+
+        grid.appendChild(card);
+      });
+    })();
+  </script>
+</body>
+</html>

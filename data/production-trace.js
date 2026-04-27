@@ -2,20 +2,20 @@ window.PRODUCTION_TRACE_DATA = {
   "shared_references": [
     {
       "title": "Brand Introduction (合法表达来源)",
-      "path": "/Users/francogu/Desktop/数据库处理/NEXTPRIME_pic_editor/Product_ref/Next Prime Brand Introduction (EN ver) - Google 幻灯片.pdf",
-      "availability": "local_only",
+      "path": "../docs/references/brand/Next_Prime_Brand_Introduction_EN.pdf",
+      "availability": "web_and_local",
       "source": "品牌说明书 p18-19"
     },
     {
       "title": "Brightening Face Wash 产品原图（正面基准）",
-      "path": "/Users/francogu/Desktop/数据库处理/NEXTPRIME_pic_editor/Product_ref/Brightening Face Wash/NP美白洗面奶白底图-正面.png",
-      "availability": "local_only",
+      "path": "../assets/reference/product/NP_Brightening_Face_Wash_Front.png",
+      "availability": "web_and_local",
       "source": "产品原图基准"
     },
     {
       "title": "实拍水感参考库（整体风格母体）",
-      "path": "/Users/francogu/Desktop/数据库处理/NEXTPRIME_pic_editor/Idea_references/实拍水感",
-      "availability": "local_only",
+      "path": "../pages/reference-library.html#waterfeel",
+      "availability": "web_and_local",
       "source": "ROI 参考素材池"
     },
     {
