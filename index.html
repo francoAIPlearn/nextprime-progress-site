@@ -37,6 +37,17 @@
     .brand { font-weight: 700; letter-spacing: 0.08em; }
     .brand span { color: var(--accent); }
     .stamp { color: #bfbfbf; font-size: 13px; }
+    .topnav { display: flex; gap: 8px; margin-left: 16px; }
+    .topnav a {
+      color: #f2f2f2;
+      border: 1px solid #3a3a3a;
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .topnav a:hover { background: #2a2a2a; }
+    .top-left { display: flex; align-items: center; }
     .hero { padding: 34px 0 20px; }
     h1 { margin: 0 0 10px; font-size: clamp(28px, 3.8vw, 42px); letter-spacing: 0.01em; }
     .lead { margin: 0; color: var(--muted); max-width: 860px; }
@@ -55,7 +66,17 @@
     }
     .small { color: var(--muted); font-size: 14px; }
     .workflow { display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 10px; overflow-x: auto; padding-bottom: 6px; }
-    .step { border: 1px solid var(--border); border-radius: 10px; padding: 10px; min-height: 88px; background: #fffcf8; }
+    .step {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      min-height: 88px;
+      background: #fffcf8;
+      text-decoration: none;
+      color: var(--ink);
+      display: block;
+    }
+    .step:hover { border-color: #d2b3a0; background: #fff9f4; }
     .step .name { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
     .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
     .done { color: var(--ok); background: #eaf8f0; border: 1px solid #bde8cd; }
@@ -82,13 +103,22 @@
       .grid-2 { grid-template-columns: 1fr; }
       .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .doc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topnav { display: none; }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="top-left">
+        <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+        <nav class="topnav" aria-label="主导航">
+          <a href="pages/handoff.html">承接文档</a>
+          <a href="pages/test-plan.html">测试总表</a>
+          <a href="pages/requirements.html">需求单</a>
+          <a href="pages/review.html">复盘表</a>
+        </nav>
+      </div>
       <div class="stamp">更新日期：2026-04-27</div>
     </div>
   </header>
@@ -103,13 +133,13 @@
       <article class="panel">
         <h2>流程搭建状态</h2>
         <div class="workflow">
-          <div class="step"><div class="name">方向梳理</div><span class="tag done">已完成</span></div>
-          <div class="step"><div class="name">变量拆解</div><span class="tag done">已完成</span></div>
-          <div class="step"><div class="name">AB 测试方案</div><span class="tag done">已完成</span></div>
-          <div class="step"><div class="name">资产检查</div><span class="tag done">已完成</span></div>
-          <div class="step"><div class="name">测试图需求单</div><span class="tag done">已完成</span></div>
-          <div class="step"><div class="name">出图</div><span class="tag doing">进行中</span></div>
-          <div class="step"><div class="name">复盘迭代</div><span class="tag todo">待执行</span></div>
+          <a class="step" href="pages/handoff.html"><div class="name">方向梳理</div><span class="tag done">已完成</span></a>
+          <a class="step" href="pages/handoff.html"><div class="name">变量拆解</div><span class="tag done">已完成</span></a>
+          <a class="step" href="pages/test-plan.html"><div class="name">AB 测试方案</div><span class="tag done">已完成</span></a>
+          <a class="step" href="pages/handoff.html"><div class="name">资产检查</div><span class="tag done">已完成</span></a>
+          <a class="step" href="pages/requirements.html"><div class="name">测试图需求单</div><span class="tag done">已完成</span></a>
+          <a class="step" href="pages/requirements.html"><div class="name">出图</div><span class="tag doing">进行中</span></a>
+          <a class="step" href="pages/review.html"><div class="name">复盘迭代</div><span class="tag todo">待执行</span></a>
         </div>
       </article>
       <article class="panel">
