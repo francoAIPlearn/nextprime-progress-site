@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXTPRIME 图文制作进度看板</title>
+  <style>
+    :root {
+      --bg: #f8f6f3;
+      --panel: #ffffff;
+      --ink: #1f1f1f;
+      --muted: #6f6f6f;
+      --accent: #d97757;
+      --border: #e7e1db;
+      --ok: #1f7a4f;
+      --warn: #a16207;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "SF Pro Text", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 20% 0%, #fffdfb 0%, var(--bg) 52%);
+      line-height: 1.55;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(17, 17, 17, 0.92);
+      border-bottom: 1px solid #2a2a2a;
+      backdrop-filter: blur(8px);
+      color: #f7f7f7;
+    }
+    .topbar-inner, .container { width: min(1120px, 92vw); margin: 0 auto; }
+    .topbar-inner { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+    .brand { font-weight: 700; letter-spacing: 0.08em; }
+    .brand span { color: var(--accent); }
+    .stamp { color: #bfbfbf; font-size: 13px; }
+    .hero { padding: 34px 0 20px; }
+    h1 { margin: 0 0 10px; font-size: clamp(28px, 3.8vw, 42px); letter-spacing: 0.01em; }
+    .lead { margin: 0; color: var(--muted); max-width: 860px; }
+    .grid-2 { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px; margin: 18px 0 28px; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      border-left: 3px solid var(--accent);
+      padding-left: 9px;
+    }
+    .small { color: var(--muted); font-size: 14px; }
+    .workflow { display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 10px; overflow-x: auto; padding-bottom: 6px; }
+    .step { border: 1px solid var(--border); border-radius: 10px; padding: 10px; min-height: 88px; background: #fffcf8; }
+    .step .name { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+    .done { color: var(--ok); background: #eaf8f0; border: 1px solid #bde8cd; }
+    .doing { color: var(--warn); background: #fff4df; border: 1px solid #f2d69a; }
+    .todo { color: #6b7280; background: #f3f4f6; border: 1px solid #e5e7eb; }
+    ul { margin: 8px 0 0 18px; padding: 0; }
+    li { margin: 4px 0; }
+    .table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .table th, .table td { border-bottom: 1px solid var(--border); text-align: left; padding: 8px 6px; vertical-align: top; }
+    .table th { font-weight: 600; background: #faf8f5; }
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; background: #f7f3ee; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+    .gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
+    .card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
+    .cap { padding: 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+    .footer { padding: 22px 0 36px; color: var(--muted); font-size: 13px; }
+    a { color: #b65f44; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    @media (max-width: 960px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">更新日期：2026-04-27</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>图文制作进度与流程搭建说明</h1>
+      <p class="lead">当前已完成首轮流程搭建与 Brightening Face Wash 实拍水感首测资产沉淀。流程已可直接跑首轮 A/B，且 v2 图稿已补齐归档用于你下一步投放选择。</p>
+    </section>
+
+    <section class="grid-2">
+      <article class="panel">
+        <h2>流程搭建状态</h2>
+        <div class="workflow">
+          <div class="step"><div class="name">方向梳理</div><span class="tag done">已完成</span></div>
+          <div class="step"><div class="name">变量拆解</div><span class="tag done">已完成</span></div>
+          <div class="step"><div class="name">AB 测试方案</div><span class="tag done">已完成</span></div>
+          <div class="step"><div class="name">资产检查</div><span class="tag done">已完成</span></div>
+          <div class="step"><div class="name">测试图需求单</div><span class="tag done">已完成</span></div>
+          <div class="step"><div class="name">出图</div><span class="tag doing">进行中</span></div>
+          <div class="step"><div class="name">复盘迭代</div><span class="tag todo">待执行</span></div>
+        </div>
+      </article>
+      <article class="panel">
+        <h2>当前进度同步</h2>
+        <ul class="small">
+          <li>承接主文档、测试总表、4 张需求单、复盘表已落地。</li>
+          <li>首轮 4 图 v1 与 v2 均已归档到同一输出目录。</li>
+          <li>复盘指标已收敛为：CTR、CTR(link click)、ROAS、CVR。</li>
+          <li>品牌边界已锁定为 Next Prime，不混入 Leona/BOdibreze 内容。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>关键文档索引</h2>
+      <table class="table">
+        <thead>
+          <tr><th>类型</th><th>路径</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>承接文档</td>
+            <td><span class="code">NEXTPRIME_图文策划承接文档.md</span></td>
+            <td>流程与资产总入口</td>
+          </tr>
+          <tr>
+            <td>测试总表</td>
+            <td><span class="code">test-plan/Brightening_Face_Wash_实拍水感_首轮_测试总表.md</span></td>
+            <td>A1/A2/B1/B2 首轮策略</td>
+          </tr>
+          <tr>
+            <td>需求单</td>
+            <td><span class="code">workflow-docs/Brightening_Face_Wash_实拍水感_首轮/01~04_需求单.md</span></td>
+            <td>每张图的单变量执行要求</td>
+          </tr>
+          <tr>
+            <td>复盘表</td>
+            <td><span class="code">workflow-docs/Brightening_Face_Wash_实拍水感_首轮/05_复盘记录表.csv</span></td>
+            <td>指标与结果标签记录</td>
+          </tr>
+          <tr>
+            <td>出图日志</td>
+            <td><span class="code">output/Brightening_Face_Wash_实拍水感_首轮/run-log.md</span></td>
+            <td>v2 防变形优化记录</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel" style="margin-top: 16px;">
+      <h2>v2 出图预览（实拍水感）</h2>
+      <div class="gallery">
+        <figure class="card">
+          <img src="assets/images/BFW-WATER-A1_v2_2026-04-26.png" alt="BFW-WATER-A1 v2" />
+          <figcaption class="cap">A1 控制组：水膜包裹产品</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="assets/images/BFW-WATER-A2_v2_2026-04-26.png" alt="BFW-WATER-A2 v2" />
+          <figcaption class="cap">A2 变量：冷凝玻璃水珠前景</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="assets/images/BFW-WATER-B1_v2_2026-04-26.png" alt="BFW-WATER-B1 v2" />
+          <figcaption class="cap">B1 变量：功效钩子标题</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="assets/images/BFW-WATER-B2_v2_2026-04-26.png" alt="BFW-WATER-B2 v2" />
+          <figcaption class="cap">B2 变量：质地钩子标题</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 16px;">
+      <h2>GitHub 发布状态</h2>
+      <p class="small">本地新仓库目录已创建：<span class="code">NEXTPRIME_pic_editor/repo/nextprime-progress-site</span>。当前机器的 GitHub CLI 未登录（`gh auth status` 未通过），因此远端仓库还未创建。</p>
+      <p class="small">登录后可执行：<span class="code">gh auth login</span>，再执行：<span class="code">gh repo create nextprime-progress-site --public --source . --push</span></p>
+    </section>
+
+    <div class="footer">
+      页面布局参考 `design-md/claude` 的信息型展示结构，已按 NEXTPRIME 图文流程场景做简化适配。
+    </div>
+  </main>
+</body>
+</html>
