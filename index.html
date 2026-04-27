@@ -71,12 +71,17 @@
     .card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
     .card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
     .cap { padding: 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+    .doc-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .doc-link { display: block; border: 1px solid var(--border); border-radius: 10px; background: #fff; padding: 12px; color: var(--ink); }
+    .doc-link strong { display: block; margin-bottom: 6px; }
+    .doc-link span { font-size: 13px; color: var(--muted); }
     .footer { padding: 22px 0 36px; color: var(--muted); font-size: 13px; }
     a { color: #b65f44; text-decoration: none; }
     a:hover { text-decoration: underline; }
     @media (max-width: 960px) {
       .grid-2 { grid-template-columns: 1fr; }
       .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .doc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
   </style>
 </head>
@@ -119,6 +124,16 @@
     </section>
 
     <section class="panel">
+      <h2>流程文档管理</h2>
+      <div class="doc-grid">
+        <a class="doc-link" href="pages/handoff.html"><strong>承接文档</strong><span>品牌边界、工作流、资产清单、AB&复盘模板</span></a>
+        <a class="doc-link" href="pages/test-plan.html"><strong>测试总表</strong><span>Brightening Face Wash 首轮 A1/A2/B1/B2 总览</span></a>
+        <a class="doc-link" href="pages/requirements.html"><strong>需求单</strong><span>四张测试图的执行规格与变量控制</span></a>
+        <a class="doc-link" href="pages/review.html"><strong>复盘表</strong><span>CTR / CTR(link click) / ROAS / CVR 记录与标签</span></a>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top: 16px;">
       <h2>关键文档索引</h2>
       <table class="table">
         <thead>
@@ -178,8 +193,8 @@
 
     <section class="panel" style="margin-top: 16px;">
       <h2>GitHub 发布状态</h2>
-      <p class="small">本地新仓库目录已创建：<span class="code">NEXTPRIME_pic_editor/repo/nextprime-progress-site</span>。当前机器的 GitHub CLI 未登录（`gh auth status` 未通过），因此远端仓库还未创建。</p>
-      <p class="small">登录后可执行：<span class="code">gh auth login</span>，再执行：<span class="code">gh repo create nextprime-progress-site --public --source . --push</span></p>
+      <p class="small">仓库已发布：<a href="https://github.com/francoAIPlearn/nextprime-progress-site" target="_blank" rel="noopener noreferrer">github.com/francoAIPlearn/nextprime-progress-site</a></p>
+      <p class="small">Pages 已启用：<a href="https://francoaiplearn.github.io/nextprime-progress-site/" target="_blank" rel="noopener noreferrer">francoaiplearn.github.io/nextprime-progress-site</a></p>
     </section>
 
     <div class="footer">

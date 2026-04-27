@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>复盘表 | NEXTPRIME</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">复盘表页</div>
+    </div>
+  </header>
+  <main class="container">
+    <h1>复盘记录表</h1>
+    <p class="small">原文：<a href="../docs/复盘表.csv" target="_blank" rel="noopener noreferrer">docs/复盘表.csv</a></p>
+    <section class="panel">
+      <div class="nav">
+        <a href="../index.html">总览首页</a>
+        <a href="handoff.html">承接文档</a>
+        <a href="test-plan.html">测试总表</a>
+        <a href="requirements.html">需求单</a>
+        <a class="active" href="review.html">复盘表</a>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>指标字段</h2>
+      <ul>
+        <li>本轮只看：<span class="mono">CTR</span>、<span class="mono">CTR(link click)</span>、<span class="mono">ROAS</span>、<span class="mono">CVR</span></li>
+        <li>结果标签：<span class="mono">赢 / 输 / 持平 / 高点击低转化 / 低点击高转化</span></li>
+      </ul>
+    </section>
+    <section class="panel">
+      <h2>当前复盘数据表</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>test_id</th><th>test_role</th><th>main_variable</th><th>headline</th><th>sub_info</th>
+            <th>ctr</th><th>ctr_link_click</th><th>roas</th><th>cvr</th><th>result_label</th><th>next_action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BFW-WATER-A1</td><td>control</td><td>transparent water film wrap product</td><td>10s Brighter and Clearer Skin</td><td>Niacinamide + BHA + Kaolin</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <td>BFW-WATER-A2</td><td>variant</td><td>condensation glass droplets foreground</td><td>10s Brighter and Clearer Skin</td><td>Niacinamide + BHA + Kaolin</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <td>BFW-WATER-B1</td><td>variant</td><td>headline changes to benefit hook</td><td>All-Rounder Brightening Cleanser</td><td>Brighten. Anti-shine. Clear.</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <td>BFW-WATER-B2</td><td>variant</td><td>headline changes to texture hook</td><td>Dense Pearl Foam with Power Cleanse</td><td>Brighter. Smoother. Shine-free.</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
