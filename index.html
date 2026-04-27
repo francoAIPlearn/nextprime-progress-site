@@ -78,6 +78,13 @@
     }
     .step:hover { border-color: #d2b3a0; background: #fff9f4; }
     .step .name { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+    .step .meta {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
     .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
     .done { color: var(--ok); background: #eaf8f0; border: 1px solid #bde8cd; }
     .doing { color: var(--warn); background: #fff4df; border: 1px solid #f2d69a; }
@@ -92,17 +99,12 @@
     .card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
     .card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
     .cap { padding: 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
-    .doc-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-    .doc-link { display: block; border: 1px solid var(--border); border-radius: 10px; background: #fff; padding: 12px; color: var(--ink); }
-    .doc-link strong { display: block; margin-bottom: 6px; }
-    .doc-link span { font-size: 13px; color: var(--muted); }
     .footer { padding: 22px 0 36px; color: var(--muted); font-size: 13px; }
     a { color: #b65f44; text-decoration: none; }
     a:hover { text-decoration: underline; }
     @media (max-width: 960px) {
       .grid-2 { grid-template-columns: 1fr; }
       .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .doc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .topnav { display: none; }
     }
   </style>
@@ -134,13 +136,13 @@
       <article class="panel">
         <h2>流程搭建状态</h2>
         <div class="workflow">
-          <a class="step" href="pages/workflow-index.html#direction"><div class="name">方向梳理</div><span class="tag done">已完成</span></a>
-          <a class="step" href="pages/workflow-index.html#variables"><div class="name">变量拆解</div><span class="tag done">已完成</span></a>
-          <a class="step" href="pages/workflow-index.html#ab-plan"><div class="name">AB 测试方案</div><span class="tag done">已完成</span></a>
-          <a class="step" href="pages/workflow-index.html#asset-check"><div class="name">资产检查</div><span class="tag done">已完成</span></a>
-          <a class="step" href="pages/workflow-index.html#requirements"><div class="name">测试图需求单</div><span class="tag done">已完成</span></a>
-          <a class="step" href="pages/workflow-index.html#production"><div class="name">出图</div><span class="tag doing">进行中</span></a>
-          <a class="step" href="pages/workflow-index.html#review"><div class="name">复盘迭代</div><span class="tag todo">待执行</span></a>
+          <a class="step" href="pages/workflow-index.html#direction"><div class="name">方向梳理</div><span class="tag done">已完成</span><span class="meta">查看：承接文档</span></a>
+          <a class="step" href="pages/workflow-index.html#variables"><div class="name">变量拆解</div><span class="tag done">已完成</span><span class="meta">查看：承接文档 / 测试总表</span></a>
+          <a class="step" href="pages/workflow-index.html#ab-plan"><div class="name">AB 测试方案</div><span class="tag done">已完成</span><span class="meta">查看：测试总表</span></a>
+          <a class="step" href="pages/workflow-index.html#asset-check"><div class="name">资产检查</div><span class="tag done">已完成</span><span class="meta">查看：承接文档</span></a>
+          <a class="step" href="pages/workflow-index.html#requirements"><div class="name">测试图需求单</div><span class="tag done">已完成</span><span class="meta">查看：需求单</span></a>
+          <a class="step" href="pages/workflow-index.html#production"><div class="name">出图</div><span class="tag doing">进行中</span><span class="meta">查看：需求单 / 出图日志</span></a>
+          <a class="step" href="pages/workflow-index.html#review"><div class="name">复盘迭代</div><span class="tag todo">待执行</span><span class="meta">查看：复盘表</span></a>
         </div>
       </article>
       <article class="panel">
@@ -152,17 +154,6 @@
           <li>品牌边界已锁定为 Next Prime，不混入 Leona/BOdibreze 内容。</li>
         </ul>
       </article>
-    </section>
-
-    <section class="panel">
-      <h2>流程文档管理</h2>
-      <div class="doc-grid">
-        <a class="doc-link" href="pages/workflow-index.html"><strong>流程索引</strong><span>7 个环节的信息清单与入口</span></a>
-        <a class="doc-link" href="pages/handoff.html"><strong>承接文档</strong><span>品牌边界、工作流、资产清单、AB&复盘模板</span></a>
-        <a class="doc-link" href="pages/test-plan.html"><strong>测试总表</strong><span>Brightening Face Wash 首轮 A1/A2/B1/B2 总览</span></a>
-        <a class="doc-link" href="pages/requirements.html"><strong>需求单</strong><span>四张测试图的执行规格与变量控制</span></a>
-        <a class="doc-link" href="pages/review.html"><strong>复盘表</strong><span>CTR / CTR(link click) / ROAS / CVR 记录与标签</span></a>
-      </div>
     </section>
 
     <section class="panel" style="margin-top: 16px;">
