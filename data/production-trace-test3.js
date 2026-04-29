@@ -1,0 +1,137 @@
+window.PRODUCTION_TRACE_TEST3_DATA = {
+  "round": "BFW-WATER3",
+  "product": "NEXT PRIME MEN Brightening Face Wash",
+  "date_label": "2026-04-28",
+  "published_at": "2026-04-29",
+  "summary": "10 bold / clean / premium water-impact variants for Brightening Face Wash.",
+  "shared_references": [
+    {
+      "title": "Brightening Face Wash product identity reference",
+      "path": "../assets/reference/product/NP_Brightening_Face_Wash_Front.png",
+      "source": "Product_ref/Brightening Face Wash/MP-brightening-ID-1-6.png"
+    },
+    {
+      "title": "Water impact style reference",
+      "path": "../assets/reference/waterfeel/竹炭洁面_FR_P_Helen-DCFW-P11-031007-IGF-实拍_SC2603100731.jpg",
+      "source": "Idea_references/实拍水感"
+    }
+  ],
+  "contact_sheets": [
+    {
+      "label": "Test 3 contact sheet",
+      "href": "../assets/images/test3/BFW-WATER3_contact-sheet_v1_2026-04-28.jpg"
+    }
+  ],
+  "items": [
+    {
+      "test_id": "W01",
+      "variant_id": "BFW-WATER3-W01",
+      "version": "v1",
+      "status": "primary",
+      "water_effect_type": "银色水弧 sweep",
+      "qa_notes": ["保持 Brightening Face Wash 银色包装身份，水势有力。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W01_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W01_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W01_需求单.md"
+    },
+    {
+      "test_id": "W02",
+      "variant_id": "BFW-WATER3-W02",
+      "version": "v1",
+      "status": "primary",
+      "water_effect_type": "垂直水幕 strike",
+      "qa_notes": ["水幕应在后方，不遮挡包装核心识别。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W02_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W02_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W02_需求单.md"
+    },
+    {
+      "test_id": "W03",
+      "variant_id": "BFW-WATER3-W03",
+      "version": "v1",
+      "status": "primary",
+      "water_effect_type": "斜向 rinse slash",
+      "qa_notes": ["动势强，主体需保持居中清晰。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W03_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W03_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W03_需求单.md"
+    },
+    {
+      "test_id": "W04",
+      "variant_id": "BFW-WATER3-W04",
+      "version": "v1",
+      "status": "primary",
+      "water_effect_type": "圆环 halo splash",
+      "qa_notes": ["环形水感需保持高级、干净、不喧宾夺主。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W04_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W04_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W04_需求单.md"
+    },
+    {
+      "test_id": "W05",
+      "variant_id": "BFW-WATER3-W05",
+      "version": "v1",
+      "status": "review",
+      "water_effect_type": "底部水浪托举",
+      "qa_notes": ["水量较大，投放前需判断是否接近半浸水。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W05_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W05_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W05_需求单.md"
+    },
+    {
+      "test_id": "W06",
+      "variant_id": "BFW-WATER3-W06",
+      "version": "v1",
+      "status": "primary",
+      "water_effect_type": "透明水带 ribbon",
+      "qa_notes": ["水带应优雅且不遮挡核心标签。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W06_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W06_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W06_需求单.md"
+    },
+    {
+      "test_id": "W07",
+      "variant_id": "BFW-WATER3-W07",
+      "version": "v1",
+      "status": "primary",
+      "water_effect_type": "侧向 impact splash",
+      "qa_notes": ["侧击力量感明确，同时避免爆炸式杂乱。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W07_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W07_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W07_需求单.md"
+    },
+    {
+      "test_id": "W08",
+      "variant_id": "BFW-WATER3-W08",
+      "version": "v1",
+      "status": "primary",
+      "water_effect_type": "冷感 rinse veil",
+      "qa_notes": ["背景湿润氛围需服务产品可读性。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W08_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W08_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W08_需求单.md"
+    },
+    {
+      "test_id": "W09",
+      "variant_id": "BFW-WATER3-W09",
+      "version": "v1",
+      "status": "review",
+      "water_effect_type": "宽幅 water curtain",
+      "qa_notes": ["水幕水量最大，需确认是否压过产品主体。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W09_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W09_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W09_需求单.md"
+    },
+    {
+      "test_id": "W10",
+      "variant_id": "BFW-WATER3-W10",
+      "version": "v1",
+      "status": "primary",
+      "water_effect_type": "银色大液滴轨迹",
+      "qa_notes": ["液滴需要精准、清透、不过碎。"],
+      "output_file": "../assets/images/test3/BFW-WATER3-W10_v1_2026-04-28.png",
+      "prompt_file": "../docs/test3/prompts/BFW-WATER3-W10_prompt_2026-04-28.md",
+      "requirement_file": "../docs/test3/requirements/BFW-WATER3-W10_需求单.md"
+    }
+  ]
+};

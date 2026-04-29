@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Production Trace | NEXTPRIME Test 4</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../assets/review-widget.css" />
   <style>
     .layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 14px; align-items: start; }
     .side, .detail { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
@@ -40,6 +41,7 @@
     <section class="layout"><aside class="side"><h2>Image Nodes</h2><div id="tree" class="tree"></div></aside><section class="detail"><h2>Detail</h2><div id="detail" class="small">Loading...</div></section></section>
   </main>
   <script src="../data/production-trace-test4.js"></script>
+  <script src="../assets/review-widget.js"></script>
   <script>
     const data = window.PRODUCTION_TRACE_TEST4_DATA;
     const tree = document.getElementById('tree');
@@ -48,7 +50,8 @@
     function render(item){
       document.querySelectorAll('.btn').forEach(b=>b.classList.toggle('active', b.dataset.id===item.test_id));
       const notes = (item.qa_notes&&item.qa_notes.length) ? item.qa_notes.map(n=>`<li>${esc(n)}</li>`).join('') : '<li>OK</li>';
-      detail.innerHTML = `<figure class="preview"><img src="${esc(item.output_file)}" alt="${esc(item.variant_id)}"><figcaption>${esc(item.variant_id)} <span class="badge ${esc(item.status)}">${esc(item.status)}</span></figcaption></figure><h3>${esc(item.water_effect_type)}</h3><ul><li>Direction: ${esc(item.direction)}</li><li>Product: ${esc(item.product_visibility)}</li><li><a href="${esc(item.prompt_file)}">Prompt</a></li><li><a href="${esc(item.requirement_file)}">Requirement</a></li></ul><h3>QA Notes</h3><ul>${notes}</ul>`;
+      detail.innerHTML = `<figure class="preview"><img src="${esc(item.output_file)}" alt="${esc(item.variant_id)}"><figcaption>${esc(item.variant_id)} <span class="badge ${esc(item.status)}">${esc(item.status)}</span></figcaption></figure><h3>${esc(item.water_effect_type)}</h3><ul><li>Direction: ${esc(item.direction)}</li><li>Product: ${esc(item.product_visibility)}</li><li><a href="${esc(item.prompt_file)}">Prompt</a></li><li><a href="${esc(item.requirement_file)}">Requirement</a></li></ul><h3>QA Notes</h3><ul>${notes}</ul><div id="npReviewMount"></div>`;
+      window.NPReviewWidget.mount("npReviewMount", { itemId: `test4-${item.variant_id}`, title: item.variant_id });
     }
     if(!data || !Array.isArray(data.items)){ detail.textContent='Data failed to load.'; }
     else { tree.innerHTML = data.items.map(item=>`<button class="btn" data-id="${esc(item.test_id)}">${esc(item.test_id)} - ${esc(item.water_effect_type)} <span class="badge ${esc(item.status)}">${esc(item.status)}</span></button>`).join(''); document.querySelectorAll('.btn').forEach(btn=>btn.addEventListener('click',()=>render(data.items.find(i=>i.test_id===btn.dataset.id)))); render(data.items[0]); }

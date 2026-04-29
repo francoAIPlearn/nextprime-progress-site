@@ -52,7 +52,7 @@
       border-left: 3px solid var(--accent);
       padding-left: 9px;
     }
-    .test-switch { display: inline-flex; gap: 8px; }
+    .test-switch { display: inline-flex; flex-wrap: wrap; gap: 8px; }
     .test-btn {
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -104,14 +104,14 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">NEXTPRIME <span>pic_editor</span></div>
-      <div class="stamp">更新日期：2026-04-27</div>
+      <div class="stamp">更新日期：2026-04-29</div>
     </div>
   </header>
 
   <main class="container">
     <section class="hero">
       <h1>图文制作流程总览</h1>
-      <p class="lead">同一套流程框架，支持 Test 1 与 Test 2 独立切换查看。Test 2 已改为固定产品原图主体，仅测试水感视觉变量。</p>
+      <p class="lead">同一套流程框架，支持 Test 1~Test 4 独立切换查看。Test 3/4 已发布为 Brightening Face Wash 水感扩展轮次。</p>
     </section>
 
     <section class="panel">
@@ -119,6 +119,8 @@
       <div class="test-switch" role="tablist" aria-label="测试切换">
         <button id="switch-t1" class="test-btn active" type="button">测试1（A1~B2）</button>
         <button id="switch-t2" class="test-btn" type="button">测试2（W01~W10）</button>
+        <button id="switch-t3" class="test-btn" type="button">测试3（W01~W10）</button>
+        <button id="switch-t4" class="test-btn" type="button">测试4（I/H 60图）</button>
       </div>
     </section>
 
@@ -219,32 +221,67 @@
           ["assets/images/test2/BFW-WATER2-W05_v1_2026-04-27.png", "W05"]
         ]
       },
-      t4: {
-        name: "??4",
-        flowTitle: "???? - ??4",
-        summaryTitle: "???? - ??4",
-        docTitle: "???? - ??4",
-        galleryTitle: "??4?????BFW-WATER4?",
+      t3: {
+        name: "测试3",
+        flowTitle: "流程状态 - 测试3",
+        summaryTitle: "当前进度 - 测试3",
+        docTitle: "关键文档 - 测试3",
+        galleryTitle: "测试3图稿预览（BFW-WATER3 W01~W10）",
         steps: [
-          ["????", "pages/t4-step-direction.html", "???", "I: ???? / H: ?????"],
-          ["????", "pages/t4-step-variables.html", "???", "60????????????"],
-          ["AB ????", "pages/t4-step-ab-plan.html", "???", "?????????????"],
-          ["????", "pages/t4-step-asset-check.html", "???", "???? Brightening Face Wash"],
-          ["??????", "pages/t4-step-requirements.html", "???", "60?????prompt???"],
-          ["??", "pages/t4-step-production.html", "???", "60??????????"],
-          ["????", "pages/t4-step-review.html", "???", "??????QA???????"]
+          ["方向梳理", "pages/t3-output.html#conflict", "已完成", "锁定银色 Brightening Face Wash 身份"],
+          ["变量拆解", "pages/t3-output.html#gallery", "已完成", "10个 bold / clean / premium 水感变量"],
+          ["视觉对比方案", "pages/t3-output.html#pack", "已完成", "固定1:1画幅与极简文案"],
+          ["资产检查", "pages/t3-output.html#pack", "已完成", "图稿、prompt、需求单、QA均已归档"],
+          ["测试图需求单", "docs/test3/requirements/BFW-WATER3-W01_需求单.md", "已完成", "W01~W10 需求单"],
+          ["出图", "pages/t3-step-production.html", "进行中", "10张图追溯与评审"],
+          ["复盘迭代", "docs/test3/qa/QA_checklist.md", "待执行", "优先关注 W05/W09 水量主观感受"]
         ],
         summary: [
-          "Test 4 ?60??I01-I30???/?????H01-H30????/?????",
-          "????????I17???H??????????10%??16???????",
-          "???????QA checklist????????Test 4???"
+          "测试3已发布：10张 v1 输出图、10份 prompt、10份需求单、QA checklist、run log。",
+          "产品身份锁定为 Brightening Face Wash 银色包装，水感参考仅迁移冲击/扫过质感。",
+          "W05 与 W09 水量最大，投放前建议在出图页评论区单独标注主观风险。"
         ],
         docs: [
-          ["????", "pages/t4-workflow-index.html", "Test 4??"],
-          ["??4??", "docs/test4/test4_master_table.md", "60?????"],
-          ["QA checklist", "docs/test4/qa/QA_checklist.md", "??QA??"],
-          ["???", "assets/images/test4/BFW-WATER4_contact-sheet_v1_2026-04-28.jpg", "60???"],
-          ["????", "pages/t4-step-production.html", "??????"]
+          ["测试3总览", "pages/t3-output.html", "测试3一版图、接触表与文件包"],
+          ["测试3总表", "docs/test3/测试总表_test3.md", "W01~W10 总表"],
+          ["测试3需求单", "docs/test3/requirements/BFW-WATER3-W01_需求单.md", "10张需求单入口"],
+          ["QA checklist", "docs/test3/qa/QA_checklist.md", "集中QA标准"],
+          ["出图追溯", "pages/t3-step-production.html", "带评论/勾选/评分的出图详情"]
+        ],
+        gallery: [
+          ["assets/images/test3/BFW-WATER3-W01_v1_2026-04-28.png", "W01"],
+          ["assets/images/test3/BFW-WATER3-W02_v1_2026-04-28.png", "W02"],
+          ["assets/images/test3/BFW-WATER3-W05_v1_2026-04-28.png", "W05"],
+          ["assets/images/test3/BFW-WATER3-W09_v1_2026-04-28.png", "W09"],
+          ["assets/images/test3/BFW-WATER3-W10_v1_2026-04-28.png", "W10"]
+        ]
+      },
+      t4: {
+        name: "测试4",
+        flowTitle: "流程状态 - 测试4",
+        summaryTitle: "当前进度 - 测试4",
+        docTitle: "关键文档 - 测试4",
+        galleryTitle: "测试4图稿预览（BFW-WATER4）",
+        steps: [
+          ["方向梳理", "pages/t4-step-direction.html", "已完成", "I: 半浸水 / H: 水击打扫过"],
+          ["变量拆解", "pages/t4-step-variables.html", "已完成", "60个水感变量分组"],
+          ["AB 对比方案", "pages/t4-step-ab-plan.html", "已完成", "I/H 两套方向并行对比"],
+          ["资产检查", "pages/t4-step-asset-check.html", "已完成", "锁定 Brightening Face Wash"],
+          ["测试图需求单", "pages/t4-step-requirements.html", "已完成", "60份需求单与prompt归档"],
+          ["出图", "pages/t4-step-production.html", "进行中", "60图追溯与本地评审"],
+          ["复盘迭代", "pages/t4-step-review.html", "待执行", "等待投放数据与QA筛选"]
+        ],
+        summary: [
+          "测试4已发布：60张 v1 输出图，I01~I30 为半浸水/水线方向，H01~H30 为击打/扫过/水幕方向。",
+          "QA checklist 标记 29 pass / 31 review / 0 reject，推荐基线为 I17~I30 与 H01~H26。",
+          "出图页已增加评论、勾选、评分与附件交互，用于筛选可投放候选。"
+        ],
+        docs: [
+          ["测试4索引", "pages/t4-workflow-index.html", "Test 4流程页"],
+          ["测试4总表", "docs/test4/test4_master_table.md", "60图主表"],
+          ["QA checklist", "docs/test4/qa/QA_checklist.md", "集中QA记录"],
+          ["接触表", "assets/images/test4/BFW-WATER4_contact-sheet_v1_2026-04-28.jpg", "60图总览"],
+          ["出图追溯", "pages/t4-step-production.html", "带评审交互的出图详情"]
         ],
         gallery: [
           ["assets/images/test4/BFW-WATER4-I17_v1_2026-04-28.png", "I17"],
@@ -298,14 +335,16 @@
         </figure>
       `).join("");
 
-      document.getElementById("switch-t1").classList.toggle("active", key === "t1");
-      document.getElementById("switch-t2").classList.toggle("active", key === "t2");
-      document.getElementById("switch-t4").classList.toggle("active", key === "t4");
+      ["t1", "t2", "t3", "t4"].forEach((id) => {
+        const btn = document.getElementById(`switch-${id}`);
+        if (btn) btn.classList.toggle("active", key === id);
+      });
     }
 
-    document.getElementById("switch-t1").addEventListener("click", () => render("t1"));
-    document.getElementById("switch-t2").addEventListener("click", () => render("t2"));
-    document.getElementById("switch-t4").addEventListener("click", () => render("t4"));
+    ["t1", "t2", "t3", "t4"].forEach((id) => {
+      const btn = document.getElementById(`switch-${id}`);
+      if (btn) btn.addEventListener("click", () => render(id));
+    });
     render("t1");
   </script>
 </body>

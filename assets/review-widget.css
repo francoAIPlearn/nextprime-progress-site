@@ -1,0 +1,101 @@
+.np-review-widget {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 10px;
+  background: #fffdfb;
+}
+.np-review-widget h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+.np-review-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.np-review-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--ink);
+}
+.np-rating {
+  display: inline-flex;
+  gap: 4px;
+}
+.np-rating button {
+  min-width: 32px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+}
+.np-rating button.active {
+  border-color: #d8b29f;
+  background: #fff6f0;
+  color: var(--ink);
+  font-weight: 700;
+}
+.np-review-widget textarea {
+  width: 100%;
+  min-height: 92px;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font: inherit;
+  background: #fff;
+  color: var(--ink);
+}
+.np-review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+}
+.np-review-actions input[type="file"] {
+  max-width: 100%;
+  font-size: 13px;
+}
+.np-review-muted {
+  color: var(--muted);
+  font-size: 12px;
+}
+.np-attachment-list {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.np-attachment-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding: 7px 0;
+  font-size: 13px;
+}
+.np-attachment-list a {
+  word-break: break-all;
+}
+.np-remove-attachment,
+.np-clear-review {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+.np-save-state {
+  min-height: 18px;
+}

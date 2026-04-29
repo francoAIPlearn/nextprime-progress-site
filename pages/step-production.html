@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>出图 | NEXTPRIME</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="../assets/review-widget.css" />
   <style>
     .layout {
       display: grid;
@@ -168,6 +169,7 @@
   </main>
 
   <script src="../data/production-trace.js"></script>
+  <script src="../assets/review-widget.js"></script>
   <script>
     (function () {
       const data = window.PRODUCTION_TRACE_DATA;
@@ -259,6 +261,8 @@
                 <ul class="list">${docHtml}</ul>
               </div>
 
+              <div id="npReviewMount"></div>
+
               <div class="block">
                 <h3>本轮结论</h3>
                 <p>${esc(item.round_conclusion || "")}</p>
@@ -271,6 +275,7 @@
             </div>
           </div>
         `;
+        window.NPReviewWidget.mount("npReviewMount", { itemId: `test1-${item.test_id}-${item.version}`, title: `${item.test_id} ${item.version}` });
       }
 
       function setActive(btn) {

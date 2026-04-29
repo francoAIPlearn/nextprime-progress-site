@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>测试3 一版图 | NEXTPRIME</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .gallery { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+    .card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
+    .card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
+    .cap { padding: 7px 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+    .hero-img { width: 100%; border: 1px solid var(--border); border-radius: 10px; display: block; background: #fff; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .code-path {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      background: #f7f3ee;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+      word-break: break-all;
+    }
+    @media (max-width: 980px) {
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">Test 3 / 一版图</div>
+    </div>
+  </header>
+  <main class="container">
+    <h1>测试3：Brightening Face Wash 水感一版图</h1>
+    <p class="small">本轮使用新 skill 架构：冲突清单 -> master prompt -> 自动文件包 -> 批量出图 -> 集中 QA。</p>
+
+    <section class="panel">
+      <div class="nav">
+        <a href="../index.html">总览首页</a>
+        <a class="active" href="t3-output.html">测试3一版图</a>
+        <a href="t3-step-production.html">出图评审</a>
+        <a href="../docs/test3/测试总表_test3.md">测试总表</a>
+        <a href="../docs/test3/qa/QA_checklist.md">QA Checklist</a>
+        <a href="../docs/test3/run-log.md">Run Log</a>
+      </div>
+    </section>
+
+    <section id="conflict" class="panel">
+      <h2>冲突清单</h2>
+      <ul>
+        <li>产品身份最高优先级：`Product_ref/Brightening Face Wash/MP-brightening-ID-1-6.png`。</li>
+        <li>参考图只借水感和冲击感，不借黑色 Charcoal 包装。</li>
+        <li>用户通用文案中的 `black facial wash tube` 与产品源图冲突，本轮以银色 Brightening Face Wash 为准。</li>
+        <li>水必须击打或扫过产品，不能淹没产品；产品必须完整可见并占主导。</li>
+      </ul>
+    </section>
+
+    <section id="pack" class="panel">
+      <h2>文件包</h2>
+      <table class="table">
+        <thead><tr><th>类型</th><th>路径</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>图稿</td><td><span class="code-path">assets/images/test3/</span></td><td>10张 v1 输出图 + 接触表</td></tr>
+          <tr><td>Prompt</td><td><span class="code-path">docs/test3/prompts/</span></td><td>W01~W10 prompt</td></tr>
+          <tr><td>需求单</td><td><span class="code-path">docs/test3/requirements/</span></td><td>W01~W10 需求单</td></tr>
+          <tr><td>QA</td><td><span class="code-path">docs/test3/qa/QA_checklist.md</span></td><td>集中 QA 标准</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="gallery" class="panel">
+      <h2>10张一版图</h2>
+      <div class="gallery" id="galleryGrid"></div>
+    </section>
+
+    <section id="qa" class="panel">
+      <h2>接触表</h2>
+      <img class="hero-img" src="../assets/images/test3/BFW-WATER3_contact-sheet_v1_2026-04-28.jpg" alt="BFW-WATER3 contact sheet" />
+      <p class="small">基础 QA：10 张均保持 Brightening Face Wash 银色包装身份；W05 和 W09 水量最大，投放前可优先关注是否过于接近半浸水。</p>
+    </section>
+
+    <section id="github" class="panel">
+      <h2>GitHub 同步状态</h2>
+      <p class="small">本地站点内容已准备好。当前机器 `gh` 未登录，且站点目录尚未绑定 GitHub remote，因此需要登录后才能推送。</p>
+    </section>
+
+    <section id="next" class="panel">
+      <h2>下一步</h2>
+      <ul>
+        <li>进入 <a href="t3-step-production.html">出图评审</a>，逐张写评论、勾选候选、评分并附本地参考附件。</li>
+        <li>如果要继续 test4，可直接用 `test-round-pack` 模板提交“参考图 + 修改意见”组合变量。</li>
+        <li>投放数据回来后再进入 Performance Reviewer。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const items = [
+      ["BFW-WATER3-W01_v1_2026-04-28.png", "W01 银色水弧"],
+      ["BFW-WATER3-W02_v1_2026-04-28.png", "W02 垂直水幕"],
+      ["BFW-WATER3-W03_v1_2026-04-28.png", "W03 斜向水扫"],
+      ["BFW-WATER3-W04_v1_2026-04-28.png", "W04 圆环水感"],
+      ["BFW-WATER3-W05_v1_2026-04-28.png", "W05 底部水浪"],
+      ["BFW-WATER3-W06_v1_2026-04-28.png", "W06 透明水带"],
+      ["BFW-WATER3-W07_v1_2026-04-28.png", "W07 侧向冲击"],
+      ["BFW-WATER3-W08_v1_2026-04-28.png", "W08 冷感水雾"],
+      ["BFW-WATER3-W09_v1_2026-04-28.png", "W09 宽幅水幕"],
+      ["BFW-WATER3-W10_v1_2026-04-28.png", "W10 银色液滴"]
+    ];
+    document.getElementById("galleryGrid").innerHTML = items.map(([file, label]) => `
+      <figure class="card">
+        <img src="../assets/images/test3/${file}" alt="${label}" />
+        <figcaption class="cap">${label}</figcaption>
+      </figure>
+    `).join("");
+  </script>
+</body>
+</html>
