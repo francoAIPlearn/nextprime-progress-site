@@ -6,6 +6,7 @@
   <title>测试2 出图 | NEXTPRIME</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="../assets/review-widget.css" />
+  <link rel="stylesheet" href="../assets/image-lightbox.css" />
   <style>
     .layout {
       display: grid;
@@ -135,6 +136,7 @@
 
   <script src="../data/production-trace-test2.js"></script>
   <script src="../assets/review-widget.js"></script>
+  <script src="../assets/image-lightbox.js"></script>
   <script>
     (function () {
       const data = window.PRODUCTION_TRACE_TEST2_DATA;
@@ -182,9 +184,12 @@
 
         detailEl.innerHTML = `
           <div class="detail-grid">
-            <div class="preview">
-              <img src="${esc(item.output_file)}" alt="${esc(item.test_id)} ${esc(item.version)}" />
-              <div class="cap">${esc(item.test_id)} ${esc(item.version)} · <span class="${statusClass}">${statusLabel}</span></div>
+            <div>
+              <div class="preview">
+                <img src="${esc(item.output_file)}" alt="${esc(item.test_id)} ${esc(item.version)}" />
+                <div class="cap">${esc(item.test_id)} ${esc(item.version)} · <span class="${statusClass}">${statusLabel}</span></div>
+              </div>
+              <div id="npReviewMount"></div>
             </div>
             <div>
               <div class="block">
@@ -222,7 +227,6 @@
                 <ul class="list">${docHtml}</ul>
               </div>
 
-              <div id="npReviewMount"></div>
             </div>
           </div>
         `;
