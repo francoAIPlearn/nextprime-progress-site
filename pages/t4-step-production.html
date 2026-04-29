@@ -3,42 +3,60 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Production Trace | NEXTPRIME Test 4</title>
+  <title>测试4 出图评审 | NEXTPRIME</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="../assets/review-widget.css" />
   <style>
-    .layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 14px; align-items: start; }
-    .side, .detail { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
-    .tree { max-height: calc(100vh - 190px); overflow: auto; }
-    .btn { display: block; width: 100%; text-align: left; margin: 6px 0; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: #fff; cursor: pointer; }
-    .btn.active { border-color: #d8b29f; background: #fff6f0; font-weight: 600; }
-    .preview { width: min(520px, 100%); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
+    .layout { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 14px; align-items: start; }
+    .tree-panel, .detail-panel { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
+    .tree-wrap { max-height: calc(100vh - 190px); overflow: auto; padding-right: 4px; }
+    .series-group { border: 1px solid var(--border); border-radius: 8px; padding: 8px; margin: 8px 0; background: #fffdfa; }
+    .series-group > summary { cursor: pointer; font-weight: 600; list-style: none; }
+    .ver-btn { margin-top: 8px; width: 100%; text-align: left; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: #fff; cursor: pointer; color: #2b2b2b; }
+    .ver-btn.active { border-color: #d8b29f; background: #fff6f0; }
+    .detail-grid { display: grid; grid-template-columns: minmax(260px, 330px) minmax(0, 1fr); gap: 14px; align-items: start; }
+    .preview { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
     .preview img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
-    .preview figcaption { padding: 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
-    .badge { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; font-size: 12px; background: #f8f8f8; margin-left: 6px; }
+    .preview .cap { padding: 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
+    .block { border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-bottom: 10px; background: #fff; }
+    .block h3 { margin: 0 0 8px; font-size: 14px; }
+    .list { margin: 0; padding-left: 18px; }
+    .list li { margin: 4px 0; }
+    .code-path { display: inline-block; margin-top: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; background: #f7f3ee; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; word-break: break-all; }
+    .badge { display: inline-block; margin-left: 6px; border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; font-size: 12px; background: #f8f8f8; }
     .badge.pass { color: #1f7a4f; background: #eaf8f0; border-color: #bde8cd; }
     .badge.review { color: #a16207; background: #fff4df; border-color: #f2d69a; }
-    @media (max-width: 980px) { .layout { grid-template-columns: 1fr; } .tree { max-height: none; } }
+    @media (max-width: 1100px) { .layout { grid-template-columns: 1fr; } .tree-wrap { max-height: none; } .detail-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="inner"><div class="brand">NEXTPRIME <span>pic_editor</span></div><div class="stamp">Test 4 / Production Trace</div></div></header>
+  <header class="topbar"><div class="inner"><div class="brand">NEXTPRIME <span>pic_editor</span></div><div class="stamp">Test 4 / 出图评审</div></div></header>
   <main class="container">
-    <h1>Test 4 Production Trace</h1>
-    <p class="small">BFW-WATER4: 60 waterfeel variants. Select any node to inspect image, prompt, requirement and QA notes.</p>
+    <h1>测试4出图评审</h1>
+    <p class="small">BFW-WATER4：60张水感变量图。点击节点后可查看图、prompt、需求单、QA，并记录评论、勾选、评分和附件。</p>
     <section class="panel"><div class="nav">
-  <a href="../index.html">Overview</a>
-  <a href="t4-workflow-index.html">Test 4 Index</a>
-  <a href="t4-step-direction.html">Direction</a>
-  <a href="t4-step-variables.html">Variables</a>
-  <a href="t4-step-ab-plan.html">AB Plan</a>
-  <a href="t4-step-asset-check.html">Asset Check</a>
-  <a href="t4-step-requirements.html">Requirements</a>
-  <a class="active" href="t4-step-production.html">Production</a>
+  <a href="../index.html">总览首页</a>
+  <a href="t4-workflow-index.html">测试4索引</a>
+  <a href="t4-step-direction.html">方向梳理</a>
+  <a href="t4-step-variables.html">变量拆解</a>
+  <a href="t4-step-ab-plan.html">视觉对比方案</a>
+  <a href="t4-step-asset-check.html">资产检查</a>
+  <a href="t4-step-requirements.html">测试图需求单</a>
+  <a class="active" href="t4-step-production.html">出图评审</a>
   <a href="t4-step-review.html">QA Review</a>
 </div></section>
     <section class="panel"><h2>Contact Sheets</h2><p><a href="../assets/images/test4/BFW-WATER4_contact-sheet_v1_2026-04-28.jpg">All 60</a> / <a href="../assets/images/test4/BFW-WATER4_I_contact-sheet_v1_2026-04-28.jpg">I01-I30</a> / <a href="../assets/images/test4/BFW-WATER4_H_contact-sheet_v1_2026-04-28.jpg">H01-H30</a></p></section>
-    <section class="layout"><aside class="side"><h2>Image Nodes</h2><div id="tree" class="tree"></div></aside><section class="detail"><h2>Detail</h2><div id="detail" class="small">Loading...</div></section></section>
+    <section class="layout">
+      <aside class="tree-panel">
+        <h2>树状追溯</h2>
+        <p class="small">分组：I01~I30 / H01~H30 -> v1</p>
+        <div id="tree" class="tree-wrap"></div>
+      </aside>
+      <section class="detail-panel">
+        <h2>详情面板</h2>
+        <div id="detail" class="small">Loading...</div>
+      </section>
+    </section>
   </main>
   <script src="../data/production-trace-test4.js"></script>
   <script src="../assets/review-widget.js"></script>
@@ -47,14 +65,84 @@
     const tree = document.getElementById('tree');
     const detail = document.getElementById('detail');
     function esc(s){return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');}
+    function statusLabel(status){ return status === 'pass' ? '通过' : '待复核'; }
+    function refHtml(ref){ return `<li><a href="${esc(ref.path)}" target="_blank" rel="noopener noreferrer">${esc(ref.title)}</a><div class="small">来源: ${esc(ref.source || "")}</div></li>`; }
+    function docHtml(doc){ return `<li><a href="${esc(doc.href)}" target="_blank" rel="noopener noreferrer">${esc(doc.label)}</a></li>`; }
     function render(item){
-      document.querySelectorAll('.btn').forEach(b=>b.classList.toggle('active', b.dataset.id===item.test_id));
+      document.querySelectorAll('.ver-btn').forEach(b=>b.classList.toggle('active', b.dataset.id===item.test_id));
       const notes = (item.qa_notes&&item.qa_notes.length) ? item.qa_notes.map(n=>`<li>${esc(n)}</li>`).join('') : '<li>OK</li>';
-      detail.innerHTML = `<figure class="preview"><img src="${esc(item.output_file)}" alt="${esc(item.variant_id)}"><figcaption>${esc(item.variant_id)} <span class="badge ${esc(item.status)}">${esc(item.status)}</span></figcaption></figure><h3>${esc(item.water_effect_type)}</h3><ul><li>Direction: ${esc(item.direction)}</li><li>Product: ${esc(item.product_visibility)}</li><li><a href="${esc(item.prompt_file)}">Prompt</a></li><li><a href="${esc(item.requirement_file)}">Requirement</a></li></ul><h3>QA Notes</h3><ul>${notes}</ul><div id="npReviewMount"></div>`;
+      const sharedRefs = (data.shared_references || []).map(refHtml).join('');
+      const linkedDocs = (item.linked_docs || []).map(docHtml).join('');
+      detail.innerHTML = `
+        <div class="detail-grid">
+          <div class="preview">
+            <img src="${esc(item.output_file)}" alt="${esc(item.variant_id)}" />
+            <div class="cap">${esc(item.variant_id)} ${esc(item.version)} · <span class="badge ${esc(item.status)}">${statusLabel(item.status)}</span></div>
+          </div>
+          <div>
+            <div class="block">
+              <h3>图信息</h3>
+              <ul class="list">
+                <li>测试编号: ${esc(item.test_id)}</li>
+                <li>版本: ${esc(item.version)}</li>
+                <li>状态: <span class="badge ${esc(item.status)}">${statusLabel(item.status)}</span></li>
+                <li>方向: ${esc(item.direction)}</li>
+                <li>水感变量: ${esc(item.water_effect_type)}</li>
+                <li>产品可见性: ${esc(item.product_visibility)}</li>
+              </ul>
+              <div class="small">输出文件</div>
+              <a class="code-path" href="${esc(item.output_file)}" target="_blank" rel="noopener noreferrer">${esc(item.output_file)}</a>
+            </div>
+            <div class="block">
+              <h3>基底来源</h3>
+              <a class="code-path" href="${esc(item.source_product_image)}" target="_blank" rel="noopener noreferrer">${esc(item.source_product_image)}</a>
+            </div>
+            <div class="block">
+              <h3>使用 Prompt</h3>
+              <ul class="list">
+                <li>锁定 Brightening Face Wash 产品身份</li>
+                <li>按 ${esc(item.direction)} 方向执行</li>
+                <li>保持产品完整、可读、占主导</li>
+              </ul>
+              <div class="small" style="margin-top: 8px;">全文入口</div>
+              <a class="code-path" href="${esc(item.prompt_file)}" target="_blank" rel="noopener noreferrer">${esc(item.prompt_file)}</a>
+            </div>
+            <div class="block">
+              <h3>参考资料（共享基线）</h3>
+              <ul class="list">${sharedRefs}</ul>
+            </div>
+            <div class="block">
+              <h3>参考资料（差异项）</h3>
+              <ul class="list"><li>${esc(item.water_effect_type)}<div class="small">来源: ${esc(item.requirement_file)}</div></li></ul>
+            </div>
+            <div class="block">
+              <h3>关联文档</h3>
+              <ul class="list">${linkedDocs}<li><a href="${esc(item.requirement_file)}" target="_blank" rel="noopener noreferrer">${esc(item.variant_id)} requirement</a></li></ul>
+            </div>
+            <div class="block">
+              <h3>QA Notes</h3>
+              <ul class="list">${notes}</ul>
+            </div>
+            <div id="npReviewMount"></div>
+          </div>
+        </div>`;
       window.NPReviewWidget.mount("npReviewMount", { itemId: `test4-${item.variant_id}`, title: item.variant_id });
     }
     if(!data || !Array.isArray(data.items)){ detail.textContent='Data failed to load.'; }
-    else { tree.innerHTML = data.items.map(item=>`<button class="btn" data-id="${esc(item.test_id)}">${esc(item.test_id)} - ${esc(item.water_effect_type)} <span class="badge ${esc(item.status)}">${esc(item.status)}</span></button>`).join(''); document.querySelectorAll('.btn').forEach(btn=>btn.addEventListener('click',()=>render(data.items.find(i=>i.test_id===btn.dataset.id)))); render(data.items[0]); }
+    else {
+      const groups = [
+        ['I 系列 · 半浸水 / 水线', data.items.filter((item)=>item.test_id.startsWith('I'))],
+        ['H 系列 · 水击打 / 扫过', data.items.filter((item)=>item.test_id.startsWith('H'))]
+      ];
+      tree.innerHTML = groups.map(([label, items]) => `
+        <details class="series-group" open>
+          <summary>${esc(label)}</summary>
+          ${items.map((item)=>`<button class="ver-btn" type="button" data-id="${esc(item.test_id)}">${esc(item.test_id)} v1 · ${esc(item.water_effect_type)} <span class="badge ${esc(item.status)}">${statusLabel(item.status)}</span></button>`).join('')}
+        </details>
+      `).join('');
+      document.querySelectorAll('.ver-btn').forEach(btn=>btn.addEventListener('click',()=>render(data.items.find(i=>i.test_id===btn.dataset.id))));
+      render(data.items[0]);
+    }
   </script>
 </body>
 </html>
