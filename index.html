@@ -218,6 +218,41 @@
           ["assets/images/test2/BFW-WATER2-W04_v1_2026-04-27.png", "W04"],
           ["assets/images/test2/BFW-WATER2-W05_v1_2026-04-27.png", "W05"]
         ]
+      },
+      t4: {
+        name: "??4",
+        flowTitle: "???? - ??4",
+        summaryTitle: "???? - ??4",
+        docTitle: "???? - ??4",
+        galleryTitle: "??4?????BFW-WATER4?",
+        steps: [
+          ["????", "pages/t4-step-direction.html", "???", "I: ???? / H: ?????"],
+          ["????", "pages/t4-step-variables.html", "???", "60????????????"],
+          ["AB ????", "pages/t4-step-ab-plan.html", "???", "?????????????"],
+          ["????", "pages/t4-step-asset-check.html", "???", "???? Brightening Face Wash"],
+          ["??????", "pages/t4-step-requirements.html", "???", "60?????prompt???"],
+          ["??", "pages/t4-step-production.html", "???", "60??????????"],
+          ["????", "pages/t4-step-review.html", "???", "??????QA???????"]
+        ],
+        summary: [
+          "Test 4 ?60??I01-I30???/?????H01-H30????/?????",
+          "????????I17???H??????????10%??16???????",
+          "???????QA checklist????????Test 4???"
+        ],
+        docs: [
+          ["????", "pages/t4-workflow-index.html", "Test 4??"],
+          ["??4??", "docs/test4/test4_master_table.md", "60?????"],
+          ["QA checklist", "docs/test4/qa/QA_checklist.md", "??QA??"],
+          ["???", "assets/images/test4/BFW-WATER4_contact-sheet_v1_2026-04-28.jpg", "60???"],
+          ["????", "pages/t4-step-production.html", "??????"]
+        ],
+        gallery: [
+          ["assets/images/test4/BFW-WATER4-I17_v1_2026-04-28.png", "I17"],
+          ["assets/images/test4/BFW-WATER4-I24_v1_2026-04-28.png", "I24"],
+          ["assets/images/test4/BFW-WATER4-I30_v1_2026-04-28.png", "I30"],
+          ["assets/images/test4/BFW-WATER4-H01_v1_2026-04-28.png", "H01"],
+          ["assets/images/test4/BFW-WATER4-H22_v1_2026-04-28.png", "H22"]
+        ]
       }
     };
 
@@ -265,10 +300,12 @@
 
       document.getElementById("switch-t1").classList.toggle("active", key === "t1");
       document.getElementById("switch-t2").classList.toggle("active", key === "t2");
+      document.getElementById("switch-t4").classList.toggle("active", key === "t4");
     }
 
     document.getElementById("switch-t1").addEventListener("click", () => render("t1"));
     document.getElementById("switch-t2").addEventListener("click", () => render("t2"));
+    document.getElementById("switch-t4").addEventListener("click", () => render("t4"));
     render("t1");
   </script>
 </body>
