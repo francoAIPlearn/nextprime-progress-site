@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>审图评论数据流 | NEXTPRIME</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .pill {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      background: #fff;
+    }
+    .ok { color: #1f7a4f; border-color: #bde8cd; background: #eaf8f0; }
+    .warn { color: #9a6700; border-color: #efd59b; background: #fff5df; }
+    .flow-wrap {
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+    }
+    .flow-svg {
+      min-width: 860px;
+      width: 100%;
+      height: 390px;
+      display: block;
+    }
+    .icon-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 10px;
+    }
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: #505050;
+    }
+    .legend-emoji { font-size: 14px; line-height: 1; }
+    .table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .table th, .table td { border-bottom: 1px solid var(--border); text-align: left; padding: 8px 6px; vertical-align: top; }
+    .table th { background: #faf8f5; font-weight: 600; }
+    .mono {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      background: #f7f3ee;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 6px;
+      word-break: break-all;
+    }
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .task-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+    .task-card h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+    .task-state {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #efd59b;
+      background: #fff5df;
+      color: #9a6700;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .task-card ul { margin: 10px 0 0 18px; padding: 0; }
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .task-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">Data Flow / 审图评论</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>审图评论到 BigQuery 数据流</h1>
+    <p class="small">这个页面用于判断“评论系统是否可作为正式数据链路”。可视化基于当前代码实现：前端评审组件 + Cloud Run review-sync API + GCS 存储；BigQuery 作为分析层建议新增定时入仓任务。</p>
+
+    <section class="panel">
+      <div class="nav">
+        <a href="../index.html">总览首页</a>
+        <a href="t4-step-production.html">出图评审</a>
+        <a href="t4-docs.html#results">测试4文档</a>
+        <a class="active" href="review-dataflow.html">数据流说明</a>
+      </div>
+    </section>
+
+    <section class="panel hero">
+      <div class="card">
+        <h2>当前结论</h2>
+        <ul>
+          <li>前端评论字段（勾选/评分/文字）会实时同步到 Cloud Run API。</li>
+          <li>附件先尝试上传共享存储（GCS），失败时退回浏览器本地缓存。</li>
+          <li>目前服务端主存储是 GCS JSON + 附件对象，不是直接写 BigQuery。</li>
+          <li>要做报表分析，建议补一个 Cloud Run Job / Scheduler 把 JSON 增量落到 BigQuery 明细表。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>链路状态</h2>
+        <div class="pill-row">
+          <span class="pill ok">前端采集：已实现</span>
+          <span class="pill ok">共享 API：已实现</span>
+          <span class="pill ok">GCS 持久化：已实现</span>
+          <span class="pill warn">BigQuery 入仓：待补</span>
+          <span class="pill warn">质量监控告警：待补</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>可视化数据流</h2>
+      <div class="icon-legend">
+        <span class="legend-chip"><span class="legend-emoji">🖥</span> 浏览器评审端</span>
+        <span class="legend-chip"><span class="legend-emoji">☁</span> Cloud Run API</span>
+        <span class="legend-chip"><span class="legend-emoji">🗂</span> GCS存储层</span>
+        <span class="legend-chip"><span class="legend-emoji">📊</span> BigQuery分析层</span>
+        <span class="legend-chip"><span class="legend-emoji">💾</span> 本地兜底</span>
+      </div>
+      <div class="flow-wrap">
+        <svg class="flow-svg" viewBox="0 0 980 390" role="img" aria-label="Review Dataflow">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+              <path d="M0,0 L10,4 L0,8 z" fill="#9a7a67"></path>
+            </marker>
+          </defs>
+          <rect x="24" y="44" width="220" height="94" rx="10" fill="#fff8f3" stroke="#e7e1db"></rect>
+          <circle cx="56" cy="74" r="16" fill="#e7f0fb"></circle>
+          <text x="56" y="80" font-size="15" text-anchor="middle">🖥</text>
+          <text x="82" y="74" font-size="16" fill="#2b2b2b">浏览器审图页</text>
+          <text x="82" y="98" font-size="13" fill="#6f6f6f">t4-step-production / review-widget</text>
+          <text x="82" y="118" font-size="13" fill="#6f6f6f">checked / rating / comment / attachment</text>
+
+          <rect x="310" y="44" width="250" height="94" rx="10" fill="#fff8f3" stroke="#e7e1db"></rect>
+          <circle cx="342" cy="74" r="16" fill="#e8f7ee"></circle>
+          <text x="342" y="80" font-size="15" text-anchor="middle">☁</text>
+          <text x="368" y="74" font-size="16" fill="#2b2b2b">Cloud Run review-sync API</text>
+          <text x="368" y="98" font-size="13" fill="#6f6f6f">/api/reviews, /attachments</text>
+          <text x="368" y="118" font-size="13" fill="#6f6f6f">CORS / 校验 / 合并更新</text>
+
+          <rect x="626" y="44" width="320" height="94" rx="10" fill="#fff8f3" stroke="#e7e1db"></rect>
+          <circle cx="658" cy="74" r="16" fill="#f3eefb"></circle>
+          <text x="658" y="80" font-size="15" text-anchor="middle">🗂</text>
+          <text x="684" y="74" font-size="16" fill="#2b2b2b">GCS 持久化层</text>
+          <text x="684" y="98" font-size="13" fill="#6f6f6f">reviews/test4-reviews.json</text>
+          <text x="684" y="118" font-size="13" fill="#6f6f6f">reviews/test4-attachments/*</text>
+
+          <rect x="626" y="210" width="320" height="94" rx="10" fill="#f7fbff" stroke="#d8e5f2"></rect>
+          <circle cx="658" cy="240" r="16" fill="#fff3df"></circle>
+          <text x="658" y="246" font-size="15" text-anchor="middle">📊</text>
+          <text x="684" y="240" font-size="16" fill="#2b2b2b">BigQuery 分析层（建议补齐）</text>
+          <text x="684" y="264" font-size="13" fill="#6f6f6f">review_events 明细表</text>
+          <text x="684" y="284" font-size="13" fill="#6f6f6f">用于筛图效率 / 质量复盘</text>
+
+          <rect x="24" y="210" width="220" height="94" rx="10" fill="#fffdf8" stroke="#eee4d6"></rect>
+          <circle cx="56" cy="240" r="16" fill="#ffece7"></circle>
+          <text x="56" y="246" font-size="15" text-anchor="middle">💾</text>
+          <text x="82" y="240" font-size="16" fill="#2b2b2b">浏览器本地兜底</text>
+          <text x="82" y="264" font-size="13" fill="#6f6f6f">localStorage</text>
+          <text x="82" y="284" font-size="13" fill="#6f6f6f">网络/上传失败时保留</text>
+
+          <line x1="244" y1="91" x2="310" y2="91" stroke="#9a7a67" stroke-width="2.2" marker-end="url(#arrow)"></line>
+          <line x1="560" y1="91" x2="626" y2="91" stroke="#9a7a67" stroke-width="2.2" marker-end="url(#arrow)"></line>
+          <line x1="560" y1="120" x2="626" y2="240" stroke="#7f9bb5" stroke-width="2.2" marker-end="url(#arrow)"></line>
+          <line x1="310" y1="120" x2="244" y2="240" stroke="#b48b68" stroke-width="2.2" marker-end="url(#arrow)"></line>
+          <text x="452" y="82" font-size="12" fill="#6f6f6f">POST JSON</text>
+          <text x="747" y="199" font-size="12" fill="#6f6f6f">ETL/定时入仓</text>
+          <text x="210" y="198" font-size="12" fill="#6f6f6f">失败回退</text>
+          <text x="24" y="346" font-size="12" fill="#6f6f6f">注：BigQuery 节点为待补链路，当前线上以 GCS JSON 为事实源。</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>字段映射（评审 -> 建议 BQ 表）</h2>
+      <table class="table">
+        <thead>
+          <tr><th>来源字段</th><th>说明</th><th>建议 BQ 字段</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="mono">itemId</span></td><td>图唯一标识（如 test4-BFW-WATER4-I01）</td><td><span class="mono">item_id STRING</span></td></tr>
+          <tr><td><span class="mono">checked</span></td><td>是否候选/通过</td><td><span class="mono">is_checked BOOL</span></td></tr>
+          <tr><td><span class="mono">rating</span></td><td>1~5 主观评分</td><td><span class="mono">rating INT64</span></td></tr>
+          <tr><td><span class="mono">comment</span></td><td>评审文字</td><td><span class="mono">comment STRING</span></td></tr>
+          <tr><td><span class="mono">attachments[]</span></td><td>附件元数据 + 下载 URL</td><td><span class="mono">attachments_json STRING</span></td></tr>
+          <tr><td><span class="mono">updatedAt</span></td><td>最近更新时间（UTC）</td><td><span class="mono">updated_at TIMESTAMP</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <h2>实施建议与任务卡（最小可跑）</h2>
+      <ul>
+        <li>新增 Cloud Run Job：读取 <span class="mono">reviews/test4-reviews.json</span>，展开成行并写入 BigQuery（MERGE by item_id + updated_at）。</li>
+        <li>Cloud Scheduler 每 10-30 分钟触发一次，先跑增量。</li>
+        <li>先做 1 张明细表 + 1 张汇总视图，不先做复杂星型模型。</li>
+      </ul>
+      <div class="task-grid">
+        <article class="task-card">
+          <h3>任务1：实现同步 Job</h3>
+          <span class="task-state">待执行</span>
+          <ul>
+            <li>输入：<span class="mono">reviews/test4-reviews.json</span></li>
+            <li>输出：<span class="mono">nextprime.review_events</span></li>
+            <li>写入策略：<span class="mono">MERGE(item_id, updated_at)</span></li>
+          </ul>
+        </article>
+        <article class="task-card">
+          <h3>任务2：挂定时调度</h3>
+          <span class="task-state">待执行</span>
+          <ul>
+            <li>Cloud Scheduler 每 15 分钟触发</li>
+            <li>失败重试 3 次</li>
+            <li>失败时写 Cloud Logging error</li>
+          </ul>
+        </article>
+        <article class="task-card">
+          <h3>任务3：可视化验证</h3>
+          <span class="task-state">待执行</span>
+          <ul>
+            <li>新增 <span class="mono">review_events_latest</span> 视图</li>
+            <li>校验候选数、评分均值、评论覆盖率</li>
+            <li>回写到测试4复盘页的结果位</li>
+          </ul>
+        </article>
+      </div>
+      <p class="small">当前代码参考：<span class="mono">services/review-sync-api/app.py</span>、<span class="mono">assets/review-widget.js</span>。</p>
+    </section>
+  </main>
+</body>
+</html>

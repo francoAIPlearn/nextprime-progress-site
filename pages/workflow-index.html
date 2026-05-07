@@ -18,17 +18,7 @@
     <p class="small">用于查看每个环节包含的信息、输出物和对应文档入口。</p>
 
     <section class="panel">
-      <div class="nav">
-        <a href="../index.html">总览首页</a>
-        <a class="active" href="workflow-index.html">流程索引</a>
-        <a href="step-direction.html">方向梳理</a>
-        <a href="step-variables.html">变量拆解</a>
-        <a href="step-ab-plan.html">AB测试方案</a>
-        <a href="step-asset-check.html">资产检查</a>
-        <a href="step-requirements.html">测试图需求单</a>
-        <a href="step-production.html">出图</a>
-        <a href="step-review.html">复盘迭代</a>
-      </div>
+      <div class="nav" id="flowNav"></div>
     </section>
 
     <section class="panel" id="direction">
@@ -94,5 +84,9 @@
       </ul>
     </section>
   </main>
+  <script src="../assets/flow-manual.js"></script>
+  <script>
+    NPFlowManual.renderFlowNav(document.getElementById("flowNav"), "t1", "direction");
+  </script>
 </body>
 </html>

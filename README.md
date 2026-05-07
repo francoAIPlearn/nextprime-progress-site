@@ -2,6 +2,12 @@
 
 NEXTPRIME 图文制作进度说明页（HTML 单页版）。
 
+## Release
+
+- Current: `v1.0.0` (2026-05-07)
+- Type: 正式上线版本
+- Scope: Test1~Test4 流程统一导航、Test4 出图评审与 Contact Sheet、审图数据流说明页
+
 ## Local Preview
 
 直接打开：
@@ -35,4 +41,4 @@ NEXTPRIME 图文制作进度说明页（HTML 单页版）。
 
 ## Review Notes
 
-出图页支持浏览器本地评审：评论、候选勾选、1~5评分和附件选择。评审数据保存在当前浏览器的 `localStorage`，小附件会以 data URL 持久化，大附件只记录文件名和大小。
+出图页支持共享评审：评论、候选勾选、1~5评分会同步到 review API，附件会优先上传共享存储，上传失败时退回浏览器本地缓存。浏览器的 `localStorage` 仍作为本地缓存和离线兜底使用。

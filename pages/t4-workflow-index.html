@@ -3,45 +3,287 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Test 4 Workflow Index | NEXTPRIME Test 4</title>
+  <title>测试4流程总览 | NEXTPRIME</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-    .thumb { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: #fff; }
-    .thumb img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
-    .thumb figcaption { padding: 8px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); }
-    .pill { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; font-size: 12px; background: #fff; margin: 2px; }
+    .hero-grid,
+    .summary-grid,
+    .preview-grid,
+    .doc-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .hero-grid { grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr); }
+    .summary-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .preview-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .doc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stat-card,
+    .mini-card,
+    .doc-card,
+    .preview-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .stat-card,
+    .mini-card,
+    .doc-card { padding: 12px; }
+    .stat-card strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+    .stat-card span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .section-note {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .pill {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      background: #fff;
+    }
+    .preview-card { overflow: hidden; }
+    .preview-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+    .preview-card .cap {
+      padding: 8px 10px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .quick-links a {
+      display: inline-block;
+      padding: 7px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 13px;
+    }
+    .nav a.active { font-weight: 600; }
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .summary-grid,
+      .preview-grid,
+      .doc-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+      .hero-grid,
+      .summary-grid,
+      .preview-grid,
+      .doc-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="inner"><div class="brand">NEXTPRIME <span>pic_editor</span></div><div class="stamp">Test 4 / BFW-WATER4</div></div></header>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">测试4 / 流程总览</div>
+    </div>
+  </header>
   <main class="container">
-    <h1>Test 4 Workflow Index</h1>
-    <p class="small">Brightening Face Wash waterfeel test: 60 generated 1:1 variants, with immersion and impact directions.</p>
-    <section class="panel"><div class="nav">
-  <a href="../index.html">Overview</a>
-  <a class="active" href="t4-workflow-index.html">Test 4 Index</a>
-  <a href="t4-step-direction.html">Direction</a>
-  <a href="t4-step-variables.html">Variables</a>
-  <a href="t4-step-ab-plan.html">AB Plan</a>
-  <a href="t4-step-asset-check.html">Asset Check</a>
-  <a href="t4-step-requirements.html">Requirements</a>
-  <a href="t4-step-production.html">Production</a>
-  <a href="t4-step-review.html">QA Review</a>
-</div></section>
-    
-<section class="panel"><h2>Round Summary</h2><ul>
-<li>Round ID: <span class="mono">BFW-WATER4</span></li>
-<li>Direction I: I01-I30 partial immersion, waterline, and refraction.</li>
-<li>Direction H: H01-H30 water hit, sweep, curtain, jet, and impact.</li>
-<li>User adjustment: from I17 onward and all H-series, water has about 10% stronger splash/contact impact.</li>
-</ul></section>
-<section class="panel"><h2>Key Outputs</h2><ul>
-<li><a href="../docs/test4/test4_master_table.md">Master table</a></li>
-<li><a href="../docs/test4/qa/QA_checklist.md">QA checklist</a></li>
-<li><a href="../assets/images/test4/BFW-WATER4_contact-sheet_v1_2026-04-28.jpg">60-image contact sheet</a></li>
-<li><a href="t4-step-production.html">Production trace gallery</a></li>
-</ul></section>
+    <h1>测试4流程总览</h1>
+    <p class="small">把原来的方向、变量、AB 方案、资产检查收口到一个 round brief 里。当前 round 是 `BFW-WATER4`，用于 Brightening Face Wash 的 60 张水感视觉扩展测试。</p>
+
+    <section class="panel">
+      <div class="nav" id="flowNav"></div>
+    </section>
+
+    <section class="panel">
+      <div class="hero-grid">
+        <div>
+          <h2>轮次概览</h2>
+          <ul>
+            <li>Round ID: <span class="mono">BFW-WATER4</span></li>
+            <li>目标：为 Brightening Face Wash 生成 60 张 `1:1` 水感变量图，用于内部筛图与后续投放测试。</li>
+            <li>方向拆分：`I01-I30` 为半浸水 / 水线 / 折射；`H01-H30` 为击打 / 扫过 / 水幕 / 水柱。</li>
+            <li>当前阶段：图已出完，进入批量 QA + 单图评审 + 候选筛选。</li>
+          </ul>
+          <div class="quick-links">
+            <a href="t4-step-production.html">进入出图评审</a>
+            <a href="t4-contact-sheet.html?series=all">进入 Contact Sheet</a>
+            <a href="t4-docs.html#requirements">查看文档索引</a>
+          </div>
+        </div>
+        <div class="summary-grid">
+          <div class="stat-card"><strong id="statVisuals">60</strong><span>输出图数量</span></div>
+          <div class="stat-card"><strong id="statDirections">2</strong><span>方向族</span></div>
+          <div class="stat-card"><strong id="statPass">29</strong><span>QA pass</span></div>
+          <div class="stat-card"><strong id="statReview">31</strong><span>待复核</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="direction" class="panel">
+      <h2>方向梳理</h2>
+      <div class="quick-links">
+        <a href="../assets/reference/product/NP_Brightening_Face_Wash_Front.png" target="_blank" rel="noopener noreferrer">Product Identity</a>
+        <a href="../assets/reference/waterfeel/竹炭洁面_FR_P_Helen-DCFW-P11-031007-IGF-实拍_SC2603100731.jpg" target="_blank" rel="noopener noreferrer">Waterfeel Reference</a>
+        <a href="../docs/test4/test4_master_table.md" target="_blank" rel="noopener noreferrer">Master Table</a>
+      </div>
+      <div class="doc-grid">
+        <div class="mini-card">
+          <h3>I 系列</h3>
+          <p>以“半浸水 / 水线 / 折射 / 局部进入水体”为核心，重点看产品仍然保持主体地位时，哪些低冲击水感更高级。</p>
+          <p class="section-note">适合观察 calm waterline、meniscus、glass-water plane、studio tank edge 等细分母体。</p>
+        </div>
+        <div class="mini-card">
+          <h3>H 系列</h3>
+          <p>以“击打 / 扫过 / 水幕 / 水柱 / base splash”为核心，重点看更强冲击感下，产品完整性和可读性能否保住。</p>
+          <p class="section-note">适合观察 arc、curtain、jet、base splash、frame impact 等更激进的水感表达。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="variables" class="panel">
+      <h2>变量拆解</h2>
+      <p>本轮的唯一主变量是 `water behavior`。这些元素固定不变：产品身份、银色包装、冷灰 / 银灰棚拍调性、`1:1` 尺寸、产品必须保持 dominant and readable。</p>
+      <div class="quick-links">
+        <a href="../docs/test4/test4_master_table.md" target="_blank" rel="noopener noreferrer">变量主表</a>
+        <a href="t4-docs.html#prompts">Prompt Index</a>
+        <a href="t4-contact-sheet.html?series=all">Visual Set</a>
+      </div>
+      <div class="pill-row">
+        <span class="pill">waterline</span>
+        <span class="pill">meniscus</span>
+        <span class="pill">refraction</span>
+        <span class="pill">water box</span>
+        <span class="pill">jet</span>
+        <span class="pill">curtain</span>
+        <span class="pill">arc</span>
+        <span class="pill">base splash</span>
+        <span class="pill">sweep</span>
+      </div>
+    </section>
+
+    <section id="plan" class="panel">
+      <h2>AB测试方案</h2>
+      <ul>
+        <li>第一层先比：`Immersion (I)` vs `Impact (H)` 哪个方向更值得进下一轮。</li>
+        <li>第二层再比：在胜出方向里，看是哪种水感子母体更稳，比如 waterline、glass-water plane、curtain、jet 等。</li>
+        <li>当前这轮不是投放结论页，而是视觉筛图页。最终投放判断需要结合后续 `Results` 数据回填。</li>
+          </ul>
+      <div class="quick-links">
+        <a href="../docs/test4/test4_master_table.md" target="_blank" rel="noopener noreferrer">Comparison Table</a>
+        <a href="../docs/test4/qa/QA_checklist.md" target="_blank" rel="noopener noreferrer">QA Checklist</a>
+        <a href="t4-docs.html#results">Results Placeholder</a>
+      </div>
+    </section>
+
+    <section id="assets" class="panel">
+      <h2>资产检查</h2>
+      <ul>
+        <li>主产品身份锁定为 Brightening Face Wash 银色管身 + 黑色盖。</li>
+        <li>禁止替换成 Deep Clean / Charcoal 等其他 SKU。</li>
+        <li>不做包装结构重绘，不写品牌未授权功效。</li>
+      </ul>
+      <div class="quick-links">
+        <a href="../assets/reference/product/NP_Brightening_Face_Wash_Front.png" target="_blank" rel="noopener noreferrer">Product Identity</a>
+        <a href="../assets/reference/waterfeel/竹炭洁面_FR_P_Helen-DCFW-P11-031007-IGF-实拍_SC2603100731.jpg" target="_blank" rel="noopener noreferrer">Waterfeel Reference</a>
+      </div>
+    </section>
+
+    <section id="requirements" class="panel">
+      <h2>测试图需求单</h2>
+      <p>需求单和 prompt 不再拆成单独壳页，统一放在 Docs 层。Production Review 中每张图也可直接回查对应 requirement / prompt。</p>
+      <div class="quick-links">
+        <a href="t4-docs.html#requirements">Requirement Index</a>
+        <a href="t4-docs.html#prompts">Prompt Index</a>
+        <a href="../docs/test4/run-log.md" target="_blank" rel="noopener noreferrer">Run Log</a>
+      </div>
+    </section>
+
+    <section id="status" class="panel">
+      <h2>当前状态</h2>
+      <div class="doc-grid">
+        <div class="doc-card">
+          <h3>已完成</h3>
+          <ul>
+            <li>60 张输出图</li>
+            <li>60 份 prompt</li>
+            <li>60 份 requirement</li>
+            <li>QA checklist</li>
+            <li>共享评论 / 附件交互</li>
+          </ul>
+        </div>
+        <div class="doc-card">
+          <h3>下一步</h3>
+          <ul>
+            <li>在 Production Review 中筛出候选</li>
+            <li>在 Contact Sheet 中做批量浏览</li>
+            <li>把真正的投放结果回填到 Docs / Results 层，而不是继续挂在 QA 页</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>代表图预览</h2>
+      <div id="previewGrid" class="preview-grid"></div>
+    </section>
   </main>
+
+  <script src="../data/production-trace-test4.js"></script>
+  <script>
+    (function () {
+      const data = window.PRODUCTION_TRACE_TEST4_DATA;
+      if (!data || !Array.isArray(data.items)) return;
+
+      const passCount = data.items.filter((item) => item.status === "pass").length;
+      const reviewCount = data.items.filter((item) => item.status !== "pass").length;
+      document.getElementById("statVisuals").textContent = String(data.items.length);
+      document.getElementById("statPass").textContent = String(passCount);
+      document.getElementById("statReview").textContent = String(reviewCount);
+
+      const picks = ["I17", "I24", "I30", "H22"];
+      const previewGrid = document.getElementById("previewGrid");
+      previewGrid.innerHTML = picks.map((testId) => {
+        const item = data.items.find((entry) => entry.test_id === testId);
+        if (!item) return "";
+        return `
+          <a class="preview-card" href="t4-step-production.html#${encodeURIComponent(item.test_id)}">
+            <img src="${item.output_file}" alt="${item.variant_id}" />
+            <div class="cap">${item.test_id} · ${item.water_effect_type}</div>
+          </a>
+        `;
+      }).join("");
+    })();
+  </script>
+  <script src="../assets/flow-manual.js"></script>
+  <script>
+    (function () {
+      const map = {
+        "#variables": "variables",
+        "#plan": "plan",
+        "#assets": "assets",
+        "#requirements": "requirements"
+      };
+      const activeStep = map[(location.hash || "").toLowerCase()] || "direction";
+      NPFlowManual.renderFlowNav(document.getElementById("flowNav"), "t4", activeStep);
+    })();
+  </script>
 </body>
 </html>

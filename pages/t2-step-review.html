@@ -18,17 +18,7 @@
     <p class="small">仅回填测试2的核心指标。</p>
     <section class="panel">
 
-      <div class="nav">
-        <a href="../index.html">总览首页</a>
-        <a href="t2-workflow-index.html">测试2索引</a>
-        <a href="t2-step-direction.html">方向梳理</a>
-        <a href="t2-step-variables.html">变量拆解</a>
-        <a href="t2-step-ab-plan.html">视觉对比方案</a>
-        <a href="t2-step-asset-check.html">资产检查</a>
-        <a href="t2-step-requirements.html">测试图需求单</a>
-        <a href="t2-step-production.html">出图</a>
-        <a href="t2-step-review.html">复盘迭代</a>
-      </div>
+      <div class="nav" id="flowNav"></div>
 
     </section>
     <section class="panel"><h2>指标字段</h2><ul>
@@ -38,10 +28,9 @@
 <li><a href="../docs/test2/复盘表_test2.csv" target="_blank" rel="noopener noreferrer">docs/test2/复盘表_test2.csv</a></li>
 </ul></section>
   </main>
+  <script src="../assets/flow-manual.js"></script>
   <script>
-    document.querySelectorAll('.nav a').forEach(a=>{
-      if(a.getAttribute('href')==='t2-step-review.html') a.classList.add('active');
-    });
+    NPFlowManual.renderFlowNav(document.getElementById("flowNav"), "t2", "review");
   </script>
 </body>
 </html>

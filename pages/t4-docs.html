@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>测试4文档索引 | NEXTPRIME</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .doc-grid,
+    .file-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .doc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .file-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .doc-card,
+    .file-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px;
+    }
+    .file-list {
+      columns: 2;
+      column-gap: 24px;
+      margin-top: 8px;
+    }
+    .file-list li {
+      break-inside: avoid;
+      margin: 0 0 6px 18px;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .pill {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      background: #fff;
+    }
+    .nav a.active { font-weight: 600; }
+    @media (max-width: 980px) {
+      .doc-grid,
+      .file-grid { grid-template-columns: 1fr; }
+      .file-list { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
+      <div class="stamp">测试4 / 文档索引</div>
+    </div>
+  </header>
+  <main class="container">
+    <h1>测试4文档索引</h1>
+    <p class="small">把原来的需求单、QA 和文档入口统一收口到一个文档页。这里放的是可回查资料，不再继续维持多个壳页。</p>
+
+    <section class="panel">
+      <div class="nav" id="flowNav"></div>
+    </section>
+
+    <section id="core" class="panel">
+      <h2>核心文档</h2>
+      <div class="doc-grid">
+        <div class="doc-card">
+          <h3>轮次核心</h3>
+          <ul>
+            <li><a href="../docs/test4/README.md" target="_blank" rel="noopener noreferrer">README</a></li>
+            <li><a href="../docs/test4/test4_master_table.md" target="_blank" rel="noopener noreferrer">Master Table</a></li>
+            <li><a href="../docs/test4/run-log.md" target="_blank" rel="noopener noreferrer">Run Log</a></li>
+            <li><a href="../docs/test4/conflict-checklist_test4.md" target="_blank" rel="noopener noreferrer">Conflict Checklist</a></li>
+            <li><a href="review-dataflow.html" target="_blank" rel="noopener noreferrer">审图数据流（BigQuery）</a></li>
+          </ul>
+        </div>
+        <div class="doc-card" id="qa">
+          <h3>QA资料包</h3>
+          <ul>
+            <li><a href="../docs/test4/qa/QA_checklist.md" target="_blank" rel="noopener noreferrer">QA Checklist</a></li>
+            <li><a href="../assets/images/test4/BFW-WATER4_contact-sheet_v1_2026-04-28.jpg" target="_blank" rel="noopener noreferrer">All 60 Contact Sheet JPG</a></li>
+            <li><a href="../assets/images/test4/BFW-WATER4_I_contact-sheet_v1_2026-04-28.jpg" target="_blank" rel="noopener noreferrer">I01-I30 JPG</a></li>
+            <li><a href="../assets/images/test4/BFW-WATER4_H_contact-sheet_v1_2026-04-28.jpg" target="_blank" rel="noopener noreferrer">H01-H30 JPG</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="requirements" class="panel">
+      <h2>需求单索引</h2>
+      <p class="small">按方向分组查看 requirement 文件。真正的单图评审仍在 `Production Review` 里完成。</p>
+      <div id="requirementGrid" class="file-grid"></div>
+    </section>
+
+    <section id="prompts" class="panel">
+      <h2>Prompt索引</h2>
+      <p class="small">用于回查每张图的 prompt 源文件。Production Review 里也有单图直达入口。</p>
+      <div id="promptGrid" class="file-grid"></div>
+    </section>
+
+    <section id="results" class="panel">
+      <h2>复盘结果占位</h2>
+      <p>当前 `Test 4` 还没有独立的结果复盘页。这个 section 先只承担结果入口占位，等投放数据回来后，再补 `CTR / CTR(link click) / ROAS / CVR` 回填结构。</p>
+      <div class="pill-row">
+        <span class="pill">待补：Results Table</span>
+        <span class="pill">待补：Winner Summary</span>
+        <span class="pill">待补：Iteration Actions</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="../assets/flow-manual.js"></script>
+  <script src="../data/production-trace-test4.js"></script>
+  <script>
+    (function () {
+      const data = window.PRODUCTION_TRACE_TEST4_DATA;
+      if (!data || !Array.isArray(data.items)) return;
+      const hash = (location.hash || "").toLowerCase();
+      const activeStep = ["#qa", "#results"].includes(hash) ? "review" : "requirements";
+      NPFlowManual.renderFlowNav(document.getElementById("flowNav"), "t4", activeStep);
+
+      function buildLinks(items, key, suffix) {
+        return items.map((item) => `<li><a href="${item[key]}" target="_blank" rel="noopener noreferrer">${item.test_id} ${suffix}</a></li>`).join("");
+      }
+
+      const series = [
+        {
+          label: "I Series",
+          items: data.items.filter((item) => item.test_id.startsWith("I"))
+        },
+        {
+          label: "H Series",
+          items: data.items.filter((item) => item.test_id.startsWith("H"))
+        }
+      ];
+
+      document.getElementById("requirementGrid").innerHTML = series.map((group) => `
+        <div class="file-card">
+          <h3>${group.label === "I Series" ? "I系列" : "H系列"}</h3>
+          <ul class="file-list">${buildLinks(group.items, "requirement_file", "requirement")}</ul>
+        </div>
+      `).join("");
+
+      document.getElementById("promptGrid").innerHTML = series.map((group) => `
+        <div class="file-card">
+          <h3>${group.label === "I Series" ? "I系列" : "H系列"}</h3>
+          <ul class="file-list">${buildLinks(group.items, "prompt_file", "prompt")}</ul>
+        </div>
+      `).join("");
+    })();
+  </script>
+</body>
+</html>

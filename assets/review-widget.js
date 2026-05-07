@@ -147,7 +147,7 @@
         <textarea class="np-comment" placeholder="写下修改意见、可投放判断、需要返工的点..."></textarea>
         <div class="np-review-actions">
           <input class="np-attachment-input" type="file" multiple />
-          <span class="np-review-muted">勾选 / 评分 / 文字会同步到共享评审；附件仍只保存在当前浏览器本地。</span>
+          <span class="np-review-muted">勾选 / 评分 / 文字会同步到共享评审；附件会优先上传共享，失败时退回当前浏览器本地保存。</span>
           <button class="np-clear-review" type="button">清空本图评审</button>
         </div>
         <div class="np-review-sync">

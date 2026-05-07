@@ -67,12 +67,12 @@
       background: #fff6f0;
       font-weight: 600;
     }
-    .workflow { display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 10px; overflow-x: auto; padding-bottom: 6px; }
+    .workflow { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; overflow-x: auto; padding-bottom: 6px; }
     .step {
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 10px;
-      min-height: 86px;
+      min-height: 124px;
       background: #fffcf8;
       text-decoration: none;
       color: var(--ink);
@@ -85,6 +85,30 @@
     .done { color: var(--ok); background: #eaf8f0; border: 1px solid #bde8cd; }
     .doing { color: var(--doing); background: #fff4df; border: 1px solid #f2d69a; }
     .todo { color: #6b7280; background: #f3f4f6; border: 1px solid #e5e7eb; }
+    .step.manual {
+      border-color: #efc38c;
+      background: #fffaf2;
+      box-shadow: inset 0 0 0 1px rgba(239, 195, 140, 0.28);
+    }
+    .step-note {
+      display: block;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .manual-chip {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 8px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #efc38c;
+      background: #fff3df;
+      color: #8a5600;
+      font-size: 12px;
+      font-weight: 600;
+    }
     .small { color: var(--muted); font-size: 14px; }
     .table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .table th, .table td { border-bottom: 1px solid var(--border); text-align: left; padding: 8px 6px; vertical-align: top; }
@@ -104,14 +128,14 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">NEXTPRIME <span>pic_editor</span></div>
-      <div class="stamp">更新日期：2026-04-29</div>
+      <div class="stamp">正式版 v1.0.0 · 更新日期：2026-05-07</div>
     </div>
   </header>
 
   <main class="container">
     <section class="hero">
       <h1>图文制作流程总览</h1>
-      <p class="lead">同一套流程框架，支持 Test 1~Test 4 独立切换查看。Test 3/4 已发布为 Brightening Face Wash 水感扩展轮次。</p>
+      <p class="lead">同一套流程框架支持 Test 1~Test 4 独立查看。测试4的内容已收口到统一流程页、出图评审、Contact Sheet 和文档索引中。</p>
     </section>
 
     <section class="panel">
@@ -150,6 +174,7 @@
     </section>
   </main>
 
+  <script src="assets/flow-manual.js"></script>
   <script>
     const testConfig = {
       t1: {
@@ -158,15 +183,6 @@
         summaryTitle: "当前进度 - 测试1",
         docTitle: "关键文档 - 测试1",
         galleryTitle: "测试1图稿预览（A1~B2 v2）",
-        steps: [
-          ["方向梳理", "pages/step-direction.html", "已完成", "查看：方向目标与边界"],
-          ["变量拆解", "pages/step-variables.html", "已完成", "查看：控制组/变化组结构"],
-          ["AB 测试方案", "pages/step-ab-plan.html", "已完成", "查看：首轮方案与判读规则"],
-          ["资产检查", "pages/step-asset-check.html", "已完成", "查看：就绪资产与缺口"],
-          ["测试图需求单", "pages/step-requirements.html", "已完成", "查看：A1~B2 执行要求"],
-          ["出图", "pages/step-production.html", "进行中", "查看：出图追溯树"],
-          ["复盘迭代", "pages/step-review.html", "待执行", "查看：指标回填与下一步"]
-        ],
         summary: [
           "承接文档、测试总表、4张需求单、复盘表已落地。",
           "首轮4图 v1/v2 均已归档，树状追溯已可查看。",
@@ -192,15 +208,6 @@
         summaryTitle: "当前进度 - 测试2",
         docTitle: "关键文档 - 测试2",
         galleryTitle: "测试2图稿预览（W01~W10）",
-        steps: [
-          ["方向梳理", "pages/t2-step-direction.html", "已完成", "仅做水感视觉变量测试"],
-          ["变量拆解", "pages/t2-step-variables.html", "已完成", "W01~W10 单变量定义"],
-          ["视觉对比方案", "pages/t2-step-ab-plan.html", "已完成", "不做功效AB，仅水感对比"],
-          ["资产检查", "pages/t2-step-asset-check.html", "已完成", "锁定正面原图为唯一主体"],
-          ["测试图需求单", "pages/t2-step-requirements.html", "已完成", "10张需求单与主体锁定条款"],
-          ["出图", "pages/t2-step-production.html", "进行中", "W01~W10 树状追溯"],
-          ["复盘迭代", "pages/t2-step-review.html", "待执行", "仅填CTR/CTR(link click)/ROAS/CVR"]
-        ],
         summary: [
           "测试2与测试1完全并行，路由和内容互不影响。",
           "出图方法改为固定正面原图编辑，不再重绘产品主体。",
@@ -228,13 +235,13 @@
         docTitle: "关键文档 - 测试3",
         galleryTitle: "测试3图稿预览（BFW-WATER3 W01~W10）",
         steps: [
-          ["方向梳理", "pages/t3-output.html#conflict", "已完成", "锁定银色 Brightening Face Wash 身份"],
-          ["变量拆解", "pages/t3-output.html#gallery", "已完成", "10个 bold / clean / premium 水感变量"],
-          ["视觉对比方案", "pages/t3-output.html#pack", "已完成", "固定1:1画幅与极简文案"],
-          ["资产检查", "pages/t3-output.html#pack", "已完成", "图稿、prompt、需求单、QA均已归档"],
-          ["测试图需求单", "docs/test3/requirements/BFW-WATER3-W01_需求单.md", "已完成", "W01~W10 需求单"],
-          ["出图", "pages/t3-step-production.html", "进行中", "10张图追溯与评审"],
-          ["复盘迭代", "docs/test3/qa/QA_checklist.md", "待执行", "优先关注 W05/W09 水量主观感受"]
+          { id: "direction", label: "方向梳理", href: "pages/t3-output.html#conflict", status: "已完成", summary: "锁定银色 Brightening Face Wash 身份", manual_note: "" },
+          { id: "variables", label: "变量拆解", href: "pages/t3-output.html#gallery", status: "已完成", summary: "10个 bold / clean / premium 水感变量", manual_note: "" },
+          { id: "plan", label: "视觉对比方案", href: "pages/t3-output.html#pack", status: "已完成", summary: "固定1:1画幅与极简文案", manual_note: "" },
+          { id: "assets", label: "资产检查", href: "pages/t3-output.html#pack", status: "已完成", summary: "图稿、prompt、需求单、QA均已归档", manual_note: "" },
+          { id: "requirements", label: "测试图需求单", href: "docs/test3/requirements/BFW-WATER3-W01_需求单.md", status: "已完成", summary: "W01~W10 需求单", manual_note: "" },
+          { id: "production", label: "出图", href: "pages/t3-step-production.html", status: "进行中", summary: "10张图追溯与评审", manual_note: "人工：逐图评审" },
+          { id: "review", label: "复盘迭代", href: "docs/test3/qa/QA_checklist.md", status: "待执行", summary: "优先关注 W05/W09 水量主观感受", manual_note: "人工：复核 W05 / W09 主观风险" }
         ],
         summary: [
           "测试3已发布：10张 v1 输出图、10份 prompt、10份需求单、QA checklist、run log。",
@@ -262,26 +269,17 @@
         summaryTitle: "当前进度 - 测试4",
         docTitle: "关键文档 - 测试4",
         galleryTitle: "测试4图稿预览（BFW-WATER4）",
-        steps: [
-          ["方向梳理", "pages/t4-step-direction.html", "已完成", "I: 半浸水 / H: 水击打扫过"],
-          ["变量拆解", "pages/t4-step-variables.html", "已完成", "60个水感变量分组"],
-          ["AB 对比方案", "pages/t4-step-ab-plan.html", "已完成", "I/H 两套方向并行对比"],
-          ["资产检查", "pages/t4-step-asset-check.html", "已完成", "锁定 Brightening Face Wash"],
-          ["测试图需求单", "pages/t4-step-requirements.html", "已完成", "60份需求单与prompt归档"],
-          ["出图", "pages/t4-step-production.html", "进行中", "60图追溯与共享评审"],
-          ["复盘迭代", "pages/t4-step-review.html", "待执行", "等待投放数据与QA筛选"]
-        ],
         summary: [
-          "测试4已发布：60张 v1 输出图，I01~I30 为半浸水/水线方向，H01~H30 为击打/扫过/水幕方向。",
-          "QA checklist 标记 29 pass / 31 review / 0 reject，推荐基线为 I17~I30 与 H01~H26。",
-          "出图页已增加共享评论、勾选、评分与本地附件交互，用于筛选可投放候选。"
+          "测试4首页流程图已恢复为 7 卡展示，页面顶部导航也统一回中文流程结构。",
+          "当前产出为 60 张 v1 图：I01~I30 为半浸水/水线方向，H01~H30 为击打/扫过/水幕方向。",
+          "Production Review 的文本评语、候选勾选、评分走共享同步；附件优先上传共享，失败时退回浏览器本地。"
         ],
         docs: [
-          ["测试4索引", "pages/t4-workflow-index.html", "Test 4流程页"],
-          ["测试4总表", "docs/test4/test4_master_table.md", "60图主表"],
-          ["QA checklist", "docs/test4/qa/QA_checklist.md", "集中QA记录"],
-          ["接触表", "pages/t4-contact-sheet.html?series=all", "60图总览与跳转"],
-          ["出图追溯", "pages/t4-step-production.html", "带评审交互的出图详情"]
+          ["流程总览", "pages/t4-workflow-index.html#direction", "方向、变量、方案、资产合并页"],
+          ["出图评审", "pages/t4-step-production.html", "60图单图评审与追溯"],
+          ["Contact Sheet", "pages/t4-contact-sheet.html?series=all", "大图热点导航到评审页"],
+          ["文档索引", "pages/t4-docs.html#requirements", "需求单、prompt、QA、主表入口"],
+          ["审图数据流", "pages/review-dataflow.html", "评审评论到BigQuery的数据链路与任务卡"]
         ],
         gallery: [
           ["assets/images/test4/BFW-WATER4-I17_v1_2026-04-28.png", "I17"],
@@ -292,6 +290,7 @@
         ]
       }
     };
+    const normalizedConfig = window.NPFlowManual.buildHomepageConfigs(testConfig);
 
     function tagClass(status) {
       if (status === "已完成") return "done";
@@ -300,7 +299,7 @@
     }
 
     function render(key) {
-      const cfg = testConfig[key];
+      const cfg = normalizedConfig[key];
       document.getElementById("flow-title").textContent = cfg.flowTitle;
       document.getElementById("summary-title").textContent = cfg.summaryTitle;
       document.getElementById("doc-title").textContent = cfg.docTitle;
@@ -308,10 +307,11 @@
 
       const flow = document.getElementById("workflow");
       flow.innerHTML = cfg.steps.map((s) => `
-        <a class="step" href="${s[1]}">
-          <div class="name">${s[0]}</div>
-          <span class="tag ${tagClass(s[2])}">${s[2]}</span>
-          <span class="meta">${s[3]}</span>
+        <a class="step ${window.NPFlowManual.isManualStatus(s.status) ? "manual" : ""}" href="${s.href}">
+          <div class="name">${s.label}${window.NPFlowManual.isManualStatus(s.status) ? '<span class="manual-chip">需人工</span>' : ""}</div>
+          <span class="tag ${tagClass(s.status)}">${s.status}</span>
+          <span class="meta">${s.summary}</span>
+          ${window.NPFlowManual.isManualStatus(s.status) && s.manual_note ? `<span class="step-note">${s.manual_note}</span>` : ""}
         </a>
       `).join("");
 

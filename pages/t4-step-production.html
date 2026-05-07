@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>测试4 出图评审 | NEXTPRIME</title>
+  <title>测试4出图评审 | NEXTPRIME</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="../assets/review-widget.css" />
   <link rel="stylesheet" href="../assets/image-lightbox.css" />
@@ -31,26 +31,16 @@
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="inner"><div class="brand">NEXTPRIME <span>pic_editor</span></div><div class="stamp">Test 4 / 出图评审</div></div></header>
+  <header class="topbar"><div class="inner"><div class="brand">NEXTPRIME <span>pic_editor</span></div><div class="stamp">测试4 / 出图</div></div></header>
   <main class="container">
     <h1>测试4出图评审</h1>
-    <p class="small">BFW-WATER4：60张水感变量图。点击节点后可查看图、prompt、需求单、QA，并记录共享评论、勾选、评分和本地附件。</p>
-    <section class="panel"><div class="nav">
-  <a href="../index.html">总览首页</a>
-  <a href="t4-workflow-index.html">测试4索引</a>
-  <a href="t4-step-direction.html">方向梳理</a>
-  <a href="t4-step-variables.html">变量拆解</a>
-  <a href="t4-step-ab-plan.html">视觉对比方案</a>
-  <a href="t4-step-asset-check.html">资产检查</a>
-  <a href="t4-step-requirements.html">测试图需求单</a>
-  <a class="active" href="t4-step-production.html">出图评审</a>
-  <a href="t4-step-review.html">QA Review</a>
-</div></section>
-    <section class="panel"><h2>Contact Sheets</h2><p><a href="t4-contact-sheet.html?series=all">All 60</a> / <a href="t4-contact-sheet.html?series=I">I01-I30</a> / <a href="t4-contact-sheet.html?series=H">H01-H30</a></p></section>
+    <p class="small">BFW-WATER4：60张水感变量图。文本评语、候选勾选、评分通过 review sync API 共享；附件会优先上传共享，失败时退回当前浏览器本地。点击节点后可查看图、prompt、需求单和 QA。</p>
+    <section class="panel"><div class="nav" id="flowNav"></div></section>
+    <section class="panel"><h2>Contact Sheet</h2><p><a href="t4-contact-sheet.html?series=all">All 60</a> / <a href="t4-contact-sheet.html?series=I">I01-I30</a> / <a href="t4-contact-sheet.html?series=H">H01-H30</a> / <a href="t4-docs.html#requirements">需求单索引</a></p></section>
     <section class="layout">
       <aside class="tree-panel">
         <h2>树状追溯</h2>
-        <p class="small">分组：I01~I30 / H01~H30 -> v1</p>
+        <p class="small">分组：I01~I30 / H01~H30。当前主视图以 `v1` 为准，单图可回查 prompt、需求单、QA 和 contact sheet 位置。</p>
         <div id="tree" class="tree-wrap"></div>
       </aside>
       <section class="detail-panel">
@@ -163,6 +153,10 @@
         if (item) render(item);
       });
     }
+  </script>
+  <script src="../assets/flow-manual.js"></script>
+  <script>
+    NPFlowManual.renderFlowNav(document.getElementById("flowNav"), "t4", "production");
   </script>
 </body>
 </html>
