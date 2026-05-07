@@ -41,7 +41,13 @@
     return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
   }
 
-  function renderAttachments(listEl, state, itemId, save) {
+  function mergeAttachments(baseAttachments, remoteAttachments) {
+    const localOnly = (baseAttachments || []).filter((file) => !file.id);
+    const remote = Array.isArray(remoteAttachments) ? remoteAttachments : [];
+    return remote.concat(localOnly);
+  }
+
+  function renderAttachments(listEl, state, itemId, save, handlers) {
     const attachments = state.attachments || [];
     if (!attachments.length) {
       listEl.innerHTML = "";
@@ -49,18 +55,30 @@
     }
     listEl.innerHTML = attachments.map((file, index) => {
       const label = `${esc(file.name)} · ${formatSize(file.size)}`;
-      const link = file.dataUrl
-        ? `<a href="${file.dataUrl}" download="${esc(file.name)}">${label}</a>`
+      const href = file.downloadUrl || file.dataUrl || "";
+      const link = href
+        ? `<a href="${href}" target="_blank" rel="noopener noreferrer" download="${esc(file.name)}">${label}</a>`
         : `<span>${label}</span>`;
-      const note = file.dataUrl ? "" : `<span class="np-review-muted">仅记录文件名，文件过大未写入本地存储</span>`;
+      let note = "";
+      if (file.pendingUpload) note = `<span class="np-review-muted">上传中...</span>`;
+      else if (file.uploadError) note = `<span class="np-review-muted">上传失败，仅当前浏览器可见</span>`;
+      else if (file.downloadUrl) note = `<span class="np-review-muted">共享附件</span>`;
+      else if (!file.dataUrl) note = `<span class="np-review-muted">仅记录文件名，当前不可预览</span>`;
       return `<li>${link}${note}<button class="np-remove-attachment" type="button" data-index="${index}">移除</button></li>`;
     }).join("");
 
     listEl.querySelectorAll(".np-remove-attachment").forEach((button) => {
-      button.addEventListener("click", () => {
-        state.attachments.splice(Number(button.dataset.index), 1);
+      button.addEventListener("click", async () => {
+        const index = Number(button.dataset.index);
+        const file = state.attachments[index];
+        if (!file) return;
+        if (file.id && handlers && typeof handlers.removeRemoteAttachment === "function") {
+          await handlers.removeRemoteAttachment(file.id);
+          return;
+        }
+        state.attachments.splice(index, 1);
         save();
-        renderAttachments(listEl, state, itemId, save);
+        renderAttachments(listEl, state, itemId, save, handlers);
       });
     });
   }
@@ -79,7 +97,10 @@
     const remoteTs = Date.parse(remoteState && remoteState.updatedAt ? remoteState.updatedAt : "") || 0;
     const winner = remoteTs >= localTs ? remoteState : baseState;
     return Object.assign({ checked: false, rating: 0, comment: "", attachments: [] }, winner || {}, {
-      attachments: Array.isArray(baseState && baseState.attachments) ? baseState.attachments : []
+      attachments: mergeAttachments(
+        Array.isArray(baseState && baseState.attachments) ? baseState.attachments : [],
+        Array.isArray(remoteState && remoteState.attachments) ? remoteState.attachments : []
+      )
     });
   }
 
@@ -104,6 +125,7 @@
     const itemId = options && options.itemId ? String(options.itemId) : "unknown";
     const title = options && options.title ? options.title : itemId;
     const apiBase = options && options.apiBase ? String(options.apiBase).replace(/\/+$/, "") : "";
+    const optionsApiBase = apiBase;
     let state = getState(itemId);
     let syncTimer = null;
     let syncSeq = 0;
@@ -155,7 +177,7 @@
       ratingButtons.forEach((button) => {
         button.classList.toggle("active", Number(button.dataset.score) <= Number(state.rating || 0));
       });
-      renderAttachments(attachmentList, state, itemId, save);
+      renderAttachments(attachmentList, state, itemId, save, { removeRemoteAttachment });
     }
 
     function save() {
@@ -181,15 +203,75 @@
           })
         });
         if (currentSeq !== syncSeq) return;
-        if (payload && payload.review) {
-          lastRemoteUpdatedAt = payload.review.updatedAt || lastRemoteUpdatedAt;
-          state = mergeState(state, payload.review);
-          save();
-          paint();
-        }
+        lastRemoteUpdatedAt = payload && payload.review && payload.review.updatedAt ? payload.review.updatedAt : "";
+        state = mergeState(state, payload && payload.review ? payload.review : {});
+        save();
+        paint();
         setSyncStatus("共享评审已同步", "ok");
       } catch (error) {
         setSyncStatus("共享同步失败，当前仅保存在本机", "error");
+      }
+    }
+
+    async function uploadRemoteAttachment(file, index) {
+      if (!apiBase) {
+        const target = state.attachments[index];
+        if (target) {
+          target.pendingUpload = false;
+          save();
+          paint();
+        }
+        return false;
+      }
+      const form = new FormData();
+      form.append("file", file, file.name);
+      setSyncStatus("共享附件上传中...", "pending");
+      try {
+        const response = await fetch(`${apiBase}/api/reviews/${encodeURIComponent(itemId)}/attachments`, {
+          method: "POST",
+          body: form
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        const payload = await response.json();
+        lastRemoteUpdatedAt = payload && payload.review && payload.review.updatedAt ? payload.review.updatedAt : lastRemoteUpdatedAt;
+        state = Object.assign({}, state, payload && payload.review ? payload.review : {}, {
+          attachments: Array.isArray(payload && payload.review && payload.review.attachments) ? payload.review.attachments : []
+        });
+        save();
+        paint();
+        setSyncStatus("共享附件已上传", "ok");
+        return true;
+      } catch (error) {
+        const target = state.attachments[index];
+        if (target) {
+          target.pendingUpload = false;
+          target.uploadError = true;
+          save();
+          paint();
+        }
+        setSyncStatus("共享附件上传失败，当前仅保存在本机", "error");
+        return false;
+      }
+    }
+
+    async function removeRemoteAttachment(attachmentId) {
+      if (!apiBase) return;
+      setSyncStatus("正在删除共享附件...", "pending");
+      try {
+        const payload = await requestJson(`${apiBase}/api/reviews/${encodeURIComponent(itemId)}/attachments/${encodeURIComponent(attachmentId)}`, {
+          method: "DELETE"
+        });
+        lastRemoteUpdatedAt = payload && payload.review && payload.review.updatedAt ? payload.review.updatedAt : "";
+        state = Object.assign({}, state, payload && payload.review ? payload.review : {}, {
+          attachments: Array.isArray(payload && payload.review && payload.review.attachments) ? payload.review.attachments : []
+        });
+        save();
+        paint();
+        setSyncStatus("共享附件已删除", "ok");
+      } catch (error) {
+        setSyncStatus("共享附件删除失败", "error");
       }
     }
 
@@ -258,20 +340,30 @@
           size: file.size,
           type: file.type,
           dataUrl: "",
-          addedAt: new Date().toISOString()
+          addedAt: new Date().toISOString(),
+          pendingUpload: Boolean(apiBase),
+          uploadError: false
         };
-        if (file.size > MAX_INLINE_ATTACHMENT) {
-          state.attachments = (state.attachments || []).concat(record);
-          save();
-          renderAttachments(attachmentList, state, itemId, save);
+        if (!apiBase) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            record.dataUrl = String(reader.result || "");
+            record.pendingUpload = false;
+            state.attachments = (state.attachments || []).concat(record);
+            save();
+            renderAttachments(attachmentList, state, itemId, save, { removeRemoteAttachment });
+          };
+          reader.readAsDataURL(file);
           return;
         }
         const reader = new FileReader();
         reader.onload = () => {
           record.dataUrl = String(reader.result || "");
           state.attachments = (state.attachments || []).concat(record);
+          const currentIndex = state.attachments.length - 1;
           save();
-          renderAttachments(attachmentList, state, itemId, save);
+          renderAttachments(attachmentList, state, itemId, save, { removeRemoteAttachment });
+          uploadRemoteAttachment(file, currentIndex);
         };
         reader.readAsDataURL(file);
       });
