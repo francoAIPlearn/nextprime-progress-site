@@ -19,15 +19,15 @@ window.PRODUCTION_TRACE_TEST4_DATA = {
   "contact_sheets": [
     {
       "label": "All 60",
-      "href": "../assets/images/test4/BFW-WATER4_contact-sheet_v1_2026-04-28.jpg"
+      "href": "../pages/t4-contact-sheet.html?series=all"
     },
     {
       "label": "Immersion I01-I30",
-      "href": "../assets/images/test4/BFW-WATER4_I_contact-sheet_v1_2026-04-28.jpg"
+      "href": "../pages/t4-contact-sheet.html?series=I"
     },
     {
       "label": "Impact H01-H30",
-      "href": "../assets/images/test4/BFW-WATER4_H_contact-sheet_v1_2026-04-28.jpg"
+      "href": "../pages/t4-contact-sheet.html?series=H"
     }
   ],
   "items": [

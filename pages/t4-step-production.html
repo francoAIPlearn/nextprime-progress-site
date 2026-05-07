@@ -34,7 +34,7 @@
   <header class="topbar"><div class="inner"><div class="brand">NEXTPRIME <span>pic_editor</span></div><div class="stamp">Test 4 / 出图评审</div></div></header>
   <main class="container">
     <h1>测试4出图评审</h1>
-    <p class="small">BFW-WATER4：60张水感变量图。点击节点后可查看图、prompt、需求单、QA，并记录评论、勾选、评分和附件。</p>
+    <p class="small">BFW-WATER4：60张水感变量图。点击节点后可查看图、prompt、需求单、QA，并记录共享评论、勾选、评分和本地附件。</p>
     <section class="panel"><div class="nav">
   <a href="../index.html">总览首页</a>
   <a href="t4-workflow-index.html">测试4索引</a>
@@ -46,7 +46,7 @@
   <a class="active" href="t4-step-production.html">出图评审</a>
   <a href="t4-step-review.html">QA Review</a>
 </div></section>
-    <section class="panel"><h2>Contact Sheets</h2><p><a href="../assets/images/test4/BFW-WATER4_contact-sheet_v1_2026-04-28.jpg">All 60</a> / <a href="../assets/images/test4/BFW-WATER4_I_contact-sheet_v1_2026-04-28.jpg">I01-I30</a> / <a href="../assets/images/test4/BFW-WATER4_H_contact-sheet_v1_2026-04-28.jpg">H01-H30</a></p></section>
+    <section class="panel"><h2>Contact Sheets</h2><p><a href="t4-contact-sheet.html?series=all">All 60</a> / <a href="t4-contact-sheet.html?series=I">I01-I30</a> / <a href="t4-contact-sheet.html?series=H">H01-H30</a></p></section>
     <section class="layout">
       <aside class="tree-panel">
         <h2>树状追溯</h2>
@@ -63,6 +63,7 @@
   <script src="../assets/review-widget.js"></script>
   <script src="../assets/image-lightbox.js"></script>
   <script>
+    const REVIEW_API_BASE = 'https://nextprime-review-sync-1002667285186.asia-southeast1.run.app';
     const data = window.PRODUCTION_TRACE_TEST4_DATA;
     const tree = document.getElementById('tree');
     const detail = document.getElementById('detail');
@@ -70,8 +71,18 @@
     function statusLabel(status){ return status === 'pass' ? '通过' : '待复核'; }
     function refHtml(ref){ return `<li><a href="${esc(ref.path)}" target="_blank" rel="noopener noreferrer">${esc(ref.title)}</a><div class="small">来源: ${esc(ref.source || "")}</div></li>`; }
     function docHtml(doc){ return `<li><a href="${esc(doc.href)}" target="_blank" rel="noopener noreferrer">${esc(doc.label)}</a></li>`; }
+    function syncHash(testId) {
+      if (!testId) return;
+      history.replaceState(null, '', `#${encodeURIComponent(testId)}`);
+    }
+    function findItemByHash() {
+      const raw = decodeURIComponent((location.hash || '').replace(/^#/, '')).trim();
+      if (!raw) return null;
+      return data.items.find((item)=>item.test_id === raw || item.variant_id === raw || `test4-${item.variant_id}` === raw) || null;
+    }
     function render(item){
       document.querySelectorAll('.ver-btn').forEach(b=>b.classList.toggle('active', b.dataset.id===item.test_id));
+      syncHash(item.test_id);
       const notes = (item.qa_notes&&item.qa_notes.length) ? item.qa_notes.map(n=>`<li>${esc(n)}</li>`).join('') : '<li>OK</li>';
       const sharedRefs = (data.shared_references || []).map(refHtml).join('');
       const linkedDocs = (item.linked_docs || []).map(docHtml).join('');
@@ -97,6 +108,7 @@
               </ul>
               <div class="small">输出文件</div>
               <a class="code-path" href="${esc(item.output_file)}" target="_blank" rel="noopener noreferrer">${esc(item.output_file)}</a>
+              <div class="small" style="margin-top: 8px;"><a href="t4-contact-sheet.html?series=${encodeURIComponent(item.test_id.startsWith('I') ? 'I' : 'H')}#${encodeURIComponent(item.test_id)}">返回 contact sheet 对应缩略图</a></div>
             </div>
             <div class="block">
               <h3>基底来源</h3>
@@ -130,7 +142,7 @@
             </div>
           </div>
         </div>`;
-      window.NPReviewWidget.mount("npReviewMount", { itemId: `test4-${item.variant_id}`, title: item.variant_id });
+      window.NPReviewWidget.mount("npReviewMount", { itemId: `test4-${item.variant_id}`, title: item.variant_id, apiBase: REVIEW_API_BASE });
     }
     if(!data || !Array.isArray(data.items)){ detail.textContent='Data failed to load.'; }
     else {
@@ -145,7 +157,11 @@
         </details>
       `).join('');
       document.querySelectorAll('.ver-btn').forEach(btn=>btn.addEventListener('click',()=>render(data.items.find(i=>i.test_id===btn.dataset.id))));
-      render(data.items[0]);
+      render(findItemByHash() || data.items[0]);
+      window.addEventListener('hashchange', () => {
+        const item = findItemByHash();
+        if (item) render(item);
+      });
     }
   </script>
 </body>

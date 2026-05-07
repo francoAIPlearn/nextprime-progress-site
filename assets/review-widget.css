@@ -99,3 +99,15 @@
 .np-save-state {
   min-height: 18px;
 }
+.np-review-sync {
+  margin-top: 8px;
+}
+.np-sync-state[data-tone="ok"] {
+  color: #1f7a4f;
+}
+.np-sync-state[data-tone="pending"] {
+  color: #a16207;
+}
+.np-sync-state[data-tone="error"] {
+  color: #b42318;
+}
