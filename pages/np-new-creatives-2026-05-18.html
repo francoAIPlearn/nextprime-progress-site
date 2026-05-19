@@ -142,7 +142,7 @@
     }
     .summary-lead {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 0.38fr);
+      grid-template-columns: minmax(220px, 0.36fr) minmax(0, 1fr);
       gap: 14px;
       align-items: start;
     }
@@ -154,6 +154,25 @@
       margin: 0 0 10px;
     }
     .summary-copy strong {
+      color: var(--ink-strong);
+    }
+    .framework-line {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      padding: 11px 12px;
+      margin-bottom: 10px;
+    }
+    .framework-line strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+      color: var(--success);
+    }
+    .framework-line.warning strong {
+      color: var(--warning);
+    }
+    .framework-line.final strong {
       color: var(--ink-strong);
     }
     .evidence-strip {
@@ -562,7 +581,38 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
-    @media (max-width: 700px) {
+    @media (min-width: 621px) and (max-width: 700px) {
+      .mindmap {
+        grid-template-columns: minmax(0, 0.95fr) minmax(142px, 0.72fr) minmax(0, 0.95fr);
+        gap: 8px;
+      }
+      .mind-center {
+        padding: 12px 8px;
+      }
+      .mind-center strong {
+        font-size: 15px;
+      }
+      .mind-node {
+        padding: 10px;
+        min-height: 84px;
+      }
+      .mind-node::before {
+        width: 8px;
+      }
+      .mind-left .mind-node::before {
+        right: -9px;
+      }
+      .mind-right .mind-node::before {
+        left: -9px;
+      }
+      .mind-node strong {
+        font-size: 13px;
+      }
+      .mind-node span {
+        font-size: 11px;
+      }
+    }
+    @media (max-width: 620px) {
       .lead {
         max-width: 320px;
       }
@@ -620,8 +670,7 @@
     <section class="hero-report">
       <div class="hero-copy">
         <h1>NP 新素材隔日分析</h1>
-        <p class="lead">统计 2026-05-18 首次出现在 BQ 中的 NP 新素材，按 material_key 去重。报告用于判断首日冷启动信号，不直接等同于稳定爆品。</p>
-        <p class="hero-conclusion"><strong>最终判断：首日转化信号好，值得加码复测。</strong> 4 / 37 条满足“有订单 + ROAS 位于 NP 新素材大盘 Top20%”，但当前总 spend 仍低，不能直接定性为稳定爆品。</p>
+        <p class="lead">数据日期：2026-05-18（隔日分析）。</p>
         <div class="badge-row">
           <span class="badge success">转化信号好</span>
           <span class="badge">37 条新素材</span>
@@ -640,16 +689,25 @@
     <section class="panel">
       <h2>总览结论</h2>
       <div class="summary-lead">
-        <div class="summary-copy">
-          <p><strong>最终判断：这批新素材首日转化信号好，新素材成功率为 10.8%，但整体仍处于冷启动阶段。</strong></p>
-          <p>它的核心优势不是点击侧，而是转化侧。目标批次 ROAS、Purchase CVR 都高于本月其他新素材、上月同期新素材和同产品历史，说明已经有一批素材能把点击转成订单。</p>
-          <p>需要谨慎的是，当前总 spend 只有 $4.38，成功素材单条 spend 都低于 $0.40；同时 Link CTR 只有 0.14%，低于多个历史基准。因此这批可以判断为“值得复测和加码验证”，不能直接定性为稳定爆品。</p>
-        </div>
         <aside class="summary-side">
           <div class="side-label">批次结论</div>
           <div class="side-value">可加码复测</div>
           <div class="side-note">优先围绕已出单方向扩大变体和 spend，下一轮重点补前端吸引力。</div>
         </aside>
+        <div class="summary-copy">
+          <div class="framework-line">
+            <strong>核心优势</strong>
+            这批新素材的优势在转化侧，不在点击侧。目标批次 ROAS 3.33、Purchase CVR 6.41%，都高于本月其他新素材、上月同期新素材和同产品历史，说明已经有一批素材能把点击转成订单。
+          </div>
+          <div class="framework-line warning">
+            <strong>注意点</strong>
+            当前总 spend 只有 $4.38，成功素材单条 spend 都低于 $0.40；同时 Link CTR 只有 0.14%，低于多个历史基准，前端吸引力还需要补强。
+          </div>
+          <div class="framework-line final">
+            <strong>最终判断</strong>
+            这批新素材首日转化信号好，新素材成功率为 10.8%，可以判断为“值得复测和加码验证”，但整体仍处于冷启动阶段，不能直接定性为稳定爆品。
+          </div>
+        </div>
       </div>
       <div class="evidence-strip">
         <div class="evidence-item"><span>样本规模</span><strong>37 条</strong></div>
