@@ -24,7 +24,9 @@ table { width:100%; border-collapse:collapse; font-size:14px; } th,td { padding:
 .review-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:14px 0; }
 .review-card { border:1px solid var(--line); border-radius:14px; background:#fff; padding:14px; }
 .review-card h3 { margin:0 0 8px; color:var(--green); }
-.review-card p { margin:0; color:var(--muted); }
+.review-card p { margin:0 0 8px; color:var(--ink); font-weight:800; }
+.review-card ul { margin:0; padding-left:18px; color:var(--muted); }
+.review-card li { margin:5px 0; }
 .review-card.conclusion { background:var(--green-bg); border-color:#bfe7cf; }
 .review-card.issue { background:#fff8ec; border-color:#f0d6a4; }
 .review-card.next { background:#f8fbf7; }
@@ -150,9 +152,9 @@ td.text, th.text { text-align:left !important; }
 </section>
 <section id="overall-review" class="report-section"><h2>整体复盘（投放 + 内容）</h2>
   <div class="review-grid">
-    <article class="review-card conclusion"><h3>结论</h3><p><b>可分方向小预算加码复测。</b> 首日高分位出单素材率为 <b>4 / 37 = 10.8%</b>；截至 2026-05-20，有订单素材扩大到 <b>15 / 37 = 40.5%</b>，累计 ROAS <b>4.53</b>。这批已经不是单日偶然出单，而是多个内容方向开始出现转化面。</p></article>
-    <article class="review-card issue"><h3>问题</h3><p>累计 spend 仍只有 <b>$26.32</b>，单条素材还没跑到稳定判断量级；Link CTR 只有 <b>0.22%</b>，前端吸引力仍弱；5/20 为 Meta API 临时补数，且存在归因回传异常；首日 Top20% 成功率不能和截至 5/20 有订单占比混用。</p></article>
-    <article class="review-card next"><h3>下一步</h3><p><b>P0</b> 小预算加码高级 AI 产品图、冰水冷感、BA、泡沫质地；<b>P1</b> 复测成分机制、男性 KOL、场景实拍；<b>P2</b> 暂缓无 GMV、未识别方向和归因异常素材，停止平均铺预算。</p></article>
+    <article class="review-card conclusion"><h3>结论</h3><p>可分方向小预算加码复测。</p><ul><li>首日高分位出单素材率：<b>4 / 37 = 10.8%</b>。</li><li>截至 2026-05-20，有订单素材扩大到 <b>15 / 37 = 40.5%</b>。</li><li>累计 ROAS <b>4.53</b>，说明多个内容方向已经开始出现转化面。</li></ul></article>
+    <article class="review-card issue"><h3>问题</h3><p>当前还不能直接定性为稳定爆品。</p><ul><li>累计 spend 只有 <b>$26.32</b>，单条素材未达到稳定判断量级。</li><li>Link CTR 只有 <b>0.22%</b>，前端吸引力仍弱。</li><li>5/20 为 Meta API 临时补数，且存在归因回传异常。</li><li>首日 Top20% 成功率不能和截至 5/20 有订单占比混用。</li></ul></article>
+    <article class="review-card next"><h3>下一步</h3><p>预算按方向分层，不平均铺。</p><ul><li><b>P0：</b>高级 AI 产品图、冰水冷感、BA、泡沫质地。</li><li><b>P1：</b>成分机制、男性 KOL、场景实拍。</li><li><b>P2：</b>无 GMV、未识别方向、归因异常素材暂缓。</li></ul></article>
   </div>
   <div class="summary-strip">
     <span><b>首日成功率</b>4 / 37 = 10.8%</span>
@@ -425,9 +427,9 @@ td.text, th.text { text-align:left !important; }
 </section>
 <section id="content-review" class="report-section"><h2>内容复盘</h2>
   <div class="review-grid">
-    <article class="review-card conclusion"><h3>结论</h3><p>内容方向从首日的“转化强素材 + 男性 KOL”扩展到截至 5/20 的“高级产品图、冰水冷感、BA、泡沫质地、深度成分讲解”多方向出单。最重要的变化是：首日偏弱的 <b>深度成分讲解</b> 和 <b>高级 AI 产品图</b> 后续补出了 GMV，说明它们不能直接被判为无效。</p></article>
-    <article class="review-card issue"><h3>问题</h3><p>首日和累计口径结论不同：首日表用于判断冷启动强信号，累计表用于决定下一轮加码；此外 Link CTR 偏弱，说明下一版不能只复制高 ROAS 画面，还要加强首图痛点、标题利益点和场景代入。</p></article>
-    <article class="review-card next"><h3>下一步</h3><p>优先做结果可视化：人脸前后对比、冰水冷感、绵密泡沫、成分结果化、男性 KOL 真实推荐。每个方向先复制 2-3 条变体，跑到 $5-$10 spend 或 30+ link clicks 后再判断稳定性。</p></article>
+    <article class="review-card conclusion"><h3>结论</h3><p>内容方向从单点出单变成多方向出单。</p><ul><li>首日强信号：转化强素材 + 男性 KOL。</li><li>截至 5/20 新增强信号：高级产品图、冰水冷感、深度成分讲解。</li><li>首日偏弱的 <b>深度成分讲解</b> 和 <b>高级 AI 产品图</b> 后续补出 GMV，不能直接判无效。</li></ul></article>
+    <article class="review-card issue"><h3>问题</h3><p>首日口径和累计口径要分开看。</p><ul><li>首日表用于判断冷启动强信号。</li><li>累计表用于决定下一轮加码方向。</li><li>Link CTR 偏弱，下一版不能只复制高 ROAS 画面。</li></ul></article>
+    <article class="review-card next"><h3>下一步</h3><p>下一版重点做“结果可视化”。</p><ul><li>人脸前后对比：强化暗沉到清爽的变化。</li><li>冰水冷感 / 绵密泡沫：让使用感一眼可见。</li><li>成分结果化 / 男性 KOL：把信任证据转成购买理由。</li><li>每个方向复制 2-3 条变体，跑到 $5-$10 spend 或 30+ link clicks 后再判断。</li></ul></article>
   </div>
   <h3>首日方向表现：保留原始隔日判断口径</h3>
   <div class="table-wrap"><table><thead><tr><th>一级方向</th><th>素材数</th><th>Spend</th><th>GMV</th><th>ROAS</th><th>订单</th><th>Top20% 成功素材</th></tr></thead><tbody>
