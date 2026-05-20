@@ -51,7 +51,12 @@ table { width:100%; border-collapse:collapse; font-size:14px; } th,td { padding:
 .logic-flow { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:10px; margin-top:12px; }
 .logic-step { border:1px solid var(--line); border-radius:12px; background:#fff; padding:12px; }
 .logic-step b { display:block; color:var(--green); margin-bottom:4px; }
-@media (max-width:900px) { .copy-grid,.logic-flow { grid-template-columns:1fr; } }
+.logic-compare { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:14px; }
+.logic-panel { border:1px solid var(--line); border-radius:14px; background:#fff; padding:14px; }
+.logic-panel h3 { color:var(--green); margin-bottom:8px; }
+.logic-panel ul { margin:0; padding-left:18px; color:var(--muted); }
+.logic-panel li { margin:6px 0; }
+@media (max-width:900px) { .copy-grid,.logic-flow,.logic-compare { grid-template-columns:1fr; } }
 
 .test-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; }
 .test-card { border:1px solid var(--line); border-radius:12px; background:#fff; padding:14px; }
@@ -80,12 +85,16 @@ table { width:100%; border-collapse:collapse; font-size:14px; } th,td { padding:
 .success-card { border:1px solid var(--line); border-radius:12px; padding:14px; background:#fff; }
 .success-card b { display:block; font-size:26px; line-height:1.1; }
 .success-card span { color:var(--muted); font-size:13px; }
+.team-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:14px 0; }
+.team-card { border:1px solid var(--line); border-radius:12px; padding:14px; background:#fff; }
+.team-card b { display:block; color:var(--green); font-size:22px; line-height:1.2; }
+.team-card span { color:var(--muted); font-size:13px; }
 .highlight-row td { background:#edf8f2; font-weight:800; }
 .effect-pill { display:inline-flex; border-radius:999px; padding:3px 8px; background:#edf8f2; color:#19764a; font-size:12px; font-weight:800; }
 .prompt-ref { display:grid; grid-template-columns:128px 1fr; gap:12px; align-items:center; margin:10px 0; }
 .prompt-ref img { width:128px; aspect-ratio:4/5; object-fit:cover; border-radius:10px; border:1px solid var(--line); background:#f3eee8; }
 .prompt-ref span { color:var(--muted); font-size:13px; }
-@media (max-width:900px) { .mindmap { grid-template-columns:1fr; } .compare-note,.success-grid { grid-template-columns:1fr; } .prompt-ref { grid-template-columns:92px 1fr; } .prompt-ref img { width:92px; } }
+@media (max-width:900px) { .mindmap { grid-template-columns:1fr; } .compare-note,.success-grid,.team-grid { grid-template-columns:1fr; } .prompt-ref { grid-template-columns:92px 1fr; } .prompt-ref img { width:92px; } }
 
 
 .report-section { scroll-margin-top:88px; }
@@ -137,6 +146,7 @@ td.text, th.text { text-align:left !important; }
 <nav class="sticky-nav" aria-label="报告导航">
   <a href="#overall-review">整体复盘</a>
   <a href="#batch-success">成功率</a>
+  <a href="#helen-compare">Helen对比</a>
   <a href="#priority-creatives">出单素材</a>
   <a href="#content-review">内容复盘</a>
   <a href="#ab-plan">AB测试</a>
@@ -178,6 +188,26 @@ td.text, th.text { text-align:left !important; }
     <tr><th>截至 5/20 有订单素材</th><td><b>15</b></td></tr>
     <tr><th>截至 5/20 有订单素材占比</th><td><b>40.5%</b></td></tr>
   </tbody></table></div>
+</section>
+<section id="helen-compare" class="report-section"><h2>同团队 ROI 对比（Helen 内容团队）</h2>
+  <p class="lead">Helen 内容团队样本从 <code>ad_name</code> 中的 <code>Helen</code> 标识解析；对比范围限定为 NP 全部新素材，不限定同产品。窗口按每条素材首次出现日滚动计算：D0 为首日，D0-D2 为头三天累计。</p>
+  <div class="review-grid">
+    <article class="review-card conclusion"><h3>结论</h3><p>本批没有整体跑赢 Helen 团队基准，但已经接近可复测区间。</p><ul><li>首日 ROAS：本批 <b>3.33</b>，Helen 近 30 天基准 <b>3.57</b>。</li><li>头三天 ROAS：本批截至 5/20 为 <b>4.53</b>，Helen 基准 <b>5.41</b>。</li><li>差距主要来自转化面：本批 D0-D2 有订单素材占比 <b>40.5%</b>，Helen 基准 <b>65.4%</b>。</li></ul></article>
+    <article class="review-card issue"><h3>问题</h3><p>AI 批量图的“命中深度”还不如成熟人工策划池。</p><ul><li>本批能出单，但不是每个方向都能稳定扩大。</li><li>Helen 团队样本量 104 条，已经能作为团队级上限基准。</li><li>5/20 仍含 API 临时补数，头三天数据用于方向判断，不用于直接定爆品。</li></ul></article>
+    <article class="review-card next"><h3>下一步</h3><p>用 Helen 基准校准 Francoeditor 放量门槛。</p><ul><li>低于 Helen 的方向先改标题和首图，不直接加预算。</li><li>达到或接近 Helen ROAS 的方向，复制 2-3 条变体继续测。</li><li>优先让 AI 放大人工已验证的痛点、场景和证据结构。</li></ul></article>
+  </div>
+  <div class="team-grid">
+    <div class="team-card"><span>Helen 基准样本</span><b>104 条</b><span>过去 30 天 NP 全部新素材</span></div>
+    <div class="team-card"><span>D0 ROAS 对比</span><b>3.33 vs 3.57</b><span>本批略低于 Helen 内容团队</span></div>
+    <div class="team-card"><span>D0-D2 ROAS 对比</span><b>4.53 vs 5.41</b><span>本批接近但未跑赢</span></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th>对比池</th><th>窗口</th><th>素材数</th><th>Spend</th><th>GMV</th><th>订单</th><th>ROAS / ROI</th><th>出单素材占比</th><th>Top20% 成功素材率</th></tr></thead><tbody>
+    <tr class="highlight-row"><td>本批 2026-05-18 新素材</td><td>D0 首日</td><td>37</td><td>$4.38</td><td>$14.58</td><td>4</td><td>3.33</td><td>10.8%</td><td>10.8%</td></tr>
+    <tr><td>Helen 内容团队近30天 NP 新素材</td><td>D0 首日</td><td>104</td><td>$61.26</td><td>$218.64</td><td>72</td><td>3.57</td><td>37.5%</td><td>37.5%</td></tr>
+    <tr class="highlight-row"><td>本批 2026-05-18 新素材</td><td>D0-D2 头三天</td><td>37</td><td>$26.32</td><td>$119.36</td><td>38</td><td>4.53</td><td>40.5%</td><td>29.7%*</td></tr>
+    <tr><td>Helen 内容团队近30天 NP 新素材</td><td>D0-D2 头三天</td><td>104</td><td>$162.99</td><td>$881.69</td><td>289</td><td>5.41</td><td>65.4%</td><td>62.5%</td></tr>
+  </tbody></table></div>
+  <p class="small">*D0-D2 Top20% 使用 BQ 滚动三日 P80 阈值估算；本报告主成功率仍以首日 <b>4 / 37 = 10.8%</b> 为准，避免和截至 5/20 有订单占比混用。</p>
 </section>
 <section id="priority-creatives" class="report-section"><h2>已出单素材清单</h2>
   <p class="lead">本模块展示截至 2026-05-20 已出单素材。这里的 P0/P1/观察是动作建议，不等同于“成功素材”定义；所有素材仍需继续复测确认稳定性。</p>
@@ -569,6 +599,37 @@ td.text, th.text { text-align:left !important; }
     <div class="logic-step"><b>3. 画面证明</b>用人脸前后、泡沫、冰水、成分模块证明标题，不要让文案和画面各讲各的。</div>
     <div class="logic-step"><b>4. 产品收口</b>产品必须清晰且不变形，放在结果旁边，让用户把效果归因到 NEXT PRIME MEN。</div>
   </div>
+
+  <h2 style="margin-top:22px;">人工逻辑 VS AI 逻辑</h2>
+  <p class="lead">这里的人工逻辑指 Helen 内容团队代表的内容策划经验；AI 逻辑指素材命名中包含 <code>Francoeditor</code> 的生成图。核心不是让 AI 替代人工判断，而是把人工经验拆成可批量生成、批量 AB 测试的变量。</p>
+  <div class="logic-compare">
+    <div class="logic-panel">
+      <h3>人工逻辑：Helen 内容团队</h3>
+      <ul>
+        <li><b>痛点选择：</b>先判断人群场景，再选择暗沉、油光、疲态、毛孔、粗糙等切入点。</li>
+        <li><b>画面结构：</b>依靠经验决定人脸、产品、证据和文案的主次顺序。</li>
+        <li><b>证据表达：</b>用 BA、KOL、成分、质地等成熟内容资产建立信任。</li>
+        <li><b>优势：</b>判断深、命中率高，近 30 天 D0-D2 ROAS <b>5.41</b>，出单素材占比 <b>65.4%</b>。</li>
+      </ul>
+    </div>
+    <div class="logic-panel">
+      <h3>AI 逻辑：Francoeditor</h3>
+      <ul>
+        <li><b>痛点变量化：</b>把 dull / oily / tired / rough 等痛点写进 Prompt，快速生成多方向。</li>
+        <li><b>结构模板化：</b>固定安全文案区、产品位置、before/after、泡沫、冰水、成分模块。</li>
+        <li><b>产品一致性：</b>Prompt 锁定 silver tube、black cap、readable NEXT PRIME MEN branding，降低产品漂移。</li>
+        <li><b>优势：</b>低成本快速把人工经验规模化，本批已扩出 15 / 37 的有效转化面。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="table-wrap" style="margin-top:14px;"><table><thead><tr><th>维度</th><th>人工逻辑</th><th>AI 规模化约束</th><th>下一版 Prompt 要求</th></tr></thead><tbody>
+    <tr><td>痛点选择</td><td>人工判断人群最强需求。</td><td>将痛点拆成可替换变量。</td><td>每张图只保留一个主痛点：dull / oily / tired / rough。</td></tr>
+    <tr><td>画面结构</td><td>根据内容经验安排脸、产品、证据。</td><td>用固定构图减少随机漂移。</td><td>指定 face zone、product zone、proof zone、copy safe zone。</td></tr>
+    <tr><td>产品一致性</td><td>人工审图保证包装不变。</td><td>用强约束锁定管身、瓶盖和 logo。</td><td>Keep the exact silver tube, black cap, readable logo, no distortion。</td></tr>
+    <tr><td>文案模板</td><td>人工写标题和卖点。</td><td>复用“痛点 -> 结果 -> 证据 -> CTA”。</td><td>Headline promises result; subcopy explains proof in one sentence。</td></tr>
+    <tr><td>证据表达</td><td>选择 BA、KOL、成分、质地等证据。</td><td>把 proof_type 参数化。</td><td>proof_type = before-after / foam / ice-water / ingredient / KOL。</td></tr>
+    <tr><td>可复制规模</td><td>少量精品，人工判断强。</td><td>每个方向快速出 2-3 条变体。</td><td>Generate 3 variants while keeping product and claim logic unchanged。</td></tr>
+  </tbody></table></div>
 </section>
 <section id="methodology" class="report-section"><h2>口径方法</h2>
   <h3>样本与对比基准</h3>
