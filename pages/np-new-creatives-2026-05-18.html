@@ -1,1042 +1,687 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NP 新素材隔日分析 2026-05-18 | NEXTPRIME</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    :root {
-      --success: #1f7a4f;
-      --warning: #a16207;
-      --danger: #b4533f;
-      --ink-strong: #141414;
-      --soft-green: #edf8f2;
-      --soft-amber: #fff7e8;
-      --soft-red: #fff0ec;
-    }
-    html,
-    body {
-      overflow-x: hidden;
-    }
-    .inner {
-      gap: 12px;
-      min-width: 0;
-    }
-    .brand,
-    .stamp {
-      min-width: 0;
-    }
-    .stamp {
-      text-align: right;
-    }
-    .hero-report {
-      display: block;
-    }
-    .hero-copy {
-      background: linear-gradient(135deg, #fff 0%, #fffdf8 48%, #edf8f2 100%);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      min-width: 0;
-    }
-    .hero-copy h1 {
-      margin-bottom: 8px;
-      max-width: 820px;
-    }
-    .lead {
-      color: var(--muted);
-      max-width: 760px;
-    }
-    .hero-conclusion {
-      margin-top: 14px;
-      max-width: 860px;
-      font-size: 16px;
-      line-height: 1.75;
-      color: var(--ink-strong);
-    }
-    .hero-conclusion strong {
-      color: var(--success);
-    }
-    .hero-stat-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .hero-stat {
-      border: 1px solid rgba(31, 122, 79, 0.18);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.82);
-      padding: 11px 12px;
-      min-width: 0;
-    }
-    .hero-stat span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .hero-stat strong {
-      display: block;
-      margin-top: 5px;
-      color: var(--ink-strong);
-      font-size: 22px;
-      line-height: 1.1;
-    }
-    .hero-stat.primary {
-      border-color: #bee5ce;
-      background: var(--soft-green);
-    }
-    .hero-stat.primary strong {
-      color: var(--success);
-    }
-    .badge-row,
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .badge,
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: #fff;
-      padding: 4px 10px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .badge.success { color: var(--success); background: var(--soft-green); border-color: #bee5ce; }
-    .badge.warning { color: var(--warning); background: var(--soft-amber); border-color: #f1d59d; }
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-    }
-    .metric-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      padding: 12px;
-      min-height: 112px;
-      min-width: 0;
-    }
-    .metric-card .k {
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .metric-card .v {
-      margin-top: 6px;
-      font-size: 26px;
-      font-weight: 800;
-      line-height: 1.1;
-      color: var(--ink-strong);
-    }
-    .metric-card .d {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .summary-lead {
-      display: grid;
-      grid-template-columns: minmax(220px, 0.36fr) minmax(0, 1fr);
-      gap: 14px;
-      align-items: start;
-    }
-    .summary-copy {
-      font-size: 16px;
-      line-height: 1.8;
-    }
-    .summary-copy p {
-      margin: 0 0 10px;
-    }
-    .summary-copy strong {
-      color: var(--ink-strong);
-    }
-    .framework-line {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      padding: 11px 12px;
-      margin-bottom: 10px;
-    }
-    .framework-line strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 14px;
-      color: var(--success);
-    }
-    .framework-line.warning strong {
-      color: var(--warning);
-    }
-    .framework-line.final strong {
-      color: var(--ink-strong);
-    }
-    .evidence-strip {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .evidence-item {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      padding: 10px;
-      min-width: 0;
-    }
-    .evidence-item span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .evidence-item strong {
-      display: block;
-      margin-top: 3px;
-      color: var(--ink-strong);
-      font-size: 20px;
-      line-height: 1.1;
-    }
-    .summary-side {
-      border: 1px solid #bee5ce;
-      border-radius: 12px;
-      background: var(--soft-green);
-      padding: 13px;
-    }
-    .summary-side .side-label {
-      color: var(--success);
-      font-size: 13px;
-      font-weight: 800;
-    }
-    .summary-side .side-value {
-      margin-top: 7px;
-      color: var(--success);
-      font-size: 34px;
-      font-weight: 900;
-      line-height: 1;
-    }
-    .summary-side .side-note {
-      margin-top: 9px;
-      color: #315f44;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    .summary-points {
-      margin-top: 12px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-    .summary-point {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      padding: 12px;
-    }
-    .summary-point h3 {
-      margin: 0 0 7px;
-      font-size: 14px;
-    }
-    .summary-point ul {
-      margin-top: 0;
-      color: var(--muted);
-    }
-    .mindmap {
-      display: grid;
-      grid-template-columns: minmax(220px, 0.9fr) minmax(190px, 0.7fr) minmax(220px, 0.9fr);
-      gap: 16px;
-      align-items: center;
-    }
-    .mind-branch {
-      display: grid;
-      gap: 10px;
-    }
-    .mind-center {
-      border: 1px solid #bee5ce;
-      border-radius: 16px;
-      background: var(--soft-green);
-      padding: 18px;
-      text-align: center;
-      color: #174d32;
-      box-shadow: inset 0 0 0 1px rgba(31, 122, 79, 0.08);
-    }
-    .mind-center strong {
-      display: block;
-      font-size: 18px;
-      line-height: 1.35;
-    }
-    .mind-center span {
-      display: block;
-      margin-top: 8px;
-      color: #315f44;
-      font-size: 12px;
-      line-height: 1.45;
-    }
-    .mind-node {
-      position: relative;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #fff;
-      padding: 12px;
-      min-height: 92px;
-    }
-    .mind-node::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 16px;
-      border-top: 2px solid #d9c6b7;
-    }
-    .mind-left .mind-node::before {
-      right: -17px;
-    }
-    .mind-right .mind-node::before {
-      left: -17px;
-    }
-    .mind-node strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 7px;
-    }
-    .mind-node span {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.45;
-    }
-    .mind-node.primary {
-      border-color: #bee5ce;
-      background: var(--soft-green);
-    }
-    .mind-node.warning {
-      border-color: #f1d59d;
-      background: var(--soft-amber);
-    }
-    .table-wrap {
-      overflow-x: auto;
-    }
-    .benchmark-table .target-row {
-      background: linear-gradient(90deg, rgba(237, 248, 242, 0.96), rgba(255, 255, 255, 0));
-    }
-    .benchmark-table .target-row td:first-child {
-      font-weight: 800;
-      color: var(--success);
-    }
-    .metric-highlight {
-      display: inline-flex;
-      justify-content: center;
-      min-width: 58px;
-      border-radius: 8px;
-      background: var(--soft-green);
-      color: var(--success);
-      font-weight: 900;
-      padding: 3px 8px;
-    }
-    .metric-highlight.weak {
-      background: var(--soft-amber);
-      color: var(--warning);
-    }
-    .metric-highlight.neutral {
-      background: #f7f3ee;
-      color: var(--ink-strong);
-    }
-    .success-data {
-      color: var(--success);
-      font-weight: 800;
-    }
-    .roas-data {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 54px;
-      border-radius: 8px;
-      background: var(--soft-green);
-      color: var(--success);
-      font-weight: 900;
-      padding: 3px 7px;
-    }
-    .success-mark {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid #bee5ce;
-      border-radius: 999px;
-      background: var(--soft-green);
-      color: var(--success);
-      font-size: 12px;
-      font-weight: 800;
-      padding: 3px 8px;
-      white-space: nowrap;
-    }
-    .success-row {
-      background: linear-gradient(90deg, rgba(237, 248, 242, 0.86), rgba(255, 255, 255, 0));
-    }
-    .creative-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin: 12px 0 14px;
-    }
-    .creative-card {
-      border: 1px solid #d6e9dd;
-      border-radius: 12px;
-      background: #fff;
-      overflow: hidden;
-      min-width: 0;
-    }
-    .creative-image {
-      aspect-ratio: 4 / 5;
-      position: relative;
-      background: #f7f3ee;
-      border-bottom: 1px solid #d6e9dd;
-      overflow: hidden;
-    }
-    .creative-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .creative-badge {
-      position: absolute;
-      left: 10px;
-      top: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.72);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.88);
-      color: var(--success);
-      font-size: 12px;
-      font-weight: 800;
-      padding: 3px 8px;
-    }
-    .creative-body {
-      padding: 11px;
-    }
-    .creative-title {
-      font-weight: 800;
-      line-height: 1.35;
-      min-height: 44px;
-    }
-    .creative-id {
-      margin-top: 6px;
-      color: var(--muted);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12px;
-      word-break: break-all;
-    }
-    .creative-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px;
-      margin-top: 10px;
-    }
-    .creative-metric {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: #faf8f5;
-      padding: 7px 6px;
-    }
-    .creative-metric span {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-    }
-    .creative-metric strong {
-      display: block;
-      color: var(--ink-strong);
-      font-size: 15px;
-      margin-top: 2px;
-    }
-    .creative-metric.primary {
-      border-color: #bee5ce;
-      background: var(--soft-green);
-    }
-    .creative-metric.primary strong {
-      color: var(--success);
-      font-size: 17px;
-    }
-    .asset-note {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-    .table code,
-    .code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 12px;
-      word-break: break-all;
-    }
-    .table .right {
-      text-align: right;
-      white-space: nowrap;
-    }
-    .callout {
-      border: 1px solid #f1d59d;
-      border-radius: 10px;
-      background: var(--soft-amber);
-      padding: 12px;
-      color: #5f4308;
-    }
-    .split {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 14px;
-    }
-    .action-list {
-      counter-reset: item;
-      display: grid;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .action-list li {
-      counter-increment: item;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      padding: 10px 12px 10px 42px;
-      position: relative;
-      margin: 0;
-    }
-    .action-list li::before {
-      content: counter(item);
-      position: absolute;
-      left: 12px;
-      top: 11px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #171717;
-      color: #fff;
-      font-size: 12px;
-      display: grid;
-      place-items: center;
-    }
-    .priority-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .priority-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #fff;
-      padding: 14px;
-      min-width: 0;
-    }
-    .priority-card.p0 {
-      border-color: #bee5ce;
-      background: var(--soft-green);
-    }
-    .priority-card.p1 {
-      border-color: #f1d59d;
-      background: var(--soft-amber);
-    }
-    .priority-card.p2 {
-      background: #faf8f5;
-    }
-    .priority-label {
-      display: inline-flex;
-      border-radius: 999px;
-      padding: 3px 9px;
-      font-size: 12px;
-      font-weight: 900;
-      background: #171717;
-      color: #fff;
-    }
-    .priority-card h3 {
-      margin: 10px 0 8px;
-      font-size: 17px;
-    }
-    .priority-card p {
-      margin: 0 0 8px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .priority-card ul {
-      margin-top: 8px;
-      color: var(--ink);
-    }
-    @media (max-width: 980px) {
-      .split {
-        grid-template-columns: 1fr;
-      }
-      .grid-4 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .summary-lead,
-      .summary-points {
-        grid-template-columns: 1fr;
-      }
-      .evidence-strip {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .creative-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .hero-stat-grid,
-      .priority-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-    @media (min-width: 621px) and (max-width: 700px) {
-      .mindmap {
-        grid-template-columns: minmax(0, 0.95fr) minmax(142px, 0.72fr) minmax(0, 0.95fr);
-        gap: 8px;
-      }
-      .mind-center {
-        padding: 12px 8px;
-      }
-      .mind-center strong {
-        font-size: 15px;
-      }
-      .mind-node {
-        padding: 10px;
-        min-height: 84px;
-      }
-      .mind-node::before {
-        width: 8px;
-      }
-      .mind-left .mind-node::before {
-        right: -9px;
-      }
-      .mind-right .mind-node::before {
-        left: -9px;
-      }
-      .mind-node strong {
-        font-size: 13px;
-      }
-      .mind-node span {
-        font-size: 11px;
-      }
-    }
-    @media (max-width: 620px) {
-      .lead {
-        max-width: 320px;
-      }
-      .mindmap {
-        grid-template-columns: 1fr;
-      }
-      .mind-node::before {
-        display: none;
-      }
-    }
-    @media (max-width: 560px) {
-      .inner {
-        width: min(100% - 24px, 1120px);
-      }
-      .brand {
-        font-size: 14px;
-      }
-      .stamp {
-        font-size: 12px;
-        max-width: 112px;
-        line-height: 1.25;
-      }
-      .container {
-        width: min(100% - 32px, 1120px);
-      }
-      .grid-4 {
-        grid-template-columns: 1fr;
-      }
-      .evidence-strip {
-        grid-template-columns: 1fr;
-      }
-      .creative-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero-stat-grid,
-      .priority-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero-copy,
-      .panel {
-        padding: 14px;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NP 新素材截至 2026-05-20 结论</title>
+<style>
+:root { --ink:#151515; --muted:#6b6b6b; --line:#e5ddd5; --green:#19764a; --green-bg:#edf8f2; --amber:#a16207; --amber-bg:#fff7e8; --bg:#faf8f5; }
+* { box-sizing:border-box; } body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); line-height:1.65; }
+.top { background:#202020; color:#fff; padding:16px 5vw; display:flex; justify-content:space-between; gap:16px; align-items:center; } .brand { font-weight:800; letter-spacing:.04em; } .brand span { color:#df765b; }
+main { width:min(1120px, calc(100% - 48px)); margin:28px auto 56px; }
+section,.hero { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; margin:18px 0; }
+h1 { margin:0 0 8px; font-size:34px; line-height:1.2; } h2 { margin:0 0 16px; font-size:24px; border-left:4px solid #df765b; padding-left:12px; } h3 { margin:0; font-size:17px; }
+.lead { color:var(--muted); margin:0 0 16px; } .hero { background:linear-gradient(135deg,#fff,#fffdf8 45%,#edf8f2); }
+.badges { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 18px; } .badge { border:1px solid var(--line); border-radius:99px; padding:5px 11px; font-weight:700; font-size:13px; background:#fff; } .badge.green { color:var(--green); background:var(--green-bg); border-color:#bee5ce; } .badge.amber { color:var(--amber); background:var(--amber-bg); border-color:#f1d59d; }
+.metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; } .metric { border:1px solid var(--line); border-radius:12px; background:#fff; padding:14px; } .metric span { display:block; color:var(--muted); font-size:13px; } .metric b { display:block; margin-top:5px; font-size:28px; line-height:1.1; } .metric.primary { background:var(--green-bg); border-color:#bee5ce; } .metric.primary b { color:var(--green); }
+.verdict { display:grid; grid-template-columns:260px 1fr; gap:14px; align-items:stretch; } .verdict-main { background:var(--green-bg); border:1px solid #bee5ce; border-radius:12px; padding:16px; } .verdict-main .label { color:var(--green); font-weight:800; } .verdict-main .big { color:var(--green); font-size:42px; font-weight:900; line-height:1.1; margin-top:8px; } .framework { display:grid; gap:10px; } .frame { border:1px solid var(--line); border-radius:12px; padding:12px; background:#fff; } .frame b { display:block; color:var(--green); margin-bottom:4px; } .frame.warn b { color:var(--amber); }
+table { width:100%; border-collapse:collapse; font-size:14px; } th,td { padding:10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; } th { background:#f7f2ed; font-weight:800; } td:not(:first-child), th:not(:first-child) { text-align:right; } .table-wrap { overflow-x:auto; } code,.mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+.creative-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; } .creative-card { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff; } .creative-media { aspect-ratio:4/5; background:#f3eee8; display:grid; place-items:center; } .creative-media img { width:100%; height:100%; object-fit:cover; display:block; } .placeholder { color:var(--green); font-weight:800; text-align:center; } .placeholder span { display:block; color:var(--muted); font-size:12px; font-weight:500; } .creative-body { padding:12px; } .priority { display:inline-flex; color:var(--green); background:var(--green-bg); border-radius:99px; padding:3px 8px; font-size:12px; font-weight:800; margin-bottom:8px; } .mini-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:10px; } .mini-metrics span { border:1px solid var(--line); border-radius:8px; padding:7px; color:var(--muted); font-size:11px; } .mini-metrics b { display:block; color:var(--ink); font-size:15px; }
+.actions { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; } .action { border:1px solid var(--line); border-radius:12px; padding:14px; background:#fff; } .action.p0 { border-color:#bee5ce; background:var(--green-bg); } .action.p2 { border-color:#f1d59d; background:var(--amber-bg); }
+.small { color:var(--muted); font-size:13px; }
+
+
+.review-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:14px 0; }
+.review-card { border:1px solid var(--line); border-radius:14px; background:#fff; padding:14px; }
+.review-card h3 { margin:0 0 8px; color:var(--green); }
+.review-card p { margin:0; color:var(--muted); }
+.review-card.conclusion { background:var(--green-bg); border-color:#bfe7cf; }
+.review-card.issue { background:#fff8ec; border-color:#f0d6a4; }
+.review-card.next { background:#f8fbf7; }
+.summary-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:12px; }
+.summary-strip span { border:1px solid var(--line); border-radius:12px; padding:12px; background:#fff; color:var(--muted); }
+.summary-strip b { display:block; color:var(--ink); margin-bottom:4px; }
+.ab-card .priority-tag { flex:0 0 auto; border-radius:999px; padding:7px 11px; background:var(--green-bg); color:var(--green); font-weight:900; }
+.ab-meta { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:10px 0; }
+.ab-meta span { border:1px solid var(--line); border-radius:10px; padding:10px; color:var(--muted); background:#fffdf9; }
+.ab-meta b { display:block; color:var(--ink); margin-bottom:4px; }
+@media (max-width:900px) { .review-grid,.summary-strip,.ab-meta { grid-template-columns:1fr; } }
+.copy-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:12px; }
+.copy-card { border:1px solid var(--line); border-radius:12px; background:#fff; padding:14px; }
+.copy-card h3 { margin:0 0 8px; color:var(--green); }
+.copy-card .copy-line { border-bottom:1px solid var(--line); padding:8px 0; }
+.copy-card .copy-line:last-child { border-bottom:0; }
+.copy-card b { display:block; font-size:15px; }
+.copy-card span { display:block; color:var(--muted); font-size:13px; margin-top:2px; }
+.copy-card .effect { display:block; color:var(--green); font-weight:800; font-size:12px; margin-top:5px; }
+.copy-card .note { color:var(--amber); }
+.logic-table td:first-child, .logic-table th:first-child { text-align:left; }
+.logic-flow { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:10px; margin-top:12px; }
+.logic-step { border:1px solid var(--line); border-radius:12px; background:#fff; padding:12px; }
+.logic-step b { display:block; color:var(--green); margin-bottom:4px; }
+@media (max-width:900px) { .copy-grid,.logic-flow { grid-template-columns:1fr; } }
+
+.test-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; }
+.test-card { border:1px solid var(--line); border-radius:12px; background:#fff; padding:14px; }
+.test-card h3 { margin:0 0 8px; }
+.test-card ul { margin:8px 0 0 18px; padding:0; color:var(--muted); }
+.prompt-list { display:grid; gap:10px; }
+.prompt-card { border:1px solid var(--line); border-radius:12px; background:#fff; padding:14px; }
+.prompt-card h3 { margin:0 0 6px; color:var(--green); }
+.prompt-card p { margin:6px 0; }
+.prompt-card pre { white-space:pre-wrap; margin:10px 0 0; padding:12px; border-radius:10px; background:#f7f2ed; font-size:13px; line-height:1.55; overflow:auto; }
+@media (max-width:900px) { .test-grid { grid-template-columns:1fr; } }
+
+
+.mindmap { position:relative; display:grid; grid-template-columns:1fr 0.9fr 1fr; gap:24px; align-items:center; padding:18px; border:1px solid var(--line); border-radius:14px; background:#fffdf8; }
+.mind-col { display:grid; gap:12px; }
+.mind-node { border:1px solid var(--line); border-radius:12px; background:#fff; padding:14px; min-height:96px; box-shadow:0 1px 0 rgba(0,0,0,.02); }
+.mind-node b { display:block; font-size:16px; margin-bottom:6px; }
+.mind-node p { margin:0; color:var(--muted); font-size:14px; }
+.mind-center { border:1px solid #98d8c2; background:#e6f6ef; color:#0f6743; text-align:center; border-radius:16px; padding:22px 14px; font-weight:900; font-size:22px; line-height:1.25; }
+.mind-center span { display:block; margin-top:8px; font-size:14px; font-weight:600; color:#2e7259; }
+.mind-note { border-color:#e8c98d; background:#fff8e8; }
+.compare-note { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:12px 0; }
+.compare-note .note-card { border:1px solid var(--line); border-radius:12px; padding:12px; background:#fff; }
+.compare-note b { display:block; color:var(--green); font-size:18px; }
+.success-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:14px; }
+.success-card { border:1px solid var(--line); border-radius:12px; padding:14px; background:#fff; }
+.success-card b { display:block; font-size:26px; line-height:1.1; }
+.success-card span { color:var(--muted); font-size:13px; }
+.highlight-row td { background:#edf8f2; font-weight:800; }
+.effect-pill { display:inline-flex; border-radius:999px; padding:3px 8px; background:#edf8f2; color:#19764a; font-size:12px; font-weight:800; }
+.prompt-ref { display:grid; grid-template-columns:128px 1fr; gap:12px; align-items:center; margin:10px 0; }
+.prompt-ref img { width:128px; aspect-ratio:4/5; object-fit:cover; border-radius:10px; border:1px solid var(--line); background:#f3eee8; }
+.prompt-ref span { color:var(--muted); font-size:13px; }
+@media (max-width:900px) { .mindmap { grid-template-columns:1fr; } .compare-note,.success-grid { grid-template-columns:1fr; } .prompt-ref { grid-template-columns:92px 1fr; } .prompt-ref img { width:92px; } }
+
+
+.report-section { scroll-margin-top:88px; }
+.sticky-nav { position:sticky; top:0; z-index:30; display:flex; gap:8px; overflow-x:auto; padding:10px 5vw; background:rgba(250,248,245,.96); border-bottom:1px solid var(--line); backdrop-filter:blur(10px); }
+.sticky-nav a { flex:0 0 auto; color:var(--muted); text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:6px 11px; font-size:13px; font-weight:800; background:#fff; }
+.sticky-nav a.active, .sticky-nav a:hover { color:var(--green); border-color:#bee5ce; background:var(--green-bg); }
+.metric .metric-note { display:block; margin-top:7px; color:var(--muted); font-size:12px; line-height:1.45; }
+.creative-toolbar { display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; margin:10px 0 16px; }
+.filter-group { display:flex; gap:8px; flex-wrap:wrap; }
+.toolbar-btn, .copy-btn, .modal-close { border:1px solid var(--line); background:#fff; border-radius:999px; padding:7px 12px; font-weight:800; color:var(--muted); cursor:pointer; }
+.toolbar-btn.active { color:var(--green); background:var(--green-bg); border-color:#bee5ce; }
+.sort-label { display:flex; align-items:center; gap:8px; color:var(--muted); font-weight:800; }
+.sort-label select { border:1px solid var(--line); border-radius:999px; padding:7px 12px; background:#fff; font:inherit; }
+.creative-card.p0 { border-color:#9fd8b8; box-shadow:0 1px 0 rgba(25,118,74,.08); }
+.creative-card.p1 { border-color:#b8d8e8; }
+.creative-card.watch { border-color:#ead29a; }
+.priority.p0 { color:#19764a; background:#edf8f2; border:1px solid #bee5ce; }
+.priority.p1 { color:#23647a; background:#edf7fb; border:1px solid #b8d8e8; }
+.priority.watch { color:#8a5600; background:#fff7e8; border:1px solid #f1d59d; }
+.action-reason { margin:8px 0 0; color:var(--muted); font-size:12px; line-height:1.45; }
+.anomaly-badge { display:inline-flex; margin-top:8px; color:#8a5600; background:#fff7e8; border:1px solid #f1d59d; border-radius:999px; padding:3px 8px; font-size:12px; font-weight:800; }
+.mini-metrics span:first-child b { color:#6b6b6b; }
+.mini-metrics span:last-child { border-color:#bee5ce; background:var(--green-bg); }
+.mini-metrics span:last-child b { color:var(--green); }
+.table-wrap { border:1px solid var(--line); border-radius:10px; }
+table { border-collapse:separate; border-spacing:0; }
+thead th { position:sticky; top:0; z-index:2; background:#f7f2ed; }
+tbody tr:nth-child(even) td, tbody tr:nth-child(even) th { background:#fffdf9; }
+tbody tr:hover td, tbody tr:hover th { background:#edf8f2; }
+td.num, th.num { text-align:right !important; font-variant-numeric:tabular-nums; white-space:nowrap; }
+td.text, th.text { text-align:left !important; }
+.creative-media img { cursor:zoom-in; }
+.image-modal { border:0; border-radius:16px; padding:0; max-width:min(92vw,900px); background:#fff; box-shadow:0 24px 80px rgba(0,0,0,.28); }
+.image-modal::backdrop { background:rgba(0,0,0,.55); }
+.modal-inner { display:grid; gap:12px; padding:16px; }
+.modal-head { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.modal-title { font-weight:900; }
+.modal-img { max-width:100%; max-height:78vh; object-fit:contain; border-radius:10px; background:#f3eee8; }
+.prompt-card-header { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+.copy-btn.copied { color:var(--green); background:var(--green-bg); border-color:#bee5ce; }
+@media (max-width:560px) { .sticky-nav { padding:8px 14px; } .creative-toolbar { align-items:flex-start; flex-direction:column; } }
+
+@media (max-width:900px) { .metrics,.creative-grid,.actions { grid-template-columns:repeat(2,1fr); } .verdict { grid-template-columns:1fr; } }
+@media (max-width:560px) { main { width:min(100% - 28px,1120px); } section,.hero { padding:16px; } .metrics,.creative-grid,.actions { grid-template-columns:1fr; } .top { align-items:flex-start; flex-direction:column; } }
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="inner">
-      <div class="brand">NEXTPRIME <span>pic_editor</span></div>
-      <div class="stamp">投放分析 / 2026-05-18</div>
+<header class="top"><div class="brand">NEXTPRIME <span>pic_editor</span></div><div>投放分析报告 / 截至 2026-05-20</div></header>
+<nav class="sticky-nav" aria-label="报告导航">
+  <a href="#overall-review">整体复盘</a>
+  <a href="#batch-success">成功率</a>
+  <a href="#priority-creatives">出单素材</a>
+  <a href="#content-review">内容复盘</a>
+  <a href="#ab-plan">AB测试</a>
+  <a href="#copy-assets">素材资产</a>
+  <a href="#methodology">口径方法</a>
+</nav>
+<main>
+<section class="hero">
+<h1>NP 2026-05-18 新素材截至当前表现</h1>
+<p class="lead">样本：2026-05-18 首次出现的新素材，按 material_key 去重，共 37 条。BQ 已入仓至 2026-05-19；2026-05-20 使用 Meta Insights API 临时补数。</p>
+<div class="badges"><span class="badge green">可以分方向加码复测</span><span class="badge">37 条新素材</span><span class="badge">15 条有订单</span><span class="badge amber">5/20 为 API 临时数据</span></div>
+<div class="metrics"><div class="metric primary"><span>当前有效转化面</span><b>15 / 37</b><span class="metric-note">计算准则：截至 2026-05-20，purchases &gt; 0 的 material_key / 37 条新素材。</span></div><div class="metric"><span>累计 Spend</span><b>$26.32</b></div><div class="metric"><span>累计 GMV</span><b>$119.36</b></div><div class="metric"><span>累计 ROAS</span><b>4.53</b></div></div>
+</section>
+<section id="overall-review" class="report-section"><h2>整体复盘（投放 + 内容）</h2>
+  <div class="review-grid">
+    <article class="review-card conclusion"><h3>结论</h3><p><b>可分方向小预算加码复测。</b> 首日高分位出单素材率为 <b>4 / 37 = 10.8%</b>；截至 2026-05-20，有订单素材扩大到 <b>15 / 37 = 40.5%</b>，累计 ROAS <b>4.53</b>。这批已经不是单日偶然出单，而是多个内容方向开始出现转化面。</p></article>
+    <article class="review-card issue"><h3>问题</h3><p>累计 spend 仍只有 <b>$26.32</b>，单条素材还没跑到稳定判断量级；Link CTR 只有 <b>0.22%</b>，前端吸引力仍弱；5/20 为 Meta API 临时补数，且存在归因回传异常；首日 Top20% 成功率不能和截至 5/20 有订单占比混用。</p></article>
+    <article class="review-card next"><h3>下一步</h3><p><b>P0</b> 小预算加码高级 AI 产品图、冰水冷感、BA、泡沫质地；<b>P1</b> 复测成分机制、男性 KOL、场景实拍；<b>P2</b> 暂缓无 GMV、未识别方向和归因异常素材，停止平均铺预算。</p></article>
+  </div>
+  <div class="summary-strip">
+    <span><b>首日成功率</b>4 / 37 = 10.8%</span>
+    <span><b>当前有效转化面</b>15 / 37 = 40.5%</span>
+    <span><b>累计 Spend</b>$26.32</span>
+    <span><b>累计 ROAS</b>4.53</span>
+  </div>
+</section>
+<section id="batch-success" class="report-section"><h2>批次成功率</h2>
+  <p><b>成功素材定义：</b>有订单 + ROAS 位于 NP 新素材大盘 Top20%。</p>
+  <p class="lead">历史 peer pool 为 1042 条新素材。由于大量新素材首日 ROAS 为 0，NP 大盘 ROAS P80 阈值为 0，P90 约 1.45；2026-05-18 首日 4 条出单素材均高于 P90，属于首日转化信号较强的素材。</p>
+  <div class="success-grid">
+    <div class="success-card"><span>首日高分位出单素材</span><b>4 / 37</b><span>首日新素材成功率 10.8%</span></div>
+    <div class="success-card"><span>截至 2026-05-20 有订单素材</span><b>15 / 37</b><span>当前有效转化面 40.5%，不是 Top20 成功率</span></div>
+  </div>
+  <div class="table-wrap" style="margin-top:14px;"><table><tbody>
+    <tr><th>新上素材总数</th><td>37</td></tr>
+    <tr><th>首日有订单素材</th><td>4</td></tr>
+    <tr><th>首日高分位出单素材</th><td>4</td></tr>
+    <tr><th>首日新素材成功率</th><td><b>10.8%</b></td></tr>
+    <tr><th>截至 5/20 有订单素材</th><td><b>15</b></td></tr>
+    <tr><th>截至 5/20 有订单素材占比</th><td><b>40.5%</b></td></tr>
+  </tbody></table></div>
+</section>
+<section id="priority-creatives" class="report-section"><h2>已出单素材清单</h2>
+  <p class="lead">本模块展示截至 2026-05-20 已出单素材。这里的 P0/P1/观察是动作建议，不等同于“成功素材”定义；所有素材仍需继续复测确认稳定性。</p>
+  <div class="creative-toolbar" aria-label="素材筛选和排序">
+    <div class="filter-group" role="group" aria-label="按动作建议筛选">
+      <button type="button" class="toolbar-btn active" data-filter-priority="all">全部</button>
+      <button type="button" class="toolbar-btn" data-filter-priority="P0">P0</button>
+      <button type="button" class="toolbar-btn" data-filter-priority="P1">P1</button>
+      <button type="button" class="toolbar-btn" data-filter-priority="观察">观察</button>
     </div>
-  </header>
+    <label class="sort-label">排序
+      <select data-sort-creatives>
+        <option value="default">默认：动作建议 + 订单</option>
+        <option value="spend-desc">Spend 高到低</option>
+        <option value="orders-desc">订单高到低</option>
+        <option value="roas-desc">ROAS 高到低</option>
+      </select>
+    </label>
+  </div>
+  <div class="creative-grid">
+<article class="creative-card p0" data-priority="P0" data-spend="1.5500" data-orders="5" data-roas="12.9290" data-code="SC154350" data-title="品牌资产素材 / 高级AI产品图 / 极简产品大片">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_品牌资产素材_高级AI产品图_极简产品大片_SC154350.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_品牌资产素材_高级AI产品图_极简产品大片_SC154350.png" data-title="SC154350 · 品牌资产素材 / 高级AI产品图 / 极简产品大片" alt="SC154350"></div>
+  <div class="creative-body">
+    <div class="priority p0">P0 小预算加码复测</div>
+    <h3>品牌资产素材 / 高级AI产品图 / 极简产品大片</h3>
+    <p class="mono">sc2605180073 · SC154350</p>
+    <p class="action-reason">理由：累计 5 单，ROAS 12.93；5/20 继续新增 3 单，适合复制变体小步放量。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$1.55</b>Spend</span>
+      <span><b>5</b>订单</span>
+      <span><b>12.93</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p0" data-priority="P0" data-spend="1.5100" data-orders="5" data-roas="8.3311" data-code="SC154336" data-title="信任增强素材 / 深度成分讲解 / 三成分机制">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_深度成分讲解_三成分机制_SC154336.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_深度成分讲解_三成分机制_SC154336.png" data-title="SC154336 · 信任增强素材 / 深度成分讲解 / 三成分机制" alt="SC154336"></div>
+  <div class="creative-body">
+    <div class="priority p0">P0 小预算加码复测</div>
+    <h3>信任增强素材 / 深度成分讲解 / 三成分机制</h3>
+    <p class="mono">sc2605180078 · SC154336</p>
+    <p class="action-reason">理由：累计 5 单，ROAS 8.33；5/20 继续新增 5 单，适合复制变体小步放量。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$1.51</b>Spend</span>
+      <span><b>5</b>订单</span>
+      <span><b>8.33</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p0" data-priority="P0" data-spend="0.7500" data-orders="4" data-roas="14.0000" data-code="SC154837" data-title="转化强素材 / 实拍水感 / 冰水冷感">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_实拍水感_冰水冷感_SC154837.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_实拍水感_冰水冷感_SC154837.png" data-title="SC154837 · 转化强素材 / 实拍水感 / 冰水冷感" alt="SC154837"></div>
+  <div class="creative-body">
+    <div class="priority p0">P0 小预算加码复测</div>
+    <h3>转化强素材 / 实拍水感 / 冰水冷感</h3>
+    <p class="mono">sc2605180092 · SC154837</p>
+    <p class="action-reason">理由：累计 4 单，ROAS 14.00；5/20 继续新增 3 单，适合复制变体小步放量。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$0.75</b>Spend</span>
+      <span><b>4</b>订单</span>
+      <span><b>14.00</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p0" data-priority="P0" data-spend="1.2000" data-orders="4" data-roas="10.4417" data-code="SC154857" data-title="转化强素材 / 实拍水感 / 冰水冷感">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_实拍水感_冰水冷感_SC154857.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_实拍水感_冰水冷感_SC154857.png" data-title="SC154857 · 转化强素材 / 实拍水感 / 冰水冷感" alt="SC154857"></div>
+  <div class="creative-body">
+    <div class="priority p0">P0 小预算加码复测</div>
+    <h3>转化强素材 / 实拍水感 / 冰水冷感</h3>
+    <p class="mono">sc2605180093 · SC154857</p>
+    <p class="action-reason">理由：累计 4 单，ROAS 10.44，但 spend 仅 $1.20，先小步加预算验证稳定性。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$1.20</b>Spend</span>
+      <span><b>4</b>订单</span>
+      <span><b>10.44</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p0" data-priority="P0" data-spend="0.7200" data-orders="3" data-roas="14.2639" data-code="SC154134" data-title="转化强素材 / 大质地 / 绵密珍珠泡沫">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_大质地_绵密珍珠泡沫_SC154134.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_大质地_绵密珍珠泡沫_SC154134.png" data-title="SC154134 · 转化强素材 / 大质地 / 绵密珍珠泡沫" alt="SC154134"></div>
+  <div class="creative-body">
+    <div class="priority p0">P0 小预算加码复测</div>
+    <h3>转化强素材 / 大质地 / 绵密珍珠泡沫</h3>
+    <p class="mono">sc2605180086 · SC154134</p>
+    <p class="action-reason">理由：首日已有 2 单，累计 3 单，ROAS 14.26；优先复测同方向变体。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$0.72</b>Spend</span>
+      <span><b>3</b>订单</span>
+      <span><b>14.26</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p0" data-priority="P0" data-spend="1.1400" data-orders="3" data-roas="12.1316" data-code="SC153440" data-title="转化强素材 / BA / 暗沉疲态到清爽提亮">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_BA_暗沉疲态到清爽提亮_SC153440.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_BA_暗沉疲态到清爽提亮_SC153440.png" data-title="SC153440 · 转化强素材 / BA / 暗沉疲态到清爽提亮" alt="SC153440"></div>
+  <div class="creative-body">
+    <div class="priority p0">P0 小预算加码复测</div>
+    <h3>转化强素材 / BA / 暗沉疲态到清爽提亮</h3>
+    <p class="mono">sc2605180081 · SC153440</p>
+    <p class="action-reason">理由：累计 3 单，ROAS 12.13，但 spend 仅 $1.14，先小步加预算验证稳定性。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$1.14</b>Spend</span>
+      <span><b>3</b>订单</span>
+      <span><b>12.13</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p0" data-priority="P0" data-spend="2.2100" data-orders="3" data-roas="4.6154" data-code="SC154733" data-title="信任增强素材 / 代言人推荐 / 男性KOL推荐">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_代言人推荐_男性KOL推荐_SC154733.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_代言人推荐_男性KOL推荐_SC154733.png" data-title="SC154733 · 信任增强素材 / 代言人推荐 / 男性KOL推荐" alt="SC154733"></div>
+  <div class="creative-body">
+    <div class="priority p0">P0 小预算加码复测</div>
+    <h3>信任增强素材 / 代言人推荐 / 男性KOL推荐</h3>
+    <p class="mono">sc2605180079 · SC154733</p>
+    <p class="action-reason">理由：累计 3 单，ROAS 4.62；5/20 继续新增 3 单，适合复制变体小步放量。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$2.21</b>Spend</span>
+      <span><b>3</b>订单</span>
+      <span><b>4.62</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p1" data-priority="P1" data-spend="2.3700" data-orders="3" data-roas="3.5443" data-code="SC154214" data-title="信任增强素材 / 深度成分讲解 / 三成分机制">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_深度成分讲解_三成分机制_SC154214.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_深度成分讲解_三成分机制_SC154214.png" data-title="SC154214 · 信任增强素材 / 深度成分讲解 / 三成分机制" alt="SC154214"></div>
+  <div class="creative-body">
+    <div class="priority p1">P1 小预算复测</div>
+    <h3>信任增强素材 / 深度成分讲解 / 三成分机制</h3>
+    <p class="mono">sc2605180076 · SC154214</p>
+    <p class="action-reason">理由：已有 3 单、ROAS 3.54，信号成立但样本仍小。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$2.37</b>Spend</span>
+      <span><b>3</b>订单</span>
+      <span><b>3.54</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p1" data-priority="P1" data-spend="0.1800" data-orders="2" data-roas="23.8333" data-code="SC154258" data-title="转化强素材 / 大质地 / 绵密珍珠泡沫">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_大质地_绵密珍珠泡沫_SC154258.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_大质地_绵密珍珠泡沫_SC154258.png" data-title="SC154258 · 转化强素材 / 大质地 / 绵密珍珠泡沫" alt="SC154258"></div>
+  <div class="creative-body">
+    <div class="priority p1">P1 小预算复测</div>
+    <h3>转化强素材 / 大质地 / 绵密珍珠泡沫</h3>
+    <p class="mono">sc2605180087 · SC154258</p>
+    <p class="action-reason">理由：已有 2 单、ROAS 23.83，信号成立但样本仍小。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$0.18</b>Spend</span>
+      <span><b>2</b>订单</span>
+      <span><b>23.83</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p1" data-priority="P1" data-spend="0.1000" data-orders="1" data-roas="21.0000" data-code="SC153458" data-title="转化强素材 / BA / 暗沉疲态到清爽提亮">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_BA_暗沉疲态到清爽提亮_SC153458.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_BA_暗沉疲态到清爽提亮_SC153458.png" data-title="SC153458 · 转化强素材 / BA / 暗沉疲态到清爽提亮" alt="SC153458"></div>
+  <div class="creative-body">
+    <div class="priority p1">P1 小预算复测</div>
+    <h3>转化强素材 / BA / 暗沉疲态到清爽提亮</h3>
+    <p class="mono">sc2605180085 · SC153458</p>
+    <p class="action-reason">理由：首日出单且 ROAS 21.00，但累计订单数偏少，先复测不直接放量。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$0.10</b>Spend</span>
+      <span><b>1</b>订单</span>
+      <span><b>21.00</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p1" data-priority="P1" data-spend="0.8400" data-orders="1" data-roas="4.7619" data-code="SC154602" data-title="品牌资产素材 / 合集 / 多利益点清单">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_品牌资产素材_合集_多利益点清单_SC154602.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_品牌资产素材_合集_多利益点清单_SC154602.png" data-title="SC154602 · 品牌资产素材 / 合集 / 多利益点清单" alt="SC154602"></div>
+  <div class="creative-body">
+    <div class="priority p1">P1 小预算复测</div>
+    <h3>品牌资产素材 / 合集 / 多利益点清单</h3>
+    <p class="mono">sc2605180071 · SC154602</p>
+    <p class="action-reason">理由：已有 1 单、ROAS 4.76，信号成立但样本仍小。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$0.84</b>Spend</span>
+      <span><b>1</b>订单</span>
+      <span><b>4.76</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p1" data-priority="P1" data-spend="0.9700" data-orders="1" data-roas="4.2474" data-code="SC153934" data-title="转化强素材 / 场景实拍 / 通勤出油场景">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_场景实拍_通勤出油场景_SC153934.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_场景实拍_通勤出油场景_SC153934.png" data-title="SC153934 · 转化强素材 / 场景实拍 / 通勤出油场景" alt="SC153934"></div>
+  <div class="creative-body">
+    <div class="priority p1">P1 小预算复测</div>
+    <h3>转化强素材 / 场景实拍 / 通勤出油场景</h3>
+    <p class="mono">sc2605180072 · SC153934</p>
+    <p class="action-reason">理由：已有 1 单、ROAS 4.25，信号成立但样本仍小。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$0.97</b>Spend</span>
+      <span><b>1</b>订单</span>
+      <span><b>4.25</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p1" data-priority="P1" data-spend="0.8700" data-orders="1" data-roas="2.5287" data-code="SC154423" data-title="品牌资产素材 / 高级AI产品图 / 极简产品大片">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_品牌资产素材_高级AI产品图_极简产品大片_SC154423.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_品牌资产素材_高级AI产品图_极简产品大片_SC154423.png" data-title="SC154423 · 品牌资产素材 / 高级AI产品图 / 极简产品大片" alt="SC154423"></div>
+  <div class="creative-body">
+    <div class="priority p1">P1 小预算复测</div>
+    <h3>品牌资产素材 / 高级AI产品图 / 极简产品大片</h3>
+    <p class="mono">sc2605180077 · SC154423</p>
+    <p class="action-reason">理由：已有 1 单、ROAS 2.53，信号成立但样本仍小。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$0.87</b>Spend</span>
+      <span><b>1</b>订单</span>
+      <span><b>2.53</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card p1" data-priority="P1" data-spend="0.8400" data-orders="1" data-roas="2.5000" data-code="SC154717" data-title="信任增强素材 / 代言人推荐 / 男性KOL推荐">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_代言人推荐_男性KOL推荐_SC154717.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_代言人推荐_男性KOL推荐_SC154717.png" data-title="SC154717 · 信任增强素材 / 代言人推荐 / 男性KOL推荐" alt="SC154717"></div>
+  <div class="creative-body">
+    <div class="priority p1">P1 小预算复测</div>
+    <h3>信任增强素材 / 代言人推荐 / 男性KOL推荐</h3>
+    <p class="mono">sc2605180069 · SC154717</p>
+    <p class="action-reason">理由：首日出单且 ROAS 2.50，但累计订单数偏少，先复测不直接放量。</p>
+    
+    <div class="mini-metrics">
+      <span><b>$0.84</b>Spend</span>
+      <span><b>1</b>订单</span>
+      <span><b>2.50</b>ROAS</span>
+    </div>
+  </div>
+</article>
+<article class="creative-card watch" data-priority="观察" data-spend="1.1600" data-orders="1" data-roas="1.8966" data-code="SC154607" data-title="信任增强素材 / 深度成分讲解 / 三成分机制">
+  <div class="creative-media"><img class="js-open-image" src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_深度成分讲解_三成分机制_SC154607.png" data-full-src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_深度成分讲解_三成分机制_SC154607.png" data-title="SC154607 · 信任增强素材 / 深度成分讲解 / 三成分机制" alt="SC154607"></div>
+  <div class="creative-body">
+    <div class="priority watch">观察 / 暂不加码</div>
+    <h3>信任增强素材 / 深度成分讲解 / 三成分机制</h3>
+    <p class="mono">sc2605180074 · SC154607</p>
+    <p class="action-reason">理由：5/20 API 归因 1 单，但当天 0 展示 / 0 花费 / 0 link click，需复核归因。</p>
+    <span class="anomaly-badge">API 归因异常：0 展示 / 0 花费 / 1 单</span>
+    <div class="mini-metrics">
+      <span><b>$1.16</b>Spend</span>
+      <span><b>1</b>订单</span>
+      <span><b>1.90</b>ROAS</span>
+    </div>
+  </div>
+</article>
+  </div>
+</section>
+<section id="content-review" class="report-section"><h2>内容复盘</h2>
+  <div class="review-grid">
+    <article class="review-card conclusion"><h3>结论</h3><p>内容方向从首日的“转化强素材 + 男性 KOL”扩展到截至 5/20 的“高级产品图、冰水冷感、BA、泡沫质地、深度成分讲解”多方向出单。最重要的变化是：首日偏弱的 <b>深度成分讲解</b> 和 <b>高级 AI 产品图</b> 后续补出了 GMV，说明它们不能直接被判为无效。</p></article>
+    <article class="review-card issue"><h3>问题</h3><p>首日和累计口径结论不同：首日表用于判断冷启动强信号，累计表用于决定下一轮加码；此外 Link CTR 偏弱，说明下一版不能只复制高 ROAS 画面，还要加强首图痛点、标题利益点和场景代入。</p></article>
+    <article class="review-card next"><h3>下一步</h3><p>优先做结果可视化：人脸前后对比、冰水冷感、绵密泡沫、成分结果化、男性 KOL 真实推荐。每个方向先复制 2-3 条变体，跑到 $5-$10 spend 或 30+ link clicks 后再判断稳定性。</p></article>
+  </div>
+  <h3>首日方向表现：保留原始隔日判断口径</h3>
+  <div class="table-wrap"><table><thead><tr><th>一级方向</th><th>素材数</th><th>Spend</th><th>GMV</th><th>ROAS</th><th>订单</th><th>Top20% 成功素材</th></tr></thead><tbody>
+    <tr><td>转化强素材</td><td>14</td><td>$1.03</td><td>$12.48</td><td>12.12</td><td>4</td><td>3</td></tr>
+    <tr><td>信任增强素材</td><td>8</td><td>$0.13</td><td>$2.10</td><td>16.15</td><td>1</td><td>1</td></tr>
+    <tr><td>品牌资产素材</td><td>3</td><td>$0.05</td><td>$0.00</td><td>0.00</td><td>0</td><td>0</td></tr>
+  </tbody></table></div>
+  <div class="table-wrap" style="margin-top:14px;"><table><thead><tr><th>二级 / 三级方向</th><th>素材数</th><th>GMV</th><th>ROAS</th><th>Top20% 成功素材</th><th>首日结论</th></tr></thead><tbody>
+    <tr><td>大质地 / 绵密珍珠泡沫</td><td>3</td><td>$8.17</td><td>17.76</td><td>1</td><td>当前 GMV 贡献最高，优先扩变体。</td></tr>
+    <tr><td>BA / 暗沉疲态到清爽提亮</td><td>4</td><td>$2.10</td><td>8.40</td><td>1</td><td>有转化信号，继续测试 BA 结构。</td></tr>
+    <tr><td>实拍水感 / 冰水冷感</td><td>4</td><td>$2.21</td><td>6.91</td><td>1</td><td>有转化信号，继续测试冷感表达。</td></tr>
+    <tr><td>代言人推荐 / 男性KOL推荐</td><td>3</td><td>$2.10</td><td>23.33</td><td>1</td><td>信任增强方向的新信号，建议小规模复测。</td></tr>
+    <tr><td>深度成分讲解 / 三成分机制</td><td>4</td><td>$0.00</td><td>0.00</td><td>0</td><td>首日暂无转化，累计口径需重新观察。</td></tr>
+    <tr><td>高级AI产品图 / 极简产品大片</td><td>2</td><td>$0.00</td><td>0.00</td><td>0</td><td>首日更像品牌资产，累计口径已转强。</td></tr>
+  </tbody></table></div>
+  <h3 style="margin-top:20px;">截至 2026-05-20 累计方向表现：用于下一轮加码</h3>
+  <div class="table-wrap"><table><thead><tr><th>内容方向</th><th>素材数</th><th>Spend</th><th>GMV</th><th>订单</th><th>ROAS</th><th>5/20 新增 GMV</th><th>动作</th></tr></thead><tbody>
+    <tr><td>信任增强素材 / 深度成分讲解 / 三成分机制</td><td>4</td><td>$5.13</td><td>$23.18</td><td>9</td><td>4.52</td><td>$19.18</td><td><span class="effect-pill">从暂缓转为 P1 复测</span></td></tr>
+    <tr><td>转化强素材 / 实拍水感 / 冰水冷感</td><td>4</td><td>$2.35</td><td>$23.03</td><td>8</td><td>9.80</td><td>$8.29</td><td><span class="effect-pill">P0 小预算加码复测</span></td></tr>
+    <tr><td>品牌资产素材 / 高级AI产品图 / 极简产品大片</td><td>2</td><td>$2.42</td><td>$22.24</td><td>6</td><td>9.19</td><td>$11.92</td><td><span class="effect-pill">P0 复测产品大片</span></td></tr>
+    <tr><td>转化强素材 / BA / 暗沉疲态到清爽提亮</td><td>4</td><td>$2.60</td><td>$15.93</td><td>4</td><td>6.13</td><td>$0.00</td><td><span class="effect-pill">P0 复测 BA</span></td></tr>
+    <tr><td>转化强素材 / 大质地 / 绵密珍珠泡沫</td><td>3</td><td>$1.44</td><td>$14.56</td><td>5</td><td>10.11</td><td>$0.00</td><td><span class="effect-pill">P0 保留泡沫证据</span></td></tr>
+    <tr><td>信任增强素材 / 代言人推荐 / 男性KOL推荐</td><td>3</td><td>$3.19</td><td>$12.30</td><td>4</td><td>3.86</td><td>$10.20</td><td><span class="effect-pill">P1 小规模复测</span></td></tr>
+    <tr><td>转化强素材 / 场景实拍 / 通勤出油场景</td><td>2</td><td>$0.97</td><td>$4.12</td><td>1</td><td>4.25</td><td>$0.00</td><td>补强首图痛点后复测。</td></tr>
+    <tr><td>品牌资产素材 / 合集 / 多利益点清单</td><td>1</td><td>$0.84</td><td>$4.00</td><td>1</td><td>4.76</td><td>$4.00</td><td>先小预算观察。</td></tr>
+    <tr><td>未识别</td><td>12</td><td>$7.25</td><td>$0.00</td><td>0</td><td>0.00</td><td>$0.00</td><td>暂停平均放量。</td></tr>
+  </tbody></table></div>
+</section>
+<section id="ab-plan" class="report-section"><h2>下一轮 AB 组合 &amp; Prompt</h2>
+  <p class="lead">每个组合都绑定测试假设、标题、副文案、画面逻辑、参考图和英文 Prompt。下一轮每个方向先复制 2-3 条变体，单条跑到 $5-$10 spend 或 30+ link clicks 后再判断稳定性。</p>
+  <div class="prompt-list ab-list">
+    <article class="prompt-card ab-card">
+      <div class="prompt-card-header"><div><h3>A1 提亮 BA</h3><p><b>测试假设：</b>复用 BA 方向，强化“暗沉疲态到清爽提亮”的结果感。</p></div><span class="priority-tag">P0</span></div>
+      <div class="ab-meta"><span><b>标题</b>WAJAH KUSAM?</span><span><b>副文案</b>Fresh, brighter-looking skin after cleansing.</span><span><b>画面逻辑</b>前后脸部状态 + 产品居中下方</span></div>
+      <div class="prompt-ref"><img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_BA_暗沉疲态到清爽提亮_SC153440.png" alt="SC153440"><span>Reference image: <code>SC153440</code>. Cumulative signal: BA direction generated $15.93 GMV, 4 orders, ROAS 6.13.</span></div>
+      <pre>Create a 4:5 men’s facial wash ad for NEXT PRIME MEN Brightening Facial Wash. Split the image into before and after. On the left, show an Asian male before use with dull, tired, slightly oily skin. On the right, show the same man after cleansing with a fresher, cleaner, naturally brighter face. Place the product at the lower center without covering the face. Headline: WAJAH KUSAM? Subcopy: Fresh, brighter-looking skin after cleansing. Keep the product packaging consistent, readable, and undistorted. Style: realistic, clean, masculine skincare, suitable for the Indonesian market.</pre>
+    </article>
+    <article class="prompt-card ab-card">
+      <div class="prompt-card-header"><div><h3>A2 冰水冷感</h3><p><b>测试假设：</b>放大 5/20 继续出单的水感方向，验证冷感是否能继续提升转化。</p></div><span class="priority-tag">P0</span></div>
+      <div class="ab-meta"><span><b>标题</b>FEEL THE COOL CLEAN.</span><span><b>副文案</b>Instant fresh feeling for oily, tired skin.</span><span><b>画面逻辑</b>冰块冷水 + 产品大特写</span></div>
+      <div class="prompt-ref"><img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_实拍水感_冰水冷感_SC154837.png" alt="SC154837"><span>Reference image: <code>SC154837</code>. Cumulative signal: Ice-water direction generated $23.03 GMV, 8 orders, ROAS 9.80.</span></div>
+      <pre>Create a 4:5 product ad image for NEXT PRIME MEN Brightening Facial Wash. Place the silver tube among ice cubes and fresh water splashes. Keep the tube shape, black cap, and NEXT PRIME MEN branding clear and unchanged. Use a light blue icy-water background with a clean, fresh, cooling feeling. Headline: FEEL THE COOL CLEAN. Subcopy: Instant fresh feeling for oily, tired skin. Put copy in safe areas without blocking the product. Style: fresh, masculine, high-conversion skincare ad.</pre>
+    </article>
+    <article class="prompt-card ab-card">
+      <div class="prompt-card-header"><div><h3>A3 泡沫质地</h3><p><b>测试假设：</b>复测高 ROAS 泡沫质地方向，用质地微距证明清洁力和不紧绷。</p></div><span class="priority-tag">P0</span></div>
+      <div class="ab-meta"><span><b>标题</b>DENSE FOAM. CLEAN FINISH.</span><span><b>副文案</b>Clean pores without the tight feeling.</span><span><b>画面逻辑</b>泡沫微距 + 管身侧放</span></div>
+      <div class="prompt-ref"><img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_大质地_绵密珍珠泡沫_SC154134.png" alt="SC154134"><span>Reference image: <code>SC154134</code>. Cumulative signal: Dense pearl foam direction generated $14.56 GMV, 5 orders, ROAS 10.11.</span></div>
+      <pre>Create a 4:5 facial wash texture ad for NEXT PRIME MEN Brightening Facial Wash. The main subject is the product beside dense pearl-white foam. The foam should look fine, thick, glossy, and premium. Use a black, white, and gray high-contrast background to highlight the silver tube and white foam. Headline: DENSE FOAM. CLEAN FINISH. Subcopy: Clean pores without the tight feeling. Place the product on the right side and reserve clean text space on the left. Do not distort or cover the packaging.</pre>
+    </article>
+    <article class="prompt-card ab-card">
+      <div class="prompt-card-header"><div><h3>B1 成分机制</h3><p><b>测试假设：</b>把成分讲解从种草转成收割，每个成分必须绑定一个结果利益点。</p></div><span class="priority-tag">P1</span></div>
+      <div class="ab-meta"><span><b>标题</b>3-IN-1 CLEANSE FOR MEN.</span><span><b>副文案</b>Brighten, smooth, and control oil in one wash.</span><span><b>画面逻辑</b>三成分模块 + 产品右侧</span></div>
+      <div class="prompt-ref"><img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_深度成分讲解_三成分机制_SC154214.png" alt="SC154214"><span>Reference image: <code>SC154214</code>. Cumulative signal: Ingredient mechanism direction turned positive by 5/20; result-led labels are required.</span></div>
+      <pre>Create a 4:5 informational conversion ad for NEXT PRIME MEN Brightening Facial Wash. Place the product on the right, keeping the silver tube, black cap, and brand text consistent and readable. On the left, use three clean modules: Niacinamide - brighter look; BHA - clean pores; Kaolin - oil control. Use a dark water-and-foam background. Headline: 3-IN-1 CLEANSE FOR MEN. Subcopy: Brighten, smooth, and control oil in one wash. Keep the layout simple, scannable, and conversion-oriented.</pre>
+    </article>
+    <article class="prompt-card ab-card">
+      <div class="prompt-card-header"><div><h3>B2 男性 KOL</h3><p><b>测试假设：</b>验证男性 KOL 背书和真实场景是否能继续扩大信任转化。</p></div><span class="priority-tag">P1</span></div>
+      <div class="ab-meta"><span><b>标题</b>PILIHAN PRIA UNTUK WAJAH FRESH.</span><span><b>副文案</b>Recommended for dull & oily skin.</span><span><b>画面逻辑</b>KOL 持品 + 镜前真实推荐</span></div>
+      <div class="prompt-ref"><img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_代言人推荐_男性KOL推荐_SC154733.png" alt="SC154733"><span>Reference image: <code>SC154733</code>. Cumulative signal: Male KOL direction generated $12.30 GMV, 4 orders, ROAS 3.86.</span></div>
+      <pre>Create a 4:5 male KOL recommendation ad for NEXT PRIME MEN Brightening Facial Wash. Show a realistic Asian male holding the product naturally and confidently in a gym locker room or bathroom mirror setting. The product must be sharp and readable, and the face must not be covered by text. Headline: PILIHAN PRIA UNTUK WAJAH FRESH. Subcopy: Recommended for dull &amp; oily skin. Make it feel like an authentic creator recommendation while keeping a premium masculine skincare look.</pre>
+    </article>
+    <article class="prompt-card ab-card">
+      <div class="prompt-card-header"><div><h3>C1 高级产品大片</h3><p><b>测试假设：</b>把高端产品图从品牌资产改造成转化素材，加入痛点标题和成分证据。</p></div><span class="priority-tag">P1</span></div>
+      <div class="ab-meta"><span><b>标题</b>ALL-ROUNDER BRIGHTENING CLEANSER.</span><span><b>副文案</b>Clean pores. Smooth rough texture. Fresh finish.</span><span><b>画面逻辑</b>高级产品图 + 小成分标签</span></div>
+      <div class="prompt-ref"><img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_品牌资产素材_高级AI产品图_极简产品大片_SC154350.png" alt="SC154350"><span>Reference image: <code>SC154350</code>. Cumulative signal: Premium AI product images generated $22.24 GMV, 6 orders, ROAS 9.19.</span></div>
+      <pre>Create a 4:5 premium product-led Meta ad for NEXT PRIME MEN Brightening Facial Wash. Keep the exact silver tube shape, black cap, and readable NEXT PRIME MEN branding. Place the product on the right 40% of the frame. Use a dark premium bathroom counter background with cold water droplets, fine foam, and subtle reflections. Add small ingredient proof labels without clutter. Headline: ALL-ROUNDER BRIGHTENING CLEANSER. Subcopy: Clean pores. Smooth rough texture. Fresh finish. Style: premium, clean, masculine skincare, conversion-focused. Do not cover or distort the product.</pre>
+    </article>
+  </div>
+</section>
+<section id="copy-assets" class="report-section"><h2>素材生产资产：文案、画面、Prompt 逻辑</h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <h3>本轮有效文案分析</h3>
+      <ul>
+        <li><b>高转化文案不是讲品牌，而是讲状态变化。</b> 例如“暗沉疲态到清爽提亮”“Fresh look starts here”都在承诺使用后的脸部状态。</li>
+        <li><b>强视觉词能带动理解。</b> “Ice / Cool / Dense pearl foam / Brightening”这类词能直接对应画面，不需要用户读长文案。</li>
+        <li><b>男性语境有效。</b> “for men”“pria”“after work”“oily face”把产品从普通洁面拉回男性场景，降低理解成本。</li>
+        <li><b>成分文案需要结果翻译。</b> Niacinamide、BHA、Kaolin 不要单独摆成科普，要翻译成 brighter look / clean pores / oil control。</li>
+      </ul>
+    </div>
+    <div class="test-card">
+      <h3>文案结构模板</h3>
+      <ul>
+        <li><b>痛点开头：</b>OILY FACE AFTER WORK? / WAJAH KUSAM?</li>
+        <li><b>结果承诺：</b>Fresh, brighter-looking skin / Feel cool clean / Smooth rough texture</li>
+        <li><b>证据支撑：</b>Niacinamide + BHA + Kaolin / Dense pearl foam / KOL recommendation</li>
+        <li><b>收尾动作：</b>Try the fresh cleanse / Start with one wash / Clean pores daily</li>
+      </ul>
+    </div>
+    <div class="test-card">
+      <h3>画面与文案匹配原则</h3>
+      <ul>
+        <li><b>提亮类：</b>必须配人脸前后状态或亮度变化，不要只放产品。</li>
+        <li><b>冷感类：</b>必须配冰、水珠、浅蓝光感，让“cool”一眼可见。</li>
+        <li><b>泡沫类：</b>必须配泡沫微距和产品并列，证明质地。</li>
+        <li><b>成分类：</b>必须配 3 个小模块，且每个成分后面跟结果利益点。</li>
+      </ul>
+    </div>
+  </div>
 
-  <main class="container">
-    <section class="hero-report">
-      <div class="hero-copy">
-        <h1>NP 新素材隔日分析</h1>
-        <p class="lead">数据日期：2026-05-18（隔日分析）。</p>
-        <div class="badge-row">
-          <span class="badge success">转化信号好</span>
-          <span class="badge">37 条新素材</span>
-          <span class="badge">4 条 Top20% 成功素材</span>
-          <span class="badge warning">首日 spend 低，需复测</span>
-        </div>
-        <div class="hero-stat-grid">
-          <div class="hero-stat primary"><span>新素材成功率</span><strong>10.8%</strong></div>
-          <div class="hero-stat"><span>成功素材</span><strong>4 / 37</strong></div>
-          <div class="hero-stat"><span>批次 ROAS</span><strong>3.33</strong></div>
-          <div class="hero-stat"><span>Purchase CVR</span><strong>6.41%</strong></div>
-        </div>
-      </div>
-    </section>
+  <h2 style="margin-top:22px;">可复用标题库</h2>
+  <div class="copy-grid">
+    <div class="copy-card"><h3>痛点型标题</h3>
+      <div class="copy-line"><b>WAJAH KUSAM?</b><span>适合 BA 前后对比 / 暗沉疲态画面</span><span class="effect">对应 BA 方向：4 条素材，GMV $15.93，4 单，ROAS 6.13</span></div>
+      <div class="copy-line"><b>OILY FACE AFTER WORK?</b><span>适合通勤、下班、油光场景</span><span class="effect">对应通勤出油方向：2 条素材，GMV $4.12，1 单，ROAS 4.25</span></div>
+      <div class="copy-line"><b>DON’T LET DULL SKIN STAY.</b><span>适合人脸 + 产品收割图</span><span class="effect">可复用 BA + KOL 两类人脸素材：合计 GMV $28.23，8 单</span></div>
+      <div class="copy-line"><b>ROUGH SKIN? CLEAN IT RIGHT.</b><span>适合泡沫/成分机制图</span><span class="effect">对应大质地 + 深度成分方向：合计 GMV $37.74，14 单</span></div>
+    </div>
+    <div class="copy-card"><h3>结果承诺型标题</h3>
+      <div class="copy-line"><b>FRESH LOOK STARTS HERE.</b><span>适合高级产品图 / 通用主标题</span><span class="effect">对应高级产品图方向：2 条素材，GMV $22.24，6 单，ROAS 9.19</span></div>
+      <div class="copy-line"><b>CUCI, CERAH, SEGAR.</b><span>适合印尼市场，短句强记忆</span><span class="effect">对应 BA + 提亮结果类方向：GMV $15.93，4 单，ROAS 6.13</span></div>
+      <div class="copy-line"><b>FEEL THE COOL CLEAN.</b><span>适合冰水冷感方向</span><span class="effect">对应实拍水感/冰水冷感：4 条素材，GMV $23.03，8 单，ROAS 9.80</span></div>
+      <div class="copy-line"><b>DENSE FOAM. CLEAN FINISH.</b><span>适合绵密泡沫质地方向</span><span class="effect">对应大质地/绵密珍珠泡沫：3 条素材，GMV $14.56，5 单，ROAS 10.11</span></div>
+    </div>
+    <div class="copy-card"><h3>信任背书型标题</h3>
+      <div class="copy-line"><b>3-IN-1 CLEANSE FOR MEN.</b><span>适合成分机制讲解</span><span class="effect">对应深度成分讲解：4 条素材，GMV $23.18，9 单，ROAS 4.52</span></div>
+      <div class="copy-line"><b>NIACINAMIDE + BHA + KAOLIN.</b><span>适合专业信息图</span><span class="effect">成分需要绑定结果利益；单独成分标题建议作为副标题，不单独做主标题</span></div>
+      <div class="copy-line"><b>PILIHAN PRIA UNTUK WAJAH FRESH.</b><span>适合男性 KOL 推荐</span><span class="effect">对应男性 KOL 推荐：3 条素材，GMV $12.30，4 单，ROAS 3.86</span></div>
+      <div class="copy-line"><b>ALL-ROUNDER BRIGHTENING CLEANSER.</b><span>适合高端产品大片</span><span class="effect">对应高级产品图方向：2 条素材，GMV $22.24，6 单，ROAS 9.19</span></div>
+    </div>
+  </div>
 
-    <section class="panel">
-      <h2>总览结论</h2>
-      <div class="summary-lead">
-        <aside class="summary-side">
-          <div class="side-label">批次结论</div>
-          <div class="side-value">可加码复测</div>
-          <div class="side-note">优先围绕已出单方向扩大变体和 spend，下一轮重点补前端吸引力。</div>
-        </aside>
-        <div class="summary-copy">
-          <div class="framework-line">
-            <strong>核心优势</strong>
-            这批新素材的优势在转化侧，不在点击侧。目标批次 ROAS 3.33、Purchase CVR 6.41%，都高于本月其他新素材、上月同期新素材和同产品历史，说明已经有一批素材能把点击转成订单。
-          </div>
-          <div class="framework-line warning">
-            <strong>注意点</strong>
-            当前总 spend 只有 $4.38，成功素材单条 spend 都低于 $0.40；同时 Link CTR 只有 0.14%，低于多个历史基准，前端吸引力还需要补强。
-          </div>
-          <div class="framework-line final">
-            <strong>最终判断</strong>
-            这批新素材首日转化信号好，新素材成功率为 10.8%，可以判断为“值得复测和加码验证”，但整体仍处于冷启动阶段，不能直接定性为稳定爆品。
-          </div>
-        </div>
-      </div>
-      <div class="evidence-strip">
-        <div class="evidence-item"><span>样本规模</span><strong>37 条</strong></div>
-        <div class="evidence-item"><span>新素材成功率</span><strong>4 / 37 = 10.8%</strong></div>
-        <div class="evidence-item"><span>批次 ROAS</span><strong>3.33</strong></div>
-        <div class="evidence-item"><span>Purchase CVR</span><strong>6.41%</strong></div>
-      </div>
-      <div class="summary-points">
-        <div class="summary-point">
-          <h3>为什么说好</h3>
-          <ul>
-            <li>ROAS 3.33，高于本月其他新素材 1.54、上月同期 1.89、同产品历史 1.33。</li>
-            <li>Purchase CVR 6.41%，高于三个基准池。</li>
-            <li>4 条素材满足“有订单 + ROAS 大盘 Top20%”，且都高于 P90。</li>
-          </ul>
-        </div>
-        <div class="summary-point">
-          <h3>为什么还不能定为稳定爆品</h3>
-          <ul>
-            <li>总 spend 只有 $4.38，样本仍然偏冷启动。</li>
-            <li>成功素材单条 spend 均低于 $0.40，需要复测放量验证。</li>
-            <li>Link CTR 0.14%，前端吸引力还没跑赢历史基准。</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+  <h2 style="margin-top:22px;">可复用正文/副文案</h2>
+  <div class="table-wrap"><table class="logic-table"><thead><tr><th>使用场景</th><th>英文/印尼文案</th><th>累计数据效果</th><th>画面搭配</th><th>测试目的</th></tr></thead><tbody>
+    <tr><td>暗沉疲态</td><td>Fresh, brighter-looking skin after cleansing.</td><td>BA 方向：4 条素材，GMV $15.93，4 单，ROAS 6.13</td><td>男性前后对比，使用后更清爽明亮</td><td>验证结果承诺是否提升 CVR</td></tr>
+    <tr><td>油光通勤</td><td>Wash off dullness. Feel fresh again.</td><td>通勤出油方向：2 条素材，GMV $4.12，1 单，ROAS 4.25</td><td>下班后油光脸 + 洁面后状态</td><td>补 Link CTR 和痛点代入</td></tr>
+    <tr><td>冰水冷感</td><td>Instant fresh feeling for oily, tired skin.</td><td>实拍水感/冰水冷感：4 条素材，GMV $23.03，8 单，ROAS 9.80</td><td>冰块、水珠、浅蓝冷光、产品特写</td><td>放大 5/20 继续出单的水感方向</td></tr>
+    <tr><td>泡沫质地</td><td>Clean pores without the tight feeling.</td><td>大质地/绵密珍珠泡沫：3 条素材，GMV $14.56，5 单，ROAS 10.11</td><td>绵密白泡沫微距 + 银色管身</td><td>验证质地证据是否持续转化</td></tr>
+    <tr><td>成分机制</td><td>Brighten, smooth, and control oil in one wash.</td><td>深度成分讲解：4 条素材，GMV $23.18，9 单，ROAS 4.52</td><td>Niacinamide/BHA/Kaolin 三模块</td><td>把成分讲解从种草转成收割</td></tr>
+    <tr><td>KOL 推荐</td><td>Pilihan pria untuk wajah lebih fresh.</td><td>男性 KOL 推荐：3 条素材，GMV $12.30，4 单，ROAS 3.86</td><td>男性 KOL 持品、镜前/健身后场景</td><td>验证信任背书和真实感</td></tr>
+  </tbody></table></div>
 
-    <section class="panel">
-      <h2>评估流程图</h2>
-      <div class="mindmap" aria-label="新素材评估脑图">
-        <div class="mind-branch mind-left">
-          <div class="mind-node">
-            <strong>1. 确定样本</strong>
-            <span>目标日新上素材，按 material_key 去重。</span>
-          </div>
-          <div class="mind-node">
-            <strong>2. 建立基准</strong>
-            <span>历史同产品、NP 大盘、本月其他新素材。</span>
-          </div>
-          <div class="mind-node">
-            <strong>3. 单条评分</strong>
-            <span>转化、吸引、成本统一转成分位数。</span>
-          </div>
-        </div>
-        <div class="mind-center">
-          <strong>NP 新素材测试评估框架</strong>
-          <span>主线：看哪些素材赢了、这批成功率多少、下一批该加码什么方向。</span>
-        </div>
-        <div class="mind-branch mind-right">
-          <div class="mind-node primary">
-            <strong>4. 素材分层</strong>
-            <span>成功素材、转化素材、潜力素材、观察素材。</span>
-          </div>
-          <div class="mind-node primary">
-            <strong>5. 批次结论</strong>
-            <span>新素材成功率、有效测试成功率、潜力素材占比。</span>
-          </div>
-          <div class="mind-node warning">
-            <strong>内容方向复盘</strong>
-            <span>按一级 / 二级 / 三级标签判断跑赢历史方向、新出现有效方向和变弱方向。</span>
-          </div>
-        </div>
-      </div>
-    </section>
+  <h2 style="margin-top:22px;">文案和画面的组合逻辑</h2>
+  <div class="logic-flow">
+    <div class="logic-step"><b>1. 先给痛点</b>用户 1 秒内要看懂自己为什么需要它：暗沉、油光、疲态、毛孔、粗糙。</div>
+    <div class="logic-step"><b>2. 再给结果</b>标题要承诺一个可视化结果：fresh / bright / cool / clean / smooth。</div>
+    <div class="logic-step"><b>3. 画面证明</b>用人脸前后、泡沫、冰水、成分模块证明标题，不要让文案和画面各讲各的。</div>
+    <div class="logic-step"><b>4. 产品收口</b>产品必须清晰且不变形，放在结果旁边，让用户把效果归因到 NEXT PRIME MEN。</div>
+  </div>
+</section>
+<section id="methodology" class="report-section"><h2>口径方法</h2>
+  <h3>样本与对比基准</h3>
+  <div class="table-wrap"><table><thead><tr><th>基准池</th><th>素材数</th><th>Spend</th><th>GMV</th><th>ROAS</th><th>Link CTR</th><th>Purchase CVR</th></tr></thead><tbody>
+    <tr class="highlight-row"><td>目标批次首日</td><td>37</td><td>$4.38</td><td>$14.58</td><td>3.33</td><td>0.14%</td><td>6.41%</td></tr>
+    <tr><td>本月其他新素材</td><td>855</td><td>$355.47</td><td>$546.76</td><td>1.54</td><td>0.18%</td><td>2.91%</td></tr>
+    <tr><td>上月同期新素材</td><td>187</td><td>$55.41</td><td>$104.83</td><td>1.89</td><td>0.32%</td><td>2.32%</td></tr>
+    <tr><td>同产品历史：美白洁面</td><td>285</td><td>$114.20</td><td>$152.03</td><td>1.33</td><td>0.19%</td><td>2.27%</td></tr>
+  </tbody></table></div>
+  <div class="compare-note">
+    <div class="note-card"><b>转化侧跑赢</b>首日 ROAS 3.33、Purchase CVR 6.41%，均高于三个基准池。</div>
+    <div class="note-card"><b>吸引侧偏弱</b>首日 Link CTR 0.14%，低于本月、上月同期和同产品历史。</div>
+    <div class="note-card"><b>结论口径</b>先判定为“值得复测”，不因首日低 spend 直接定爆品。</div>
+  </div>
+  <h3 style="margin-top:20px;">评估流程图</h3>
+  <div class="mindmap">
+    <div class="mind-col">
+      <div class="mind-node"><b>1. 确定样本</b><p>目标日 2026-05-18 新上素材，按 material_key 去重，共 37 条。</p></div>
+      <div class="mind-node"><b>2. 建立基准</b><p>历史同产品、NP 新素材大盘、本月其他新素材。</p></div>
+      <div class="mind-node"><b>3. 单条评分</b><p>转化、吸引、成本统一转成分位数，转化指标优先。</p></div>
+    </div>
+    <div class="mind-center">NP 新素材测试评估框架<span>主线：哪些素材赢了、这批成功率多少、下一批该加码什么方向。</span></div>
+    <div class="mind-col">
+      <div class="mind-node"><b>4. 素材分层</b><p>成功素材、转化素材、潜力素材、观察素材。</p></div>
+      <div class="mind-node"><b>5. 批次结论</b><p>新素材成功率、有效测试成功率、潜力素材占比。</p></div>
+      <div class="mind-node mind-note"><b>内容复盘</b><p>按一级 / 二级 / 三级标签判断跑赢历史、新出现有效方向和变弱方向。</p></div>
+    </div>
+  </div>
+</section>
+</main>
+<dialog class="image-modal" aria-label="素材图片预览">
+  <div class="modal-inner">
+    <div class="modal-head"><div class="modal-title"></div><button class="modal-close" type="button">关闭</button></div>
+    <img class="modal-img" alt="素材图片预览">
+  </div>
+</dialog>
+<script>
+(function(){
+  function classifyTableCells(){
+    document.querySelectorAll('td, th').forEach(function(cell){
+      var txt = cell.textContent.trim();
+      var numeric = /^\$?[\d,.]+%?$/.test(txt) || /^\d+\s*\/\s*\d+(\s*=\s*[\d.]+%)?$/.test(txt);
+      cell.classList.add(numeric ? 'num' : 'text');
+    });
+  }
+  function initNav(){
+    var links = Array.from(document.querySelectorAll('.sticky-nav a'));
+    var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+    function setActive(){
+      var current = sections[0];
+      sections.forEach(function(sec){ if(sec.getBoundingClientRect().top < 110) current = sec; });
+      links.forEach(function(a){ a.classList.toggle('active', current && a.getAttribute('href') === '#' + current.id); });
+    }
+    document.addEventListener('scroll', setActive, {passive:true}); setActive();
+  }
+  function initCreativeControls(){
+    var grid = document.querySelector('#priority-creatives .creative-grid');
+    if(!grid) return;
+    var cards = Array.from(grid.querySelectorAll('.creative-card'));
+    var activeFilter = 'all';
+    function priorityRank(card){ return {P0:0, P1:1, '观察':2}[card.dataset.priority] ?? 9; }
+    function apply(){
+      cards.forEach(function(card){ card.hidden = activeFilter !== 'all' && card.dataset.priority !== activeFilter; });
+      var sort = document.querySelector('[data-sort-creatives]')?.value || 'default';
+      var sorted = cards.slice().sort(function(a,b){
+        if(sort === 'spend-desc') return Number(b.dataset.spend) - Number(a.dataset.spend);
+        if(sort === 'orders-desc') return Number(b.dataset.orders) - Number(a.dataset.orders);
+        if(sort === 'roas-desc') return Number(b.dataset.roas) - Number(a.dataset.roas);
+        return priorityRank(a) - priorityRank(b) || Number(b.dataset.orders) - Number(a.dataset.orders) || Number(b.dataset.roas) - Number(a.dataset.roas);
+      });
+      sorted.forEach(function(card){ grid.appendChild(card); });
+    }
+    document.querySelectorAll('[data-filter-priority]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        activeFilter = btn.dataset.filterPriority;
+        document.querySelectorAll('[data-filter-priority]').forEach(function(b){ b.classList.toggle('active', b === btn); });
+        apply();
+      });
+    });
+    document.querySelector('[data-sort-creatives]')?.addEventListener('change', apply);
+    apply();
+  }
+  function initImageModal(){
+    var dialog = document.querySelector('.image-modal');
+    if(!dialog) return;
+    var img = dialog.querySelector('.modal-img');
+    var title = dialog.querySelector('.modal-title');
+    document.querySelectorAll('.js-open-image').forEach(function(el){
+      el.addEventListener('click', function(){
+        img.src = el.dataset.fullSrc || el.src;
+        title.textContent = el.dataset.title || el.alt || '素材图片';
+        if(dialog.showModal) dialog.showModal(); else dialog.setAttribute('open','');
+      });
+    });
+    dialog.querySelector('.modal-close').addEventListener('click', function(){ dialog.close ? dialog.close() : dialog.removeAttribute('open'); });
+    dialog.addEventListener('click', function(e){ if(e.target === dialog) dialog.close ? dialog.close() : dialog.removeAttribute('open'); });
+  }
+  function initCopyButtons(){
+    document.querySelectorAll('.prompt-card').forEach(function(card, idx){
+      var pre = card.querySelector('pre'); var h3 = card.querySelector('h3');
+      if(!pre || !h3 || card.querySelector('.copy-btn')) return;
+      var wrap = document.createElement('div'); wrap.className = 'prompt-card-header';
+      h3.parentNode.insertBefore(wrap, h3); wrap.appendChild(h3);
+      var btn = document.createElement('button'); btn.type='button'; btn.className='copy-btn'; btn.textContent='Copy prompt'; wrap.appendChild(btn);
+      btn.addEventListener('click', async function(){
+        var text = pre.textContent.trim();
+        try { await navigator.clipboard.writeText(text); btn.textContent='Copied'; btn.classList.add('copied'); }
+        catch(e) { btn.textContent='Copy failed'; }
+        setTimeout(function(){ btn.textContent='Copy prompt'; btn.classList.remove('copied'); }, 1600);
+      });
+    });
+  }
+  classifyTableCells(); initNav(); initCreativeControls(); initImageModal(); initCopyButtons();
+})();
+</script>
 
-    <section class="panel">
-      <h2>样本与对比基准</h2>
-      <div class="table-wrap">
-        <table class="table benchmark-table">
-          <thead>
-            <tr>
-              <th>基准池</th>
-              <th class="right">素材数</th>
-              <th class="right">Spend</th>
-              <th class="right">GMV</th>
-              <th class="right">ROAS</th>
-              <th class="right">Link CTR</th>
-              <th class="right">Purchase CVR</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="target-row"><td>目标批次</td><td class="right"><span class="metric-highlight neutral">37</span></td><td class="right">$4.38</td><td class="right"><span class="metric-highlight neutral">$14.58</span></td><td class="right"><span class="metric-highlight">3.33</span></td><td class="right"><span class="metric-highlight weak">0.14%</span></td><td class="right"><span class="metric-highlight">6.41%</span></td></tr>
-            <tr><td>本月其他新素材</td><td class="right">855</td><td class="right">$355.47</td><td class="right">$546.76</td><td class="right">1.54</td><td class="right">0.18%</td><td class="right">2.91%</td></tr>
-            <tr><td>上月同期新素材</td><td class="right">187</td><td class="right">$55.41</td><td class="right">$104.83</td><td class="right">1.89</td><td class="right">0.32%</td><td class="right">2.32%</td></tr>
-            <tr><td>同产品历史：美白洁面</td><td class="right">285</td><td class="right">$114.20</td><td class="right">$152.03</td><td class="right">1.33</td><td class="right">0.19%</td><td class="right">2.27%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>批次成功率</h2>
-      <div class="split">
-        <div>
-          <p>成功素材定义：<strong>有订单 + ROAS 位于 NP 新素材大盘 Top20%</strong>。</p>
-          <p class="small" style="margin-top: 8px;">历史 peer pool 为 1042 条新素材。由于大量新素材首日 ROAS 为 0，NP 大盘 ROAS P80 阈值为 0，P90 约 1.45。本批有订单素材均高于 P90，属于首日转化信号较强的素材。</p>
-        </div>
-        <div class="table-wrap">
-          <table class="table">
-            <tbody>
-              <tr><th>新上素材总数</th><td class="right">37</td></tr>
-              <tr><th>有订单素材</th><td class="right">4</td></tr>
-              <tr><th>Top20% 成功素材</th><td class="right">4</td></tr>
-              <tr><th>新素材成功率</th><td class="right"><strong>10.8%</strong></td></tr>
-              <tr><th>潜力待复测素材</th><td class="right">1</td></tr>
-              <tr><th>成功素材 GMV 占比</th><td class="right">100%</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>Top20% 成功素材</h2>
-      <div class="creative-grid">
-        <article class="creative-card">
-          <div class="creative-image">
-            <img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_信任增强素材_代言人推荐_男性KOL推荐_SC154717.png" alt="SC154717 信任增强素材 男性KOL推荐" />
-            <span class="creative-badge">真实 SC 素材</span>
-          </div>
-          <div class="creative-body">
-            <div class="creative-title">信任增强素材 / 男性KOL推荐</div>
-            <div class="creative-id">sc2605180069</div>
-            <div class="creative-metrics">
-              <div class="creative-metric primary"><span>ROAS</span><strong>35.00</strong></div>
-              <div class="creative-metric"><span>GMV</span><strong>$2.10</strong></div>
-              <div class="creative-metric"><span>订单</span><strong>1</strong></div>
-            </div>
-          </div>
-        </article>
-        <article class="creative-card">
-          <div class="creative-image">
-            <img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_BA_暗沉疲态到清爽提亮_SC153458.png" alt="SC153458 转化强素材 BA 暗沉疲态到清爽提亮" />
-            <span class="creative-badge">真实 SC 素材</span>
-          </div>
-          <div class="creative-body">
-            <div class="creative-title">转化强素材 / BA / 暗沉疲态到清爽提亮</div>
-            <div class="creative-id">sc2605180085</div>
-            <div class="creative-metrics">
-              <div class="creative-metric primary"><span>ROAS</span><strong>30.00</strong></div>
-              <div class="creative-metric"><span>GMV</span><strong>$2.10</strong></div>
-              <div class="creative-metric"><span>订单</span><strong>1</strong></div>
-            </div>
-          </div>
-        </article>
-        <article class="creative-card">
-          <div class="creative-image">
-            <img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_大质地_绵密珍珠泡沫_SC154134.png" alt="SC154134 转化强素材 大质地 绵密珍珠泡沫" />
-            <span class="creative-badge">真实 SC 素材</span>
-          </div>
-          <div class="creative-body">
-            <div class="creative-title">转化强素材 / 大质地 / 绵密珍珠泡沫</div>
-            <div class="creative-id">sc2605180086</div>
-            <div class="creative-metrics">
-              <div class="creative-metric primary"><span>ROAS</span><strong>23.34</strong></div>
-              <div class="creative-metric"><span>GMV</span><strong>$8.17</strong></div>
-              <div class="creative-metric"><span>订单</span><strong>2</strong></div>
-            </div>
-          </div>
-        </article>
-        <article class="creative-card">
-          <div class="creative-image">
-            <img src="../assets/images/np-new-creatives-2026-05-18/美白洁面_Francoeditor_转化强素材_实拍水感_冰水冷感_SC154837.png" alt="SC154837 转化强素材 实拍水感 冰水冷感" />
-            <span class="creative-badge">真实 SC 素材</span>
-          </div>
-          <div class="creative-body">
-            <div class="creative-title">转化强素材 / 实拍水感 / 冰水冷感</div>
-            <div class="creative-id">sc2605180092</div>
-            <div class="creative-metrics">
-              <div class="creative-metric primary"><span>ROAS</span><strong>6.91</strong></div>
-              <div class="creative-metric"><span>GMV</span><strong>$2.21</strong></div>
-              <div class="creative-metric"><span>订单</span><strong>1</strong></div>
-            </div>
-          </div>
-        </article>
-      </div>
-      <p class="asset-note">图片来源：`美白洁面_Francoeditor_按PPT分类_SC素材编号.zip`，按 SC 素材编号精确映射。</p>
-      <div class="table-wrap">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ad编号 / material_key</th>
-              <th>原始素材编号</th>
-              <th>内容方向</th>
-              <th class="right">Spend</th>
-              <th class="right">GMV</th>
-              <th class="right">订单</th>
-              <th class="right">ROAS</th>
-              <th>判断</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="success-row"><td><code>sc2605180069</code></td><td><code>SC154717</code></td><td>信任增强素材 / 代言人推荐 / 男性KOL推荐</td><td class="right">$0.06</td><td class="right"><span class="success-data">$2.10</span></td><td class="right"><span class="success-data">1</span></td><td class="right"><span class="roas-data">35.00</span></td><td><span class="success-mark">Top20% 成功素材</span></td></tr>
-            <tr class="success-row"><td><code>sc2605180085</code></td><td><code>SC153458</code></td><td>转化强素材 / BA / 暗沉疲态到清爽提亮</td><td class="right">$0.07</td><td class="right"><span class="success-data">$2.10</span></td><td class="right"><span class="success-data">1</span></td><td class="right"><span class="roas-data">30.00</span></td><td><span class="success-mark">Top20% 成功素材</span></td></tr>
-            <tr class="success-row"><td><code>sc2605180086</code></td><td><code>SC154134</code></td><td>转化强素材 / 大质地 / 绵密珍珠泡沫</td><td class="right">$0.35</td><td class="right"><span class="success-data">$8.17</span></td><td class="right"><span class="success-data">2</span></td><td class="right"><span class="roas-data">23.34</span></td><td><span class="success-mark">Top20% 成功素材</span></td></tr>
-            <tr class="success-row"><td><code>sc2605180092</code></td><td><code>SC154837</code></td><td>转化强素材 / 实拍水感 / 冰水冷感</td><td class="right">$0.32</td><td class="right"><span class="success-data">$2.21</span></td><td class="right"><span class="success-data">1</span></td><td class="right"><span class="roas-data">6.91</span></td><td><span class="success-mark">Top20% 成功素材</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <h3>后台定位 ad_name</h3>
-      <div class="table-wrap">
-        <table class="table">
-          <thead>
-            <tr><th>ad编号 / material_key</th><th>完整 ad_name</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>sc2605180069</code></td><td class="code">美白洁面__图片_美白洁面_Francoeditor_信任增强素材_代言人推荐_男性KOL推荐_SC154717_null_null_null_SC2605180069</td></tr>
-            <tr><td><code>sc2605180085</code></td><td class="code">美白洁面__图片_美白洁面_Francoeditor_转化强素材_BA_暗沉疲态到清爽提亮_SC153458_null_null_null_SC2605180085</td></tr>
-            <tr><td><code>sc2605180086</code></td><td class="code">美白洁面__图片_美白洁面_Francoeditor_转化强素材_大质地_绵密珍珠泡沫_SC154134_null_null_null_SC2605180086</td></tr>
-            <tr><td><code>sc2605180092</code></td><td class="code">美白洁面__图片_美白洁面_Francoeditor_转化强素材_实拍水感_冰水冷感_SC154837_null_null_null_SC2605180092</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>潜力待复测素材</h2>
-      <div class="callout">
-        这类素材不计入新素材成功率。当前判断依据是点击/互动表现较好、成本未明显偏高，但首日暂无订单，需要复测后再判断转化价值。
-      </div>
-      <div class="table-wrap" style="margin-top: 12px;">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ad编号 / material_key</th>
-              <th>内容方向</th>
-              <th class="right">Spend</th>
-              <th class="right">Link Clicks</th>
-              <th>完整 ad_name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>ID-DX_pZIxMRql</code></td>
-              <td>合创 / 未识别标签</td>
-              <td class="right">$0.04</td>
-              <td class="right">6</td>
-              <td class="code">美白洁面_帖子_Regular KOL 系统_HJW_100k-500k_V_[_ID-DX_pZIxMRql_|_aldiraynn_]_awa_null_null_Regular1_null</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>内容方向复盘</h2>
-      <div class="table-wrap">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>一级方向</th>
-              <th class="right">素材数</th>
-              <th class="right">Spend</th>
-              <th class="right">GMV</th>
-              <th class="right">ROAS</th>
-              <th class="right">订单</th>
-              <th class="right">Top20% 成功素材</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>转化强素材</td><td class="right">14</td><td class="right">$1.03</td><td class="right">$12.48</td><td class="right">12.12</td><td class="right">4</td><td class="right">3</td></tr>
-            <tr><td>信任增强素材</td><td class="right">8</td><td class="right">$0.13</td><td class="right">$2.10</td><td class="right">16.15</td><td class="right">1</td><td class="right">1</td></tr>
-            <tr><td>品牌资产素材</td><td class="right">3</td><td class="right">$0.05</td><td class="right">$0.00</td><td class="right">0.00</td><td class="right">0</td><td class="right">0</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="table-wrap" style="margin-top: 14px;">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>二级 / 三级方向</th>
-              <th class="right">素材数</th>
-              <th class="right">GMV</th>
-              <th class="right">ROAS</th>
-              <th class="right">Top20% 成功素材</th>
-              <th>结论</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>大质地 / 绵密珍珠泡沫</td><td class="right">3</td><td class="right">$8.17</td><td class="right">17.76</td><td class="right">1</td><td>当前 GMV 贡献最高，优先扩变体。</td></tr>
-            <tr><td>BA / 暗沉疲态到清爽提亮</td><td class="right">4</td><td class="right">$2.10</td><td class="right">8.40</td><td class="right">1</td><td>有转化信号，继续测试 BA 结构。</td></tr>
-            <tr><td>实拍水感 / 冰水冷感</td><td class="right">4</td><td class="right">$2.21</td><td class="right">6.91</td><td class="right">1</td><td>有转化信号，继续测试冷感表达。</td></tr>
-            <tr><td>代言人推荐 / 男性KOL推荐</td><td class="right">3</td><td class="right">$2.10</td><td class="right">23.33</td><td class="right">1</td><td>信任增强方向的新信号，建议小规模复测。</td></tr>
-            <tr><td>深度成分讲解 / 三成分机制</td><td class="right">4</td><td class="right">$0.00</td><td class="right">0.00</td><td class="right">0</td><td>暂无转化，暂不加码。</td></tr>
-            <tr><td>高级AI产品图 / 极简产品大片</td><td class="right">2</td><td class="right">$0.00</td><td class="right">0.00</td><td class="right">0</td><td>品牌资产方向需更长周期评估。</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="pill-row">
-        <span class="pill">主线：转化强素材</span>
-        <span class="pill">新增信号：男性KOL推荐</span>
-        <span class="pill">暂缓：深度成分讲解</span>
-        <span class="pill">暂缓：高级AI产品图</span>
-      </div>
-    </section>
-
-    <section class="panel">
-      <h2>下一步动作</h2>
-      <div class="priority-grid">
-        <article class="priority-card p0">
-          <span class="priority-label">P0 立即复测</span>
-          <h3>绵密珍珠泡沫 / SC154134</h3>
-          <p>本批 GMV 贡献最高，2 单，ROAS 23.34，是最值得优先扩变体的方向。</p>
-          <ul>
-            <li>复制 2-3 条泡沫质地变体。</li>
-            <li>目标跑到 $5-$10 spend 或 30+ link clicks 后复判。</li>
-          </ul>
-        </article>
-        <article class="priority-card p1">
-          <span class="priority-label">P1 小规模复测</span>
-          <h3>SC153458 / SC154837 / SC154717</h3>
-          <p>暗沉疲态到清爽提亮、冰水冷感、男性KOL推荐均已出单，但 spend 仍低，需要验证稳定性。</p>
-          <ul>
-            <li>每个方向先复制 1-2 条近似变体。</li>
-            <li>下一轮重点提升首图和标题吸引力。</li>
-          </ul>
-        </article>
-        <article class="priority-card p2">
-          <span class="priority-label">P2 观察 / 暂缓</span>
-          <h3>潜力合创素材与未转化方向</h3>
-          <p>`ID-DX_pZIxMRql` 作为点击潜力素材观察；深度成分讲解、高级AI产品图暂不作为转化测试优先方向。</p>
-          <ul>
-            <li>合创素材继续看点击到订单链路。</li>
-            <li>品牌资产类放到更长周期评估。</li>
-          </ul>
-        </article>
-      </div>
-      <p class="small" style="margin-top: 12px;">来源：output/np_new_creatives_2026-05-18/np_new_creatives_2026-05-18_day_after_analysis.md</p>
-    </section>
-  </main>
 </body>
 </html>
